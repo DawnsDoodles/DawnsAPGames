@@ -3,6 +3,7 @@ from typing import Any, Optional
 
 from BaseClasses import MultiWorld
 from worlds.AutoWorld import World
+from .constants import DANGANRONPA_S
 
 from . import data, items, locations, options, regions, rules, web_world, goals
 
@@ -12,7 +13,7 @@ class DanganronpaSWorld(World):
     Danganronpa S is a game.
     """
 
-    game = "DanganronpaS"
+    game = DANGANRONPA_S
     web = web_world.DanganronpaSWebWorld()
 
     options_dataclass = options.DRASOptions
