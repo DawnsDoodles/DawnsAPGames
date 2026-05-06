@@ -1,107 +1,137 @@
+import enum
 from dataclasses import dataclass, field
-from typing import Optional, List
 
-from BaseClasses import ItemClassification
-from .constants import *
 
-characters = \
-[
-    "Akane Owari",
-    "Angie Yonaga",
-    "Aoi Asahina",
-    "Byakuya Togami", #Cerebral
-    "Celestia Ludenberg",
-    "Chiaki Nanami",
-    "Chihiro Fujisaki",
-    "Fuyuhiko Kuzuryu",
-    "Genocide Jack",
-    "Gonta Gokuhara",
-    "Gundham Tanaka",
-    "Hajime Hinata",
-    "Hifumi Yamada",
-    "Himiko Yumeno",
-    "Hiroko Hagakure",
-    "Hiyoko Saionji",
-    "Ibuki Mioda",
-    "Izuru Kamukura",
-    "Jataro Kemuri",
-    "Junko Enoshima",
-    "K1-B0",
-    "Kaede Akamatsu",
-    "Kaito Momota",
-    "Kazuichi Soda",
-    "Kirumi Tojo",
-    "Kiyotaka Ishimaru", #Balanced
-    "Kokichi Oma",
-    "Komaru Naegi",
-    "Korekiyo Shinguji",
-    "Kotoko Utsugi",
-    "Kurokuma",
-    "Kyoko Kirigiri",
-    "Leon Kuwata",
-    "Mahiru Koizumi",
-    "Maki Harukawa",
-    "Makoto Naegi", #Balanced
-    "Masaru Daimon",
-    "Mikan Tsumiki",
-    "Miu Iruma",
-    "Monaca Towa",
-    "Mondo Owada", #Athletic
-    "Monokuma",
-    "Monomi",
-    "Mukuro Ikusaba",
-    "Nagisa Shingetsu",
-    "Nagito Komaeda",
-    "Nekomaru Nidai",
-    "Peko Pekoyama",
-    "Rantaro Amami",
-    "Ryoma Hoshi",
-    "Sakura Ogami",
-    "Sayaka Maizono",
-    "Shirokuma",
-    "Shuichi Saihara",
-    "Sonia Nevermind",
-    "Tenko Chabashira",
-    "Teruteru Hanamura",
-    "The Ultimate Imposter",
-    "Toko Fukawa",
-    "Tsumugi Shirogane",
-    "Usami",
-    "Yasuhiro Hagakure",
-]
+class DanganronpaGame(enum.StrEnum):
+    TRIGGER_HAPPY_HAVOC = "Trigger Happy Havoc"
+    DANGANRONPA_1 = TRIGGER_HAPPY_HAVOC
+    GOODBYE_DESPAIR = "Goodbye Despair"
+    DANGANRONPA_2 = GOODBYE_DESPAIR
+    ULTRA_DESPAIR_GIRLS = "Ultra Despair Girls"
+    UDG = ULTRA_DESPAIR_GIRLS
+    KILLING_HARMONY = "Killing Harmony"
+    DANGANRONPA_3 = KILLING_HARMONY
 
-monokubs = [
-    "Monokid",
-    "Monosuke",
-    "Monodam",
-    "Monophanie",
-    "Monotaro",
-]
 
-hypecards = [
-    "Recover 10% Influence/Turn",
-    "Damage Dealt +10%",
-    "Damage Taken -10%",
-    "Break Damage Cap",
-    "Focus Max +3",
-    "Awakening Bonus +20%",
-    "Focus Regen +1",
-    "Equipment Stats +10%",
-    "Break Attribute Cap",
-]
+class CharacterMainStat(enum.Enum):
+    BALANCED = "Balanced"
+    ATHLETIC = "Athletic"
+    CEREBRAL = "Cerebral"
 
-ingredientlevels = [
-    "Small ",
-    "",
-    "Big ",
-    "Sturdy ",
-    "Divine ",
-    "Lavish ",
-    "Copper ",
-    "Silver ",
-    "Gold ",
-    "Platinum",
-]
+
+class Gender(enum.Enum):
+    MALE = "Male"
+    FEMALE = "Female"
+
+
+class Character(enum.Enum):
+    AKANE_OWARI = ("Akane Owari", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    ANGIE_YONAGA = ("Angie Yonaga", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.BALANCED, Gender.FEMALE)
+    AOI_ASAHINA = ("Aoi Asahina", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    BYAKUYA_TOGAMI = ("Byakuya Togami", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.CEREBRAL, Gender.MALE)
+    CELESTIA_LUDENBERG = ("Celestia Ludenberg", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    CHIAKI_NANAMI = ("Chiaki Nanami", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    CHIHIRO_FUJISAKI = ("Chihiro Fujisaki", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.CEREBRAL, Gender.MALE)
+    FUYUHIKO_KUZURYU = ("Fuyuhiko Kuzuryu", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.MALE)
+    GENOCIDE_JACK = ("Genocide Jack", [DanganronpaGame.DANGANRONPA_1, DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    GONTA_GOKUHARA = ("Gonta Gokuhara", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.ATHLETIC, Gender.MALE)
+    GUNDHAM_TANAKA = ("Gundham Tanaka", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.BALANCED, Gender.MALE)
+    HAJIME_HINATA = ("Hajime Hinata", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.ATHLETIC, Gender.MALE)
+    HIFUMI_YAMADA = ("Hifumi Yamada", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.BALANCED, Gender.MALE)
+    HIMIKO_YUMENO = ("Himiko Yumeno", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.BALANCED, Gender.FEMALE)
+    HIROKO_HAGAKURE = ("Hiroko Hagakure", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    HIYOKO_SAIONJI = ("Hiyoko Saionji", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.FEMALE)
+    IBUKI_MIODA = ("Ibuki Mioda", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.FEMALE)
+    IZURU_KAMUKURA = ("Izuru Kamukura", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.ATHLETIC, Gender.MALE)
+    JATARO_KEMURI = ("Jataro Kemuri", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.BALANCED, Gender.MALE)
+    JUNKO_ENOSHIMA = ("Junko Enoshima", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    K1_B0 = ("K1-B0", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.BALANCED, Gender.MALE)
+    KAEDE_AKAMATSU = ("Kaede Akamatsu", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.BALANCED, Gender.FEMALE)
+    KAITO_MOMOTA = ("Kaito Momota", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.ATHLETIC, Gender.MALE)
+    KAZUICHI_SODA = ("Kazuichi Soda", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.CEREBRAL, Gender.MALE)
+    KIRUMI_TOJO = ("Kirumi Tojo", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    KIYOTAKA_ISHIMARU = ("Kiyotaka Ishimaru", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.BALANCED, Gender.MALE)
+    KOKICHI_OMA = ("Kokichi Oma", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.CEREBRAL, Gender.MALE)
+    KOMARU_NAEGI = ("Komaru Naegi", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    KOREKIYO_SHINGUJI = ("Korekiyo Shinguji", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.CEREBRAL, Gender.MALE)
+    KOTOKO_UTSUGI = ("Kotoko Utsugi", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.BALANCED, Gender.FEMALE)
+    KUROKUMA = ("Kurokuma", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.BALANCED, Gender.MALE)
+    KYOKO_KIRIGIRI = ("Kyoko Kirigiri", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    LEON_KUWATA = ("Leon Kuwata", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.ATHLETIC, Gender.MALE)
+    MAHIRU_KOIZUMI = ("Mahiru Koizumi", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    MAKI_HARUKAWA = ("Maki Harukawa", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    MAKOTO_NAEGI = ("Makoto Naegi", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.BALANCED, Gender.MALE)
+    MASARU_DAIMON = ("Masaru Daimon", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.ATHLETIC, Gender.MALE)
+    MIKAN_TSUMIKI = ("Mikan Tsumiki", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.FEMALE)
+    MIU_IRUMA = ("Miu Iruma", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    MONACA_TOWA = ("Monaca Towa", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    MONDO_OWADA = ("Mondo Owada", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.ATHLETIC, Gender.MALE)
+    MONOKUMA = ("Monokuma", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.ATHLETIC, Gender.MALE)
+    MONOMI = ("Monomi", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.FEMALE)
+    MUKURO_IKUSABA = ("Mukuro Ikusaba", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    NAGISA_SHINGETSU = ("Nagisa Shingetsu", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.CEREBRAL, Gender.MALE)
+    NAGITO_KOMAEDA = ("Nagito Komaeda", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.MALE)
+    NEKOMARU_NIDAI = ("Nekomaru Nidai", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.ATHLETIC, Gender.MALE)
+    PEKO_PEKOYAMA = ("Peko Pekoyama", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    RANTARO_AMAMI = ("Rantaro Amami", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.BALANCED, Gender.MALE)
+    RYOMA_HOSHI = ("Ryoma Hoshi", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.ATHLETIC, Gender.MALE)
+    SAKURA_OGAMI = ("Sakura Ogami", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    SAYAKA_MAIZONO = ("Sayaka Maizono", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.BALANCED, Gender.FEMALE)
+    SHIROKUMA = ("Shirokuma", [DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.CEREBRAL, Gender.MALE)
+    SHUICHI_SAIHARA = ("Shuichi Saihara", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.CEREBRAL, Gender.MALE)
+    SONIA_NEVERMIND = ("Sonia Nevermind", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    TENKO_CHABASHIRA = ("Tenko Chabashira", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.ATHLETIC, Gender.FEMALE)
+    TERUTERU_HANAMURA = ("Teruteru Hanamura", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.BALANCED, Gender.MALE)
+    THE_ULTIMATE_IMPOSTER = ("The Ultimate Imposter", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.CEREBRAL, Gender.MALE)
+    TOKO_FUKAWA = ("Toko Fukawa", [DanganronpaGame.DANGANRONPA_1, DanganronpaGame.ULTRA_DESPAIR_GIRLS], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    TSUMUGI_SHIROGANE = ("Tsumugi Shirogane", [DanganronpaGame.DANGANRONPA_3], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    USAMI = ("Usami", [DanganronpaGame.DANGANRONPA_2], CharacterMainStat.CEREBRAL, Gender.FEMALE)
+    YASUHIRO_HAGAKURE = ("Yasuhiro Hagakure", [DanganronpaGame.DANGANRONPA_1], CharacterMainStat.BALANCED, Gender.MALE)
+
+    def __init__(self, char_name: str, games_list: list[DanganronpaGame], main_stat: CharacterMainStat, gender: Gender) -> None:
+        self.char_name: str = char_name
+        self.games_list: list[DanganronpaGame] = games_list
+        self.main_stat: CharacterMainStat = main_stat
+        self.gender: Gender = gender
+
+    @property
+    def main_game(self) -> DanganronpaGame:
+        return self.games_list[0]
+
+
+class MonoKub(enum.StrEnum):
+    MONOKID = "Monokid"
+    MONOSUKE = "Monosuke"
+    MONODAM = "Monodam"
+    MONOPHANIE = "Monophanie"
+    MONOTARO = "Monotaro"
+
+
+class HypeCardType(enum.StrEnum):
+    RECOVER_INFLUENCE = "Recover 10% Influence/Turn"
+    DAMAGE_DEALT = "Damage Dealt +10%"
+    DAMAGE_TAKEN = "Damage Taken -10%"
+    BREAK_DAMAGE_CAP = "Break Damage Cap"
+    FOCUS_MAX = "Focus Max +3"
+    AWAKENING_BONUS = "Awakening Bonus +20%"
+    FOCUS_REGEN = "Focus Regen +1"
+    EQUIPMENT_STATS = "Equipment Stats +10%"
+    BREAK_ATTRIBUTE_CAP = "Break Attribute Cap"
+
+
+class IngredientQuality(enum.StrEnum):
+    SMALL = "Small"
+    NORMAL = ""
+    BIG = "Big"
+    STURDY = "Sturdy"
+    DIVINE = "Divine"
+    LAVISH = "Lavish"
+    COPPER = "Copper"
+    SILVER = "Silver"
+    GOLD = "Gold"
+    PLATINUM = "Platinum"
+
+
 
 crafted_items = [
     "Army Knife",
@@ -197,38 +227,43 @@ crafted_items = [
     "Worn Staff",
 ]
 
-presents = [
-    "3 Star Badge",
-    "Ancient Tour Tickets",
-    "Commemorative Medal Set",
-    "Crazy Diamond",
-    "Dagan Werewolf",
-    "Date Ticket",
-    "Easter Egg",
-    "Fresh Bindings",
-    "Fun Book of Animals",
-    "Gamer's Backpack",
-    "Hagakure Crystal Ball",
-    "Hand Grips",
-    "Hell Hound Earring",
-    "Hope's Peak Ring",
-    "Mac's Gloves",
-    "Memory Notebook",
-    "Milk Puzzle",
-    "Potato Chips",
-    "Prop Carrying Case",
-    "Pure-White Practice Sword",
-    "Replica Sword",
-    "Rock-Paper-Scissors Cards",
-    "Safety Half-Shoes",
-    "School Crest",
-    "Someone's Student ID",
-    "Spy Spike",
-    "Super Lucky Button",
-    "Teddy Bear",
-    "Tips & Tips",
-    "Usami Strap",
-]
+class Present(enum.Enum):
+    STAR_BADGE = "3 Star Badge"
+    ANCIENT_TOUR_TICKETS = "Ancient Tour Tickets"
+    COMMEMORATIVE_MEDAL_SET = "Commemorative Medal Set"
+    CRAZY_DIAMOND = "Crazy Diamond"
+    DAGAN_WEREWOLF = "Dagan Werewolf"
+    DATE_TICKET = "Date Ticket"
+    EASTER_EGG = "Easter Egg"
+    FRESH_BINDINGS = "Fresh Bindings"
+    FUN_BOOK_OF_ANIMALS = "Fun Book of Animals"
+    GAMERS_BACKPACK = "Gamer's Backpack"
+    HAGAKURE_CRYSTAL_BALL = "Hagakure Crystal Ball"
+    HAND_GRIPS = "Hand Grips"
+    HELL_HOUND_EARRING = "Hell Hound Earring"
+    HOPES_PEAK_RING = "Hope's Peak Ring"
+    MACS_GLOVES = "Mac's Gloves"
+    MEMORY_NOTEBOOK = "Memory Notebook"
+    MILK_PUZZLE = "Milk Puzzle"
+    POTATO_CHIPS = "Potato Chips"
+    PROP_CARRYING_CASE = "Prop Carrying Case"
+    PURE_WHITE_PRACTICE_SWORD = "Pure-White Practice Sword"
+    REPLICA_SWORD = "Replica Sword"
+    ROCK_PAPER_SCISSORS_CARDS = "Rock-Paper-Scissors Cards"
+    SAFETY_HALF_SHOES = "Safety Half-Shoes"
+    SCHOOL_CREST = "School Crest"
+    SOMEONES_STUDENT_ID = "Someone's Student ID"
+    SPY_SPIKE = "Spy Spike"
+    SUPER_LUCKY_BUTTON = "Super Lucky Button"
+    TEDDY_BEAR = "Teddy Bear"
+    TIPS_AND_TIPS = "Tips & Tips"
+    USAMI_STRAP = "Usami Strap"
+
+
+
+
+
+
 
 filler = [
     "10 Monocoins",
@@ -236,13 +271,15 @@ filler = [
     "10 Usami Coins",
 ]
 
-dev_mode_dungeons = [
-    "Cottage",
-    "Beach House",
-    "Hospital",
-    "Fun House",
-    "Factory",
-]
+
+class DevModeDungeon(enum.StrEnum):
+    COTTAGE = "Cottage"
+    BEACH_HOUSE = "Beach House"
+    HOSPITAL = "Hospital"
+    FUN_HOUSE = "Fun House"
+    FACTORY = "Factory"
+
+
 
 scrolls = [
     "Progressive Scroll",
@@ -978,3 +1015,8 @@ friendsanity = [
     "Yasuhiro & Mukuro",
     "Yasuhiro & Mikan",
 ]
+
+
+
+
+

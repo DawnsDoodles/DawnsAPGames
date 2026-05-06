@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+
 from typing import Iterable, override, Any, Mapping, Self, TYPE_CHECKING
 
 from BaseClasses import CollectionState
@@ -6,10 +8,14 @@ from NetUtils import JSONMessagePart
 from rule_builder.field_resolvers import FieldResolver, resolve_field
 from rule_builder.options import OptionFilter
 from rule_builder.rules import NestedRule, Rule, True_, False_, Or, And
+from worlds.AutoWorld import World
+
+from .constants import DANGANRONPA_S
+
 if TYPE_CHECKING:
     from .world import DanganronpaSWorld
 
-class AtLeast(NestedRule["DanganronpaSWorld"], game="Archipelago"):
+class AtLeast(NestedRule["DanganronpaSWorld"], game=DANGANRONPA_S):
     """A rule that returns true when at least N child rules evaluate as true"""
 
     count: int | FieldResolver

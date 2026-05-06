@@ -47,16 +47,16 @@ location_dictionary: dict[str, int] = {
     **{f"Clear Upper Despair Tower {x} Times": i+12501 for i, x in enumerate([*range(25, 226, 25)])},
     **{f"Clear Lower Ultra Despair Tower {x} Times": i+13001 for i, x in enumerate([*range(25, 226, 25)])},
     **{f"Clear Upper Ultra Despair Tower {x} Times": i+13501 for i, x in enumerate([*range(25, 226, 25)])},
-    **{f"Create {x} types of equipment in Battle Mode": i+14000 for i, x in enumerate([10, 20, 30, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 92])}
+    **{f"Create {x} types of equipment in Battle Mode": i+14000 for i, x in enumerate([10, 20, 30, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 92])},
     **{f"Deal {x} damage in Battle Mode with 1 Hit": i+14501 for i, x in enumerate([*range(5000, 20001, 5000)])},
     **{f"Deal {x} damage in Arena of Despair": i+15000 for i, x in enumerate([50000, 100000, 200000, 300000, 400000, 500000])},
     **{f"View {character}'s Events 10 Times": i+15500 for i, character in enumerate(data.characters)},
-    **{f"Clear a development plan without using a single card": i+16001},
-    **{f"Obtain 20 equipment in a single Development Plan": i+16002},
-    **{f"Clear a Development Plan without obtaining any equipment": i+16003},
-    **{f"Clear a Development Plan without taking any damage": i+16004},
-    **{f"Defeat an enemy with poison in battle mode": i+16005},
-    **{f"Clear a dev plan without resting": i+16006},
+    **{f"Clear a development plan without using a single card": 16001},
+    **{f"Obtain 20 equipment in a single Development Plan": 16002},
+    **{f"Clear a Development Plan without obtaining any equipment": 16003},
+    **{f"Clear a Development Plan without taking any damage": 16004},
+    **{f"Defeat an enemy with poison in battle mode": 16005},
+    **{f"Clear a dev plan without resting": 16006},
 }
 
 

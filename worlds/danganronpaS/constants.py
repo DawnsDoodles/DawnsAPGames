@@ -1,9 +1,8 @@
 from enum import StrEnum
 
+from worlds.AutoWorld import World
 
-
-
-
+DANGANRONPA_S = "DanganronpaS"
 
 
 
