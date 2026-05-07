@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import enum
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Dict, List
 
 from BaseClasses import Item, ItemClassification
 
-from .data import characters, monokubs, hypecards, ingredientlevels, crafted_items, presents, filler, dev_mode_dungeons, scrolls
+from .data import Present, characters, monokubs, hypecards, ingredientlevels, crafted_items, presents, filler, dev_mode_dungeons, scrolls
 from .options import CharacterGen
 
 if TYPE_CHECKING:
@@ -17,11 +18,16 @@ class ItemData:
     classification: ItemClassification
     count: int = 1
 
+class FillerItem(enum.StrEnum):
+    MONOCOINS_10 = "10 Monocoins"
+    GOLDEN_MONOCOINS_10 = "10 Golden Monocoins"
+    USAMI_COINS_10 = "10 Usami Coins"
+
 ## The list of items
 item_table: dict[str, ItemData] = {
-    **{item: ItemData(classification = ItemClassification.filler) for item in filler},
+    **{item: ItemData(classification = ItemClassification.filler) for item in FillerItem},
 
-    **{item: ItemData(classification = ItemClassification.useful) for item in presents},
+    **{item: ItemData(classification = ItemClassification.useful) for item in Present},
 
     **{item: ItemData(classification = ItemClassification.progression) for item in characters},
     **{f"Progressive {character} Rarity": ItemData(classification = ItemClassification.progression, count = 4) for character in characters},
