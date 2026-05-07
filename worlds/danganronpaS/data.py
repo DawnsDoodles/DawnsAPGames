@@ -1,5 +1,7 @@
+import dataclasses
 import enum
 from dataclasses import dataclass, field
+from typing import NamedTuple
 
 
 class DanganronpaGame(enum.StrEnum):
@@ -99,6 +101,17 @@ class Character(enum.Enum):
         return self.games_list[0]
 
 
+class CharacterRarity(enum.StrEnum):
+    NORMAL = "Normal"
+    N = NORMAL
+    RARE = "Rare"
+    R = RARE
+    SUPER_RARE = "Super Rare"
+    S = SUPER_RARE
+    ULTRA_RARE = "Ultra Rare"
+    U = ULTRA_RARE
+
+
 class MonoKub(enum.StrEnum):
     MONOKID = "Monokid"
     MONOSUKE = "Monosuke"
@@ -119,7 +132,7 @@ class HypeCardType(enum.StrEnum):
     BREAK_ATTRIBUTE_CAP = "Break Attribute Cap"
 
 
-class IngredientQuality(enum.StrEnum):
+class CraftingMaterialQuality(enum.StrEnum):
     SMALL = "Small"
     NORMAL = ""
     BIG = "Big"
@@ -132,6 +145,57 @@ class IngredientQuality(enum.StrEnum):
     PLATINUM = "Platinum"
 
 
+class CraftingMaterialType(enum.StrEnum):
+    MONSTER_FANG = "Monster Fang"
+    MONSTER_MEAT = "Monster Meat"
+    MONSTER_EYE = "Monster Eye"
+    MONSTER_FUR = "Monster Fur"
+    MONSTER_SKIN = "Monster Skin"
+
+
+@dataclasses.dataclass
+class CraftingMaterial:
+    quality: CraftingMaterialQuality
+    type: CraftingMaterialType
+
+    @property
+    def material_name(self) -> str:
+        result: str = f"{self.quality}"
+        if self.quality != CraftingMaterialQuality.NORMAL:
+           result += " "
+        result += f"{self.type}"
+        return result
+
+crafting_materials: dict[CraftingMaterialType, dict[CraftingMaterialQuality, CraftingMaterial]] = \
+{
+    material_type:
+        {
+            material_quality: CraftingMaterial(quality=material_quality, type=material_type)
+            for material_quality in CraftingMaterialQuality
+        }
+    for material_type in CraftingMaterialType
+}
+
+
+# TODO finish crafted item data here
+class CraftedItem(enum.Enum):
+    ARMY_KNIFE = ("Army Knife", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD]], -30, 0, 50, -50, 0, 0, 100, 150)
+
+    HACKING_GUN_V3 = ("Hacking Gun V3", "Hacking Gun V", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.LAVISH]], 0, 0, 30, 30, 300, 30, 30, 30)
+
+
+    def __init__(self, item_name: str, prereq_item_name: str, material_list: list[CraftingMaterial], influence: int, focus: int, strength: int, stamina: int, intellect: int, endurance: int, agility: int, luck: int) -> None:
+        self.item_name: str = item_name
+        self.prereq_item_name: str = prereq_item_name
+        self.material_list: list[CraftingMaterial] = material_list
+        self.influence: int = influence
+        self.focus: int = focus
+        self.strength: int = strength
+        self.stamina: int = stamina
+        self.intellect: int = intellect
+        self.endurance: int = endurance
+        self.agility: int = agility
+        self.luck: int = luck
 
 crafted_items = [
     "Army Knife",
@@ -227,7 +291,11 @@ crafted_items = [
     "Worn Staff",
 ]
 
-class Present(enum.Enum):
+
+
+
+
+class Present(enum.StrEnum):
     STAR_BADGE = "3 Star Badge"
     ANCIENT_TOUR_TICKETS = "Ancient Tour Tickets"
     COMMEMORATIVE_MEDAL_SET = "Commemorative Medal Set"
@@ -265,13 +333,6 @@ class Present(enum.Enum):
 
 
 
-filler = [
-    "10 Monocoins",
-    "10 Golden Monocoins",
-    "10 Usami Coins",
-]
-
-
 class DevModeDungeon(enum.StrEnum):
     COTTAGE = "Cottage"
     BEACH_HOUSE = "Beach House"
@@ -281,9 +342,21 @@ class DevModeDungeon(enum.StrEnum):
 
 
 
-scrolls = [
-    "Progressive Scroll",
-]
+
+
+
+
+# TODO figure out what data is needed for enemies and map it (similar to Events)
+# Enemies
+
+# Floors
+# "Combat Score" (how hard are they to kill)
+# immunities
+
+
+
+
+
 
 enemy_list = [
     "Monokumamel",
@@ -408,6 +481,41 @@ enemy_list = [
     "Sage Robot",
     "Monokubs",
 ]
+
+
+class CharacterEventType(enum.StrEnum):
+    """Types of dev mode events based on the character that you currently are"""
+    FRIEND = "Friend Event"
+    """Events between multiple chars. Junko, Izuru, and Usami events require them specifically"""
+    MY_FUTURE = "My Future Event"
+    """U Rare and hit all events for char in 1 dev mode"""
+    SWIMSUIT = "Swimsuit Event"
+    """Event requiring S or U Rare for char"""
+    POTENTIAL_TALENT = "Potential Talent Event"
+    """1st regular event in dev mode (based on turns)"""
+    SUMMER_FESTIVAL = "Summer Festival Event"
+    """2nd regular event in dev mode (based on turns)"""
+    CAMPFIRE = "Campfire Event"
+    """3rd regular event in dev mode (based on turns)"""
+
+
+# TODO finish Event enum
+class CharacterEvent(enum.Enum):
+    JUNKO_AND_MAKOTO = ("Junko & Makoto", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.MAKOTO_NAEGI])
+    MAKOTO_CAMPFIRE = ("Campfire - Makoto", CharacterEventType.CAMPFIRE, [Character.MAKOTO_NAEGI])
+    MAKOTO_FUTURE = ("My Future... - Makoto", CharacterEventType.MY_FUTURE, [Character.MAKOTO_NAEGI])
+    MAKOTO_POTENTIAL = ("Potential of Talent - Makoto", CharacterEventType.POTENTIAL_TALENT, [Character.MAKOTO_NAEGI])
+    MAKOTO_SUMMER = ("Summer Festival - Makoto", CharacterEventType.SUMMER_FESTIVAL, [Character.MAKOTO_NAEGI])
+    MAKOTO_SWIMSUIT = ("With Swimsuits - Makoto", CharacterEventType.SWIMSUIT, [Character.MAKOTO_NAEGI])
+
+
+
+    def __init__(self, event_name: str, event_type: CharacterEventType, char_list: list[Character]) -> None:
+        self.event_name: str = event_name
+        self.event_type: CharacterEventType = event_type
+        self.char_list: list[Character] = char_list
+
+
 
 friendsanity = [
     "Akane & Chiaki & Peko",
@@ -1015,8 +1123,5 @@ friendsanity = [
     "Yasuhiro & Mukuro",
     "Yasuhiro & Mikan",
 ]
-
-
-
 
 
