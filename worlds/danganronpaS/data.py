@@ -180,9 +180,99 @@ crafting_materials: dict[CraftingMaterialType, dict[CraftingMaterialQuality, Cra
 # TODO finish crafted item data here
 class CraftedItem(enum.Enum):
     ARMY_KNIFE = ("Army Knife", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD]], -30, 0, 50, -50, 0, 0, 100, 150)
+    CROSSBOW = ("Crossbow", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.GOLD]], 0, 0, 200, -100, -100, 200, 0, 0)
+    DUMBBELL = ("Dumbbell", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.COPPER]], 30, 0, 50, 70, -50, 0, 100, 0)
+    GOLD_LEAF_KATANA = ("Gold Leaf Katana", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER]], 0, 0, 150, -50, 0, -50, 0, 0)
+    HACKING_GUN = ("Hacking Gun", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.NORMAL]], 0, 0, 0, 0, 50, 0, 0, 0)
+    HACKING_GUN_EXTREME = ("Hacking Gun Extreme", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.STURDY]], 0, 0, 0, 0, 150, 0, 0, 0)
+    HACKING_GUN_V3 = ("Hacking Gun V3", "V Hacking Gun", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.LAVISH]], 0, 0, 30, 30, 300, 30, 30, 30)
+    HAMMER = ("Hammer", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER]], 0, 0, -50, 150, -50, 50, -100, 0)
+    HAT_OF_HOPE = ("Hat of Hope", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.LAVISH]], 80, 0, 80, 80, 80, 80, 80, 80)
+    HAT_OF_LEGEND = ("Hat of Legend", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.STURDY], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.LAVISH]], 100, 0, 100, 100, 100, 100, 100, 100)
+    HAT_OF_OVERFLOWING_TALENT = ("Hat of Overflowing Talent", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG]], 40, 0, 40, 40, 40, 40, 40, 40)
+    HAT_V3 = ("Hat V3", "Ultimate Hat", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.DIVINE]], 130, 0, 130, 130, 130, 130, 130, 130)
+    HIGH_SCHOOLERS_HAT = ("High Schooler's Hat", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.NORMAL]], 20, 0, 20, 20, 20, 20, 20, 20)
+    HIGH_SCHOOLERS_SHOES = ("High Schooler's Shoes", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.NORMAL]], 0, 0, 0, 0, 0, 0, 70, 0)
+    HIGH_SCHOOLERS_TALISMAN = ("High Schooler's Talisman", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.NORMAL]], 0, 0, 0, 0, 0, 0, 0, 70)
+    HIGH_SCHOOLERS_UNIFORM = ("High Schooler's Uniform", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.NORMAL]], 70, 0, 0, 0, 0, 0, 0, 0)
+    SHOES_OF_LEGEND = ("Shoes of Legend", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.STURDY], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.LAVISH]], 0, 0, 0, 0, 0, 0, 250, 0)
+    HYDRAULIC_PRESS = ("Hydraulic Press", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.GOLD]], -50, 0, 250, 250, 250, 250, -999, -999)
+    IRON_SKEWER = ("Iron Skewer", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER]], 0, 0, -50, 0, -50, 150, 0, 0)
+    JUSTICE_HAMMER = ("JUSTICE HAMMER", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.COPPER]], 0, 0, -50, 0, -50, 100, 0, 0)
+    KATANA = ("Katana", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.NORMAL]], 0, 0, 50, 0, 0, 0, 0, 0)
+    KATANA_EXTREME = ("Katana Extreme", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.STURDY]], 0, 0, 150, 0, 0, 0, 0, 0)
+    KATANA_V3 = ("Katana V3", "V Katana", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.LAVISH]], 0, 0, 300, 30, 30, 30, 30, 30)
+    KITCHEN_KNIFE = ("Kitchen Knife", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.COPPER]], 0, 0, 20, -50, 50, -50, 0, -50)
+    METAL_BAT = ("Metal Bat", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER]], 0, 0, 120, -50, -50, -50, 100, 0)
+    MONOKUMAS_SPECIAL_POISON = ("Monokuma's Special Poison", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.GOLD]], -20, 0, 50, 50, 100, 100, 0, -200)
+    PIRANHA = ("Piranha", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SILVER]], 0, 0, -50, 0, 150, -50, 0, 0)
+    POISON = ("Poison", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.COPPER]], -60, 0, 120, 50, -100, -120, 20, 0)
+    REPLICA_SWORD = ("Replica Sword", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER]], 0, 0, 50, -50, 0, -50, 20, -50)
+    ROPE_USED_FOR_HANGING = ("Rope Used for Hanging", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.SILVER]], -50, 0, 0, 0, 150, 150, 0, -100)
+    SCISSORS = ("Scissors", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.GOLD]], 0, 0, 150, 0, -50, -50, 150, 0)
+    SHIELD = ("Shield", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.NORMAL]], 0, 0, 0, 50, 0, 0, 0, 0)
+    SHIELD_EXTREME = ("Shield Extreme", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.STURDY]], 0, 0, 0, 150, 0, 0, 0, 0)
+    SHIELD_V3 = ("Shield V3", "V Shield", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.LAVISH]], 0, 0, 30, 300, 30, 30, 30, 30)
+    SHOES_OF_HOPE = ("Shoes of Hope", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.LAVISH]], 0, 0, 0, 0, 0, 0, 200, 0)
+    SHOES_OF_OVERFLOWING_TALENT = ("Shoes of Overflowing Talent", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG]], 0, 0, 0, 0, 0, 0, 100, 0)
+    SHOES_V3 = ("Shoes V3", "Ultimate Shoes", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.DIVINE]], 300, 0, 10, 10, 10, 10, 10, 10)
+    SHOT_PUT_BALL = ("Shot Put Ball", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SILVER]], 0, 0, -50, 200, -50, 0, -100, -100)
+    SICKLE = ("Sickle", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.GOLD]], 0, 0, -50, 0, 50, 150, 0, 0)
+    SPEARS_OF_GUNGNIR = ("Spears of Gungnir", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.GOLD]], 0, 0, 150, 150, -50, -50, 0, -50)
+    STAFF = ("Staff", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER]], 0, 0, 0, 0, 0, 50, 0, 0)
+    STAFF_EXTREME = ("Staff Extreme", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.STURDY]], 0, 0, 0, 0, 0, 150, 0, 0)
+    STAFF_V3 = ("Staff V3", "V Staff", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.LAVISH]], 0, 0, 30, 30, 30, 300, 30, 30)
+    SUPER_HACKING_GUN = ("Super Hacking Gun", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SMALL], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.NORMAL]], 0, 0, 0, 0, 70, 0, 0, 0)
+    SUPER_KATANA = ("Super Katana", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.BIG]], 0, 0, 70, 0, 0, 0, 0, 0)
+    SUPER_SHIELD = ("Super Shield", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.BIG]], 0, 0, 0, 70, 0, 0, 0, 0)
+    SUPER_STAFF = ("Super Staff", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.BIG]], 0, 0, 0, 0, 0, 70, 0, 0)
+    TALISMAN_OF_HOPE = ("Talisman of Hope", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.LAVISH]], 0, 0, 0, 0, 0, 0, 0, 200)
+    TALISMAN_OF_LEGEND = ("Talisman of Legend", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.STURDY], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.LAVISH]], 0, 0, 0, 0, 0, 0, 0, 250)
+    TALISMAN_OF_OVERFLOWING_TALENT = ("Talisman of Overflowing Talent", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.BIG]], 0, 0, 0, 0, 0, 0, 0, 100)
+    TALISMAN_V3 = ("Talisman V3", "Ultimate Talisman", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.DIVINE]], 10, 0, 10, 10, 10, 10, 10, 300)
+    TATTERED_HAT = ("Tattered Hat", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SMALL]], 10, 0, 10, 10, 10, 10, 10, 10)
+    TATTERED_SHOES = ("Tattered Shoes", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SMALL]], 0, 0, 0, 0, 0, 0, 30, 0)
+    TATTERED_TALISMAN = ("Tattered Talisman", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SMALL]], 0, 0, 0, 0, 0, 0, 0, 30)
+    TATTERED_UNIFORM = ("Tattered Uniform", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SMALL]], 30, 0, 0, 0, 0, 0, 0, 0)
+    THE_END_OF_HACKING_GUN = ("The End of Hacking Gun", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.LAVISH]], 0, 0, 0, 0, 200, 0, 0, 0)
+    THE_END_OF_KATANA = ("The End of Katana", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.LAVISH]], 0, 0, 200, 0, 0, 0, 0, 0)
+    THE_END_OF_SHIELD = ("The End of Shield", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.LAVISH], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.STURDY]], 0, 0, 0, 200, 0, 0, 0, 0)
+    THE_END_OF_STAFF = ("The End of Staff", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.LAVISH], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.STURDY]], 0, 0, 0, 0, 0, 200, 0, 0)
+    TOILET_PAPER = ("Toilet Paper", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.GOLD]], 0, 0, -50, 200, 200, -50, 0, 0)
+    ULTIMATE_____PROOF = ("Ultimate ??? Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.SILVER]], 25, 25, 25, 0, 0, 0, 0, 0)
+    ULTIMATE_AFFLUENT_PROGENY_PROOF = ("Ultimate Affluent Progeny Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.COPPER]], 30, 0, 0, 20, 25, 0, 0, 0)
+    ULTIMATE_CHILD_CAREGIVER_PROOF = ("Ultimate Child Caregiver Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.GOLD]], 0, 30, 0, 0, 0, 30, 15, 0)
+    ULTIMATE_CLAIRVOYANT_PROOF = ("Ultimate Clairvoyant Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.COPPER]], 0, 25, 0, 0, 25, 25, 0, 0)
+    ULTIMATE_DESPAIR_PROOF = ("Ultimate Despair Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.PLATINUM], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.PLATINUM], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.PLATINUM]], 75, 75, 0, 0, 0, 0, 0, 0)
+    ULTIMATE_GYMNAST_PROOF = ("Ultimate Gymnast Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER]], 0, 25, 25, 25, 0, 0, 0, 0)
+    ULTIMATE_HAT = ("Ultimate Hat", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.STURDY]], 60, 0, 60, 60, 60, 60, 60, 60)
+    ULTIMATE_HOPE_PROOF = ("Ultimate Hope Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.PLATINUM], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER]], 30, 30, 15, 15, 15, 15, 15, 15)
+    ULTIMATE_LUCKY_STUDENT_PROOF = ("Ultimate Lucky Student Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.COPPER]], 25, 0, 0, 0, 0, 0, 0, 50)
+    ULTIMATE_MAGICIAN_PROOF = ("Ultimate Magician Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.GOLD]], 0, 25, 0, 0, 25, 15, 0, 10)
+    ULTIMATE_MECHANIC_PROOF = ("Ultimate Mechanic Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.SILVER]], 0, 20, 0, 15, 20, 0, 0, 20)
+    ULTIMATE_MURDEROUS_FIEND_PROOF = ("Ultimate Murderous Fiend Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.COPPER]], 20, -10, 40, 0, 0, -10, 35, 0)
+    ULTIMATE_PRINCESS_PROOF = ("Ultimate Princess Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.SILVER]], 50, 0, 0, 0, 15, 10, 0, 0)
+    ULTIMATE_SHOES = ("Ultimate Shoes", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.STURDY]], 5, 0, 5, 5, 5, 5, 150, 5)
+    ULTIMATE_SWIMMING_PRO_PROOF = ("Ultimate Swimming Pro Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.COPPER]], 0, 10, 10, 50, 0, 0, 0, 0)
+    ULTIMATE_TALISMAN = ("Ultimate Talisman", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.STURDY]], 5, 0, 5, 5, 5, 5, 5, 150)
+    ULTIMATE_UNIFORM = ("Ultimate Uniform", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.STURDY]], 150, 0, 5, 5, 5, 5, 5, 5)
+    ULTIMATE_WRITING_PRODIGY_PROOF = ("Ultimate Writing Prodigy Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.COPPER]], 0, 35, 0, 0, 25, 15, 0, 0)
+    ULTIMATE_YAKUZA_PROOF = ("Ultimate Yakuza Proof", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.SILVER]], 20, 0, 0, 15, 0, 40, 0, 0)
+    UNIFORM_OF_HOPE = ("Ultimate of Hope", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.LAVISH]], 200, 0, 0, 0, 0, 0, 0, 0)
+    UNIFORM_OF_LEGEND = ("Uniform of Legend", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.STURDY], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.LAVISH]], 250, 0, 0, 0, 0, 0, 0, 0)
+    UNIFORM_OF_OVERFLOWING_TALENT = ("Uniform of Overflowing Talent", "", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.NORMAL], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.BIG]], 100, 0, 0, 0, 0, 0, 0, 0)
+    UNIFORM_V3 = ("Uniform V3", "Ultimate Uniform", [crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.DIVINE]], 300, 0, 10, 10, 10, 10, 10, 10)
+    V_HACKING_GUN = ("V Hacking Gun", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.STURDY]], 0, 0, 15, 15, 100, 15, 15, 15)
+    V_KATANA = ("V Katana", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.STURDY]], 0, 0, 100, 15, 15, 15, 15, 15)
+    V_SHIELD = ("V Shield", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.STURDY]], 0, 0, 15, 100, 15, 15, 15, 15)
+    V_STAFF = ("V Staff", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.STURDY]], 0, 0, 15, 15, 15, 100, 15, 15)
+    WORN_HACKING_GUN = ("Worn Hacking Gun", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SMALL]], 0, 0, 0, 0, 30, 0, 0, 0)
+    WORN_KATANA = ("Worn Katana", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SMALL]], 0, 0, 30, 0, 0, 0, 0, 0)
+    WORN_SHIELD = ("Worn Shield", "", [crafting_materials[CraftingMaterialType.MONSTER_EYE][CraftingMaterialQuality.SMALL]], 0, 0, 0, 30, 0, 0, 0, 0)
+    WORN_STAFF = ("Worn Staff", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.SMALL]], 0, 0, 0, 0, 0, 30, 0, 0)
 
-    HACKING_GUN_V3 = ("Hacking Gun V3", "Hacking Gun V", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.DIVINE], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.LAVISH]], 0, 0, 30, 30, 300, 30, 30, 30)
 
+##NAME = ("name", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER]], 0, 0, 0, 0, 0, 0, 0, 0)
 
     def __init__(self, item_name: str, prereq_item_name: str, material_list: list[CraftingMaterial], influence: int, focus: int, strength: int, stamina: int, intellect: int, endurance: int, agility: int, luck: int) -> None:
         self.item_name: str = item_name
@@ -196,103 +286,6 @@ class CraftedItem(enum.Enum):
         self.endurance: int = endurance
         self.agility: int = agility
         self.luck: int = luck
-
-crafted_items = [
-    "Army Knife",
-    "Crossbow",
-    "Dumbbell",
-    "Gold Leaf Katana",
-    "Hacking Gun",
-    "Hacking Gun Extreme",
-    "Hacking Gun V3",
-    "Hammer",
-    "Hat of Hope",
-    "Hat of Legend",
-    "Hat of Overflowing Talent",
-    "Hat V3",
-    "High Schooler's Hat",
-    "High Schooler's Shoes",
-    "High Schooler's Talisman",
-    "High Schooler's Uniform",
-    "Shoes of Legend",
-    "Hydraulic Press",
-    "Iron Skewer",
-    "JUSTICE HAMMER",
-    "Katana",
-    "Katana Extreme",
-    "Katana V3",
-    "Kitchen Knife",
-    "Metal Bat",
-    "Monokuma's Special Poison",
-    "Piranha",
-    "Poison",
-    "Replica Sword",
-    "Rope Used for Hanging",
-    "Scissors",
-    "Shield",
-    "Shield Extreme",
-    "Shield V3",
-    "Shoes of Hope",
-    "Shoes of Overflowing Talent",
-    "Shoes V3",
-    "Shot Put Ball",
-    "Sickle",
-    "Spears of Gungnir",
-    "Staff",
-    "Staff Extreme",
-    "Staff V3",
-    "Super Hacking Gun",
-    "Super Katana",
-    "Super Shield",
-    "Super Staff",
-    "Talisman of Hope",
-    "Talisman of Legend",
-    "Talisman of Overflowing Talent",
-    "Talisman V3",
-    "Tattered Hat",
-    "Tattered Shoes",
-    "Tattered Talisman",
-    "Tattered Uniform",
-    "The End of Hacking Gun",
-    "The End of Katana",
-    "The End of Shield",
-    "The End of Staff",
-    "Toilet Paper",
-    "Ultimate ??? Proof",
-    "Ultimate Affluent Progeny Proof",
-    "Ultimate Child Caregiver Proof",
-    "Ultimate Clairvoyant Proof",
-    "Ultimate Despair Proof",
-    "Ultimate Gymnast Proof",
-    "Ultimate Hat",
-    "Ultimate Hope Proof",
-    "Ultimate Lucky Student Proof",
-    "Ultimate Magician Proof",
-    "Ultimate Mechanic Proof",
-    "Ultimate Murderous Fiend Proof",
-    "Ultimate Princess Proof",
-    "Ultimate Shoes",
-    "Ultimate Swimming Pro Proof",
-    "Ultimate Talisman",
-    "Ultimate Uniform",
-    "Ultimate Writing Prodigy Proof",
-    "Ultimate Yakuza Proof",
-    "Uniform of Hope",
-    "Uniform of Legend",
-    "Uniform of Overflowing Talent",
-    "Uniform V3",
-    "V Hacking Gun",
-    "V Katana",
-    "V Shield",
-    "V Staff",
-    "Worn Hacking Gun",
-    "Worn Katana",
-    "Worn Shield",
-    "Worn Staff",
-]
-
-
-
 
 
 class Present(enum.StrEnum):
