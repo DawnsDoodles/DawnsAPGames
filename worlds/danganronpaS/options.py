@@ -12,7 +12,7 @@ class Goal(Choice):
     """
     display_name = "Goal"
     option_school_secret = 0
-    option_arena_of_despair = 1
+    ##option_arena_of_despair = 1
     option_hope_fragments = 2
     default = 0
 

@@ -177,7 +177,6 @@ crafting_materials: dict[CraftingMaterialType, dict[CraftingMaterialQuality, Cra
 }
 
 
-# TODO finish crafted item data here
 class CraftedItem(enum.Enum):
     ARMY_KNIFE = ("Army Knife", "", [crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD]], -30, 0, 50, -50, 0, 0, 100, 150)
     CROSSBOW = ("Crossbow", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.GOLD]], 0, 0, 200, -100, -100, 200, 0, 0)
@@ -272,8 +271,6 @@ class CraftedItem(enum.Enum):
     WORN_STAFF = ("Worn Staff", "", [crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.SMALL]], 0, 0, 0, 0, 0, 30, 0, 0)
 
 
-##NAME = ("name", "", [crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER]], 0, 0, 0, 0, 0, 0, 0, 0)
-
     def __init__(self, item_name: str, prereq_item_name: str, material_list: list[CraftingMaterial], influence: int, focus: int, strength: int, stamina: int, intellect: int, endurance: int, agility: int, luck: int) -> None:
         self.item_name: str = item_name
         self.prereq_item_name: str = prereq_item_name
@@ -321,11 +318,6 @@ class Present(enum.StrEnum):
     USAMI_STRAP = "Usami Strap"
 
 
-
-
-
-
-
 class DevModeDungeon(enum.StrEnum):
     COTTAGE = "Cottage"
     BEACH_HOUSE = "Beach House"
@@ -334,146 +326,157 @@ class DevModeDungeon(enum.StrEnum):
     FACTORY = "Factory"
 
 
+class DevModeLocation(enum.StrEnum):
+    NO_LOCATION = "No Location"
+    FIRST_ISLAND = "First Island"
+    SECOND_ISLAND = "Second Island"
+    THIRD_ISLAND = "Third Island"
+    FOURTH_ISLAND = "Fourth Island"
+    FIFTH_ISLAND = "Fifth Island"
+    CENTRAL_ISLAND = "Central Island"
+    COTTAGE = "Cottage"
+    BEACH_HOUSE = "Beach House"
+    HOSPITAL = "Hospital"
+    FUN_HOUSE = "Fun House"
+    FACTORY = "Factory"
+    SECRET = "Secret Boss"
+    EVENT = "Story Event"
 
 
+class EnemyInformation(enum.StrEnum):
+    MONOKUMAMEL = ("Monokumamel", DevModeLocation.FIRST_ISLAND, 1, 50, 12, 26, 28, 13, 36, 48)
+    MONOKUMAMEL_V = ("Monokumamel V", DevModeLocation.COTTAGE, 51, 330, 120, 180, 120, 180, 116, 188)
+    MONOKUMAMEL_V2 = ("Monokumamel V2", DevModeLocation.NO_LOCATION, 101, 1200, 250, 333, 150, 333, 255, 200)
+    MONOKUMAMEL_V3 = ("Monokumamel V3", DevModeLocation.NO_LOCATION, 151, 2300, 200, 666, 180, 666, 333, 240)
+    FLUFFY_MONOBUNNY = ("Fluffy Monobunny", DevModeLocation.NO_LOCATION, 2, 80, 30, 40, 70, 90, 34, 22)
+    FLUFFY_MONOBUNNY_V = ("Fluffy Monobunny V", DevModeLocation.NO_LOCATION, 51, 550, 120, 190, 158, 190, 120, 85)
+    FLUFFY_MONOBUNNY_V2 = ("Fluffy Monobunny V2", DevModeLocation.NO_LOCATION, 96, 1000, 180, 333, 240, 333, 200, 155)
+    FLUFFY_MONOBUNNY_V3 = ("Fluffy Monobunny V3", DevModeLocation.NO_LOCATION, 151, 2000, 200, 666, 255, 666, 255, 255)
+    MONOKUMA_GATHER = ("Monokuma Gather", DevModeLocation.SECOND_ISLAND, 3, 60, 44, 200, 0, 10, 20, 44)
+    MONOKUMA_GATHER_V = ("Monokuma Gather V", DevModeLocation.BEACH_HOUSE, 52, 850, 100, 400, 0, 150, 50, 78)
+    MONOKUMA_GATHER_V2 = ("Monokuma Gather V2", DevModeLocation.NO_LOCATION, 103, 1200, 150, 700, 200, 255, 100, 96)
+    MONOKUMA_GATHER_V3 = ("Monokuma Gather V3", DevModeLocation.NO_LOCATION, 152, 2500, 200, 900, 255, 400, 120, 106)
+    MONOKUMA_HERMIT = ("Monokuma Hermit", DevModeLocation.FOURTH_ISLAND, 6, 250, 22, 34, 150, 100, 145, 46)
+    MONOKUMA_HERMIT_V = ("Monokuma Hermit V", DevModeLocation.FUN_HOUSE, 54, 770, 80, 130, 255, 220, 255, 52)
+    MONOKUMA_HERMIT_V2 = ("Monokuma Hermit V2", DevModeLocation.NO_LOCATION, 105, 1200, 90, 666, 333, 255, 300, 70)
+    MONOKUMA_HERMIT_V3 = ("Monokuma Hermit V3", DevModeLocation.NO_LOCATION, 154, 2500, 255, 999, 748, 480, 500, 160)
+    CURSE_MONOGIRL = ("Curse Monogirl", DevModeLocation.NO_LOCATION, 8, 120, 32, 35, 180, 90, 160, 80)
+    CURSE_MONOGIRL_V = ("Curse Monogirl V", DevModeLocation.NO_LOCATION, 55, 800, 80, 92, 200, 170, 230, 255)
+    CURSE_MONOGIRL_V2 = ("Curse Monogirl V2", DevModeLocation.NO_LOCATION, 108, 1680, 155, 255, 333, 255, 999, 666)
+    CURSE_MONOGIRL_V3 = ("Curse Monogirl V3", DevModeLocation.NO_LOCATION, 155, 3200, 255, 700, 748, 666, 1500, 888)
+    MONOKUMANTALA = ("Monokumantala", DevModeLocation.NO_LOCATION, 4, 90, 60, 80, 32, 31, 145, 48)
+    MONOKUMANTALA_V = ("Monokumantala V", DevModeLocation.NO_LOCATION, 55, 120, 120, 100, 110, 80, 255, 122)
+    MONOKUMANTALA_V2 = ("Monokumantala V2", DevModeLocation.NO_LOCATION, 104, 300, 500, 255, 190, 255, 999, 150)
+    MONOKUMANTALA_V3 = ("Monokumantala V3", DevModeLocation.NO_LOCATION, 155, 1000, 1000, 555, 255, 555, 1500, 180)
+    MONODRAGON_HEAD = ("Monodragon Head", DevModeLocation.SECOND_ISLAND, 12, 580, 98, 80, 70, 92, 110, 200)
+    MONODRAGON_HEAD_V = ("Monodragon Head V", DevModeLocation.BEACH_HOUSE, 62, 1060, 255, 255, 120, 255, 255, 255)
+    MONODRAGON_HEAD_V2 = ("Monodragon Head V2", DevModeLocation.NO_LOCATION, 112, 1480, 444, 650, 100, 560, 444, 666)
+    MONODRAGON_HEAD_V3 = ("Monodragon Head V3", DevModeLocation.NO_LOCATION, 162, 2300, 666, 1050, 190, 1000, 666, 999)
+    FLOOR_MONODRAGON = ("Floor Monodragon", DevModeLocation.FIFTH_ISLAND, 22, 1000, 150, 200, 50, 150, 10, 54)
+    FLOOR_MONODRAGON_V = ("Floor Monodragon V", DevModeLocation.FACTORY, 66, 1500, 220, 255, 70, 255, 60, 75)
+    FLOOR_MONODRAGON_V2 = ("Floor Monodragon V2", DevModeLocation.NO_LOCATION, 116, 2000, 333, 570, 240, 550, 100, 150)
+    FLOOR_MONODRAGON_V3 = ("Floor Monodragon V3", DevModeLocation.NO_LOCATION, 165, 2800, 666, 1000, 255, 1000, 255, 210)
+    TWISTY_MONOKUMA = ("Twisty Monokuma", DevModeLocation.NO_LOCATION, 19, 420, 66, 98, 55, 98, 120, 100)
+    TWISTY_MONOKUMA_V = ("Twisty Monokuma V", DevModeLocation.NO_LOCATION, 64, 900, 87, 255, 150, 255, 366, 100)
+    TWISTY_MONOKUMA_V2 = ("Twisty Monokuma V2", DevModeLocation.NO_LOCATION, 119, 1800, 255, 580, 255, 488, 666, 140)
+    TWISTY_MONOKUMA_V3 = ("Twisty Monokuma V3", DevModeLocation.NO_LOCATION, 164, 2700, 360, 1200, 360, 666, 888, 330)
+    MONOKUMAMEL_B = ("Monokumamel B", DevModeLocation.NO_LOCATION, 14, 8, 92, 500, 500, 500, 50, 300)
+    MONOKUMAMEL_S = ("Monokumamel S", DevModeLocation.NO_LOCATION, 29, 16, 145, 800, 800, 800, 100, 600)
+    MONOKUMAMEL_G = ("Monokumamel G", DevModeLocation.NO_LOCATION, 92, 24, 166, 900, 900, 900, 150, 900)
+    MONOKUMAMEL_P = ("Monokumamel P", DevModeLocation.NO_LOCATION, 115, 50, 187, 1200, 1200, 1200, 200, 900)
+    EXISAL_BLUE = ("Exisal Blue", DevModeLocation.NO_LOCATION, 15, 1500, 350, 100, 102, 0, 150, 120)
+    EXISAL_YELLOW = ("Exisal Yellow", DevModeLocation.NO_LOCATION, 55, 2700, 500, 500, 180, 50, 180, 120)
+    EXISAL_GREEN = ("Exisal Green", DevModeLocation.NO_LOCATION, 105, 3333, 800, 150, 600, 60, 90, 150)
+    EXISAL_PINK = ("Exisal Pink", DevModeLocation.NO_LOCATION, 131, 999999, 160, 255, 255, 255, 60, 80)
+    EXISAL_V3 = ("Exisal V3", DevModeLocation.NO_LOCATION, 191, 35000, 500, 1200, 99999, 333, 500, 333)
+    MONOKUMASECT = ("Monokumasect", DevModeLocation.COTTAGE, 10, 1500, 100, 85, 100, 85, 80, 70)
+    MONOKUMASECT_V3 = ("Monokumasect V3", DevModeLocation.NO_LOCATION, 110, 20000, 500, 650, 500, 650, 330, 240)
+    MONOKUMA_TANK = ("Monokuma Tank", DevModeLocation.BEACH_HOUSE, 30, 1800, 150, 240, 220, 250, 70, 90)
+    MONOKUMA_TANK_V3 = ("Monokuma Tank V3", DevModeLocation.NO_LOCATION, 130, 18000, 800, 800, 800, 800, 200, 200)
+    MONOKUMA_BOSS = ("Monokuma Boss", DevModeLocation.HOSPITAL, 50, 2000, 600, 230, 200, 230, 70, 190)
+    MONOKUMA_BOSS_V3 = ("Monokuma Boss V3", DevModeLocation.NO_LOCATION, 150, 18000, 999, 666, 255, 666, 255, 200)
+    MONDUBA = ("Mon'Duba", DevModeLocation.FUN_HOUSE, 70, 3000, 333, 222, 666, 666, 120, 300)
+    MONDUBA_V3 = ("Mon'Duba V3", DevModeLocation.NO_LOCATION, 170, 30000, 600, 1300, 1500, 1300, 450, 300)
+    MONOKOPPA = ("Monokoppa", DevModeLocation.FACTORY, 90, 7500, 333, 300, 333, 600, 777, 255)
+    MONOKOPPA_V3 = ("Monokoppa", DevModeLocation.NO_LOCATION, 190, 35000, 999, 888, 999, 1500, 1700, 500)
+    EXISAL_RED = ("Exisal Red", DevModeLocation.NO_LOCATION, 161, 15000, 800, 500, 888, 80, 666, 666)
+    VANGUARD_MONOKUMA = ("Vanguard Monokuma", DevModeLocation.FIFTH_ISLAND, 24, 850, 42, 999, 10, 0, 106, 72)
+    VANGUARD_MONOKUMA_2 = ("Vanguard Monokuma 2", DevModeLocation.FACTORY, 74, 1000, 160, 999, 20, 160, 255, 148)
+    VANGUARD_MONOKUMA_ZZ = ("Vanguard Monokuma ZZ", DevModeLocation.NO_LOCATION, 124, 1850, 255, 9999, 30, 333, 333, 160)
+    VANGUARD_MONOKUMA_V3 = ("Vanguard Monokuma V3", DevModeLocation.NO_LOCATION, 174, 2800, 333, 9999, 40, 666, 666, 184)
+    MONOSLUDGE = ("Monosludge", DevModeLocation.FIRST_ISLAND, 25, 850, 45, 64, 200, 90, 180, 100)
+    MONOSLUDGE_2 = ("Monosludge 2", DevModeLocation.COTTAGE, 76, 1000, 89, 255, 255, 255, 255, 133)
+    MONOSLUDGE_ZZ = ("Monosludge ZZ", DevModeLocation.NO_LOCATION, 127, 1850, 360, 666, 380, 666, 388, 255)
+    MONOSLUDGE_V3 = ("Monosludge V3", DevModeLocation.NO_LOCATION, 176, 2800, 500, 1500, 700, 1500, 666, 699)
+    MONOHELPER = ("Monohelper", DevModeLocation.THIRD_ISLAND, 32, 164, 80, 30, 42, 64, 255, 64)
+    MONOHELPER_2 = ("Monohelper 2", DevModeLocation.HOSPITAL, 82, 1300, 125, 255, 180, 255, 505, 150)
+    MONOHELPER_ZZ = ("Monohelper ZZ", DevModeLocation.NO_LOCATION, 132, 1800, 255, 366, 180, 366, 800, 255)
+    MONOHELPER_V3 = ("Monohelper V3", DevModeLocation.NO_LOCATION, 182, 2100, 355, 666, 200, 777, 1200, 366)
+    GANGSTAKUMA = ("Gangstakuma", DevModeLocation.SECOND_ISLAND, 33, 980, 500, 120, 86, 120, 150, 80)
+    GANGSTAKUMA_2 = ("Gangstakuma 2", DevModeLocation.BEACH_HOUSE, 83, 1800, 800, 355, 150, 355, 366, 106)
+    GANGSTAKUMA_ZZ = ("Gangstakuma ZZ", DevModeLocation.NO_LOCATION, 133, 3500, 1200, 500, 180, 500, 666, 255)
+    GANGSTAKUMA_V3 = ("Gangstakuma V3", DevModeLocation.NO_LOCATION, 183, 6000, 1800, 788, 255, 788, 888, 300)
+    AETHERKUMA = ("Aetherkuma", DevModeLocation.THIRD_ISLAND, 36, 380, 86, 64, 130, 333, 100, 120)
+    AETHERKUMA_2 = ("Aetherkuma 2", DevModeLocation.HOSPITAL, 85, 850, 150, 255, 180, 444, 366, 140)
+    AETHERKUMA_ZZ = ("Aetherkuma ZZ", DevModeLocation.NO_LOCATION, 136, 1250, 255, 366, 255, 555, 555, 160)
+    AETHERKUMA_V3 = ("Aetherkuma V3", DevModeLocation.NO_LOCATION, 186, 3500, 300, 488, 666, 666, 1000, 180)
+    BONYKUMA = ("Bonykuma", DevModeLocation.FIRST_ISLAND, 43, 360, 104, 80, 255, 255, 80, 46)
+    BONYKUMA_2 = ("Bonykuma 2", DevModeLocation.COTTAGE, 91, 1800, 160, 200, 333, 488, 165, 102)
+    BONYKUMA_ZZ = ("Bonykuma ZZ", DevModeLocation.NO_LOCATION, 143, 2500, 200, 355, 444, 888, 180, 150)
+    BONYKUMA_V3 = ("Bonykuma V3", DevModeLocation.NO_LOCATION, 175, 3000, 255, 555, 555, 1000, 255, 180)
+    MONOKUMA_SAMURAI = ("Monokuma Samurai", DevModeLocation.THIRD_ISLAND, 42, 800, 94, 70, 100, 70, 70, 46)
+    MONOKUMA_SAMURAI_2 = ("Monokuma Samurai 2", DevModeLocation.HOSPITAL, 94, 1500, 188, 255, 200, 255, 114, 102)
+    MONOKUMA_SAMURAI_ZZ = ("Monokuma Samurai ZZ", DevModeLocation.NO_LOCATION, 142, 3500, 255, 999, 300, 999, 360, 255)
+    MONOKUMA_SAMURAI_V3 = ("Monokuma Samurai V3", DevModeLocation.NO_LOCATION, 194, 5500, 466, 1200, 900, 1200, 480, 255)
+    MONOBEL = ("Monobel", DevModeLocation.FOURTH_ISLAND, 45, 312, 70, 70, 70, 113, 150, 94)
+    MONOBEL_2 = ("Monobel 2", DevModeLocation.FUN_HOUSE, 94, 1200, 140, 255, 136, 255, 255, 152)
+    MONOBEL_ZZ = ("Monobel ZZ", DevModeLocation.NO_LOCATION, 145, 2500, 333, 999, 200, 999, 366, 255)
+    MONOBEL_V3 = ("Monobel V3", DevModeLocation.NO_LOCATION, 194, 5300, 666, 1500, 255, 1500, 477, 255)
+    ABYSSAL_MONOKUMA = ("Abyssal Monokuma", DevModeLocation.FOURTH_ISLAND, 46, 450, 140, 120, 100, 70, 100, 70)
+    ABYSSAL_MONOKUMA_2 = ("Abyssal Monokuma 2", DevModeLocation.FUN_HOUSE, 91, 980, 228, 255, 200, 255, 255, 114)
+    ABYSSAL_MONOKUMA_ZZ = ("Abyssal Monokuma ZZ", DevModeLocation.NO_LOCATION, 143, 1800, 333, 888, 444, 1000, 775, 130)
+    ABYSSAL_MONOKUMA_V3 = ("Abyssal Monokuma V3", DevModeLocation.NO_LOCATION, 193, 5900, 666, 1500, 1500, 1500, 888, 154)
+    VOLATILE_MONOURCHIN = ("Volatile Monourchin", DevModeLocation.FIFTH_ISLAND, 48, 800, 90, 150, 90, 200, 100, 94)
+    VOLATILE_MONOURCHIN_2 = ("Volatile Monourchin 2", DevModeLocation.FACTORY, "", 1000, 180, 255, 180, 400, 160, 152)
+    VOLATILE_MONOURCHIN_ZZ = ("Volatile Monourchin ZZ", DevModeLocation.NO_LOCATION, 148, 1600, 333, 600, 333, 600, 500, 170)
+    VOLATILE_MONOURCHIN_V3 = ("Volatile Monourchin ZZ", DevModeLocation.NO_LOCATION, 193, 2700, 777, 1550, 777, 1550, 800, 182)
+    MONOBEAST_TIGER = ("Monobeast (Tiger)", DevModeLocation.CENTRAL_ISLAND, 20, 1800, 90, 100, 90, 180, 150, 80)
+    MONOBEAST_TIGER_AWAKENED= ("Monobeast (Tiger Awakened)", DevModeLocation.NO_LOCATION, 120, 13000, 500, 350, 350, 255, 450, 255)
+    MONOBEAST_BIRD = ("Monobeast (Bird)", DevModeLocation.CENTRAL_ISLAND, 60, 2300, 200, 200, 200, 255, 220, 200)
+    MONOBEAST_BIRD_AWAKENED = ("Monobeast (Bird Awakened)", DevModeLocation.NO_LOCATION, 160, 20000, 800, 777, 777, 777, 900, 355)
+    MONOBEAST_SNAKE = ("Monobeast (Snake)", DevModeLocation.CENTRAL_ISLAND, 40, 2000, 130, 190, 130, 200, 180, 240)
+    MONOBEAST_SNAKE_AWAKENED = ("Monobeast (Snake Awakened)", DevModeLocation.NO_LOCATION, 140, 15000, 500, 999, 999, 999, 500, 255)
+    MONOBEAST_HORSE = ("Monobeast (Horse)", DevModeLocation.CENTRAL_ISLAND, 80, 4000, 255, 400, 250, 400, 200, 155)
+    MONOBEAST_HORSE_AWAKENED = ("Monobeast (Horse Awakened)", DevModeLocation.NO_LOCATION, 180, 33000, 888, 999, 800, 999, 788, 888)
+    MONOBEAST_HUMAN = ("Monobeast (Human)", DevModeLocation.CENTRAL_ISLAND, 100, 8000, 300, 555, 666, 655, 333, 333)
+    MONOBEAST_HUMAN_AWAKENED = ("Monobeast (Human Awakened)", DevModeLocation.NO_LOCATION, 200, 40000, 833, 3500, 833, 3500, 700, 666)
+    ALMIGHTY_JABBERWOCK = ("Almighty Jabberwock", DevModeLocation.SECRET, 200, 50000, 2300, 5200, 9999, 5200, 955, 666)
+    ALMIGHTY_JABBERWOCK_AWAKENED = ("Almighty Jabberwock Awakened", DevModeLocation.NO_LOCATION, 201, 500000000, 720, 780, 9999, 780, 1300, 1500)
+    MONOKID = ("Monokid", DevModeLocation.EVENT, "", 2500, 70, 60, 50, 60, 150, 80)
+    MONOSUKE = ("Monosuke", DevModeLocation.EVENT, "", 4000, 90, 150, 90, 180, 120, 190)
+    MONODAM = ("Monodam", DevModeLocation.EVENT, "", 6000, 120, 180, 120, 200, 200, 180)
+    MONOTARO = ("Monotaro", DevModeLocation.EVENT, "", 15000, 150, 255, 150, 255, 222, 190)
+    HERO_ROBOT = ("Hero Robot", DevModeLocation.EVENT, "", 7000, 130, 120, 75, 95, 150, 70)
+    PRIEST_ROBOT = ("Priest Robot", DevModeLocation.EVENT, "", 7000, 140, 95, 120, 120, 150, 85)
+    WARRIOR_ROBOT = ("Warrior Robot", DevModeLocation.EVENT, "", 9000, 150, 105, 105, 105, 200, 110)
+    SAGE_ROBOT = ("Sage Robot", DevModeLocation.EVENT, "", 9000, 170, 150, 200, 150, 200, 110)
+    MAGE_ROBOT = ("Mage Robot", DevModeLocation.EVENT, "", 10000, 190, 255, 190, 255, 255, 200)
+    MONOKUMA = ("Monokuma", DevModeLocation.EVENT, "", 20000, 210, 280, 210, 280, 255, 255)
+
+    ##Monophanie is not officially a battle, so she has no stats, but I will want her as a location
 
 
-
-# TODO figure out what data is needed for enemies and map it (similar to Events)
-# Enemies
-
-# Floors
-# "Combat Score" (how hard are they to kill)
-# immunities
-
-
-
-
-
-
-enemy_list = [
-    "Monokumamel",
-    "Monokumamel V",
-    "Monokumamel V2",
-    "Monokumamel V3",
-    "Fluffy Monobunny",
-    "Fluffy Monobunny V",
-    "Fluffy Monobunny V2",
-    "Fluffy Monobunny V3",
-    "Monokuma Gather",
-    "Monokuma Gather V",
-    "Monokuma Gather V2",
-    "Monokuma Gather V3",
-    "Monokuma Hermit",
-    "Monokuma Hermit V",
-    "Monokuma Hermit V2",
-    "Monokuma Hermit V3",
-    "Curse Monogirl",
-    "Curse Monogirl V",
-    "Curse Monogirl V2",
-    "Curse Monogirl V3",
-    "Monokumantala",
-    "Monokumantala V",
-    "Monokumantala V2",
-    "Monokumantala V3",
-    "Monodragon Head",
-    "Monodragon Head V",
-    "Monodragon Head V2",
-    "Monodragon Head V3",
-    "Floor Monodragon",
-    "Floor Monodragon V",
-    "Floor Monodragon V2",
-    "Floor Monodragon V3",
-    "Twisty Monokuma",
-    "Twisty Monokuma V",
-    "Twisty Monokuma V2",
-    "Twisty Monokuma V3",
-    "Monokumamel B",
-    "Monokumamel S",
-    "Monokumamel G",
-    "Monokumamel P",
-    "Exisal Blue",
-    "Exisal Yellow",
-    "Exisal Green",
-    "Exisal Pink",
-    "Exisal V3",
-    "Monokumasect",
-    "Monokumasect V3",
-    "Monokuma Tank",
-    "Monokuma Tank V3",
-    "Monokuma Boss",
-    "Monokuma Boss V3",
-    "Mon'Duba",
-    "Mon'Duba V3",
-    "Monokoppa",
-    "Monokoppa V3",
-    "Monokuma V3",
-    "Exisal Red",
-    "Vanguard Monokuma",
-    "Vanguard Monokuma 2",
-    "Vanguard Monokuma ZZ",
-    "Vanguard Monokuma V3",
-    "Monosludge",
-    "Monosludge 2",
-    "Monosludge ZZ",
-    "Monosludge V3",
-    "Monohelper",
-    "Monohelper 2",
-    "Monohelper ZZ",
-    "Monohelper V3",
-    "Gangstakuma",
-    "Gangstakuma 2",
-    "Gangstakuma ZZ",
-    "Gangstakuma V3",
-    "Aetherkuma",
-    "Aetherkuma 2",
-    "Aetherkuma ZZ",
-    "Aetherkuma V3",
-    "Bonykuma",
-    "Bonykuma 2",
-    "Bonykuma ZZ",
-    "Bonykuma V3",
-    "Monokuma Samurai",
-    "Monokuma Samurai 2",
-    "Monokuma Samurai ZZ",
-    "Monokuma Samurai V3",
-    "Monobel",
-    "Monobel 2",
-    "Monobel ZZ",
-    "Monobel V3",
-    "Abyssal Monokuma",
-    "Abyssal Monokuma 2",
-    "Abyssal Monokuma ZZ",
-    "Abyssal Monokuma V3",
-    "Volatile Monourchin",
-    "Volatile Monourchin 2",
-    "Volatile Monourchin ZZ",
-    "Volatile Monourchin V3",
-    "Monobeast (Tiger)",
-    "Monobeast (Tiger Awakened)",
-    "Monobeast (Bird)",
-    "Monobeast (Bird Awakened)",
-    "Monobeast (Horse)",
-    "Monobeast (Horse Awakened)",
-    "Monobeast (Snake)",
-    "Monobeast (Snake Awakened)",
-    "Monobeast (Human)",
-    "Monobeast (Human Awakened)",
-    "Almighty Jabberwock",
-    "Almighty Jabberwock Awakened",
-    "Monokid",
-    "Monosuke",
-    "Monodam",
-    "Monophanie",
-    "Monotaro",
-    "Monokuma",
-    "Mage Robot",
-    "Hero Robot",
-    "Priest Robot",
-    "Warrior Robot",
-    "Sage Robot",
-    "Monokubs",
-]
+    def __init__(self, enemy_name: str, dev_location: DevModeLocation, tower_floor: int, influence: int, strength: int, stamina: int, intelligence: int, endurance: int, agility: int, luck: int) -> None:
+        self.enemy_name: str = enemy_name
+        self.dev_location: DevModeLocation = dev_location
+        self.tower_floor: int = tower_floor
+        self.influence: int = influence
+        self.strength: int = strength
+        self.stamina: int = stamina
+        self.intelligence: int = intelligence
+        self.endurance: int = endurance
+        self.agility: int = agility
+        self.luck: int = luck
 
 
 class CharacterEventType(enum.StrEnum):
@@ -495,11 +498,609 @@ class CharacterEventType(enum.StrEnum):
 # TODO finish Event enum
 class CharacterEvent(enum.Enum):
     JUNKO_AND_MAKOTO = ("Junko & Makoto", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.MAKOTO_NAEGI])
+    AKANE_AND_CHIAKI_AND_PEKO = ("Akane & Chiaki & Peko", CharacterEventType.FRIEND, [Character.AKANE_OWARI, Character.CHIAKI_NANAMI, Character.PEKO_PEKOYAMA])
+    AKANE_AND_JATARO = ("Akane & Jataro", CharacterEventType.FRIEND, [Character.AKANE_OWARI, Character.JATARO_KEMURI])
+    AKANE_AND_SHIROKUMA = ("Akane & Shirokuma",CharacterEventType.FRIEND, [Character.AKANE_OWARI, Character.SHIROKUMA])
+    AKANE_AND_SONIA = ("Akane & Sonia", CharacterEventType.FRIEND, [Character.AKANE_OWARI, Character.SONIA_NEVERMIND])
+    ANGIE_AND_CELESTIA = ("Angie & Celestia", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.CELESTIA_LUDENBERG])
+    ANGIE_AND_HIFUMI_AND_GUNDHAM = ("Angie & Hifumi & Gundham", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.HIFUMI_YAMADA, Character.GUNDHAM_TANAKA])
+    ANGIE_AND_KAEDE = ("Angie & Kaede", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.KAEDE_AKAMATSU])
+    ANGIE_AND_LEON = ("Angie & Leon", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.LEON_KUWATA])
+    ANGIE_AND_MONOKUMA = ("Angie & Monokuma", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.MONOKUMA])
+    ANGIE_AND_MONOMI_AND_JATARO = ("Angie & Monomi & Jataro", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.MONOMI, Character.JATARO])
+    ANGIE_AND_NAGITO = ("Angie & Nagito", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.NAGITO_KOMAEDA])
+    ANGIE_AND_SONIA = ("Angie & Sonia", CharacterEventType.FRIEND, [Character.ANGIE_YONAGA, Character.SONIA_NEVERMIND])
+    AOI_AND_AKANE = ("Aoi & Akane", CharacterEventType.FRIEND, [Character.AOI_ASAHINA, Character.AKANE_OWARI])
+    AOI_AND_CHIAKI = ("Aoi & Chiaki", CharacterEventType.FRIEND, [Character.AOI_ASAHINA, Character.CHIAKI_NANAMI])
+    AOI_AND_MUKURO = ("Aoi & Mukuro", CharacterEventType.FRIEND, [Character.AOI_ASAHINA, Character.MUKURO_IKUSABA])
+    AOI_AND_NAGISA = ("Aoi & Nagisa", CharacterEventType.FRIEND, [Character.AOI_ASAHINA, Character.NAGISA_SHINGETSU])
+    BYAKUYA_AND_HAJIME = ("Byakuya & Hajime", CharacterEventType.FRIEND, [Character.BYAKUYA_TOGAMI, Character.HAJIME_HINATA])
+    BYAKUYA_AND_HIROKO = ("Byakuya & Hiroko", CharacterEventType.FRIEND, [Character.BYAKUYA_TOGAMI, Character.HIROKO_HAGAKURE])
+    BYAKUYA_AND_MUKURO = ("Byakuya & Mukuro", CharacterEventType.FRIEND, [Character.BYAKUYA_TOGAMI, Character.MUKURO_IKUSABA])
+    BYAKUYA_AND_KYOKO = ("Byakuya & Kyoko", CharacterEventType.FRIEND, [Character.BYAKUYA_TOGAMI, Character.KYOKO_KIRIGIRI])
+    BYAKUYA_AND_SONIA = ("Byakuya & Sonia", CharacterEventType.FRIEND, [Character.BYAKUYA_TOGAMI, Character.SONIA_NEVERMIND])
+    BYAKUYA_AND_TOKO_AND_PEKO = ("Byakuya & Toko & Peko", CharacterEventType.FRIEND, [Character.BYAKUYA_TOGAMI, Character.TOKO_FUKAWA, Character.PEKO_PEKOYAMA])
+    IMPOSTER_AND_TERUTERU = ("The Ultimate Imposter & Teruteru", CharacterEventType.FRIEND, [Character.THE_ULTIMATE_IMPOSTER, Character.TERUTERU_HANAMURA])
+    CELESTIA_AND_CHIAKI = ("Celestia & Chiaki", CharacterEventType.FRIEND, [Character.CELESTIA_LUDENBERG, Character.CHIAKI_NANAMI])
+    CELESTIA_AND_FUYUHIKO = ("Celestia & Fuyuhiko", CharacterEventType.FRIEND, [Character.CELESTIA_LUDENBERG, Character.FUYUHIKO_KUZURYU])
+    CELESTIA_AND_KOMARU_AND_MONACA = ("Celestia & Komaru & Monaca", CharacterEventType.FRIEND, [Character.CELESTIA_LUDENBERG, Character.KOMARU_NAEGI, Character.MONACA_TOWA])
+    CELESTIA_AND_MASARU = ("Celestia & Masaru", CharacterEventType.FRIEND, [Character.CELESTIA_LUDENBERG, Character.MASARU_DAIMON])
+    CELESTIA_AND_SONIA = ("Celestia & Sonia", CharacterEventType.FRIEND, [Character.CELESTIA_LUDENBERG, Character.SONIA_NEVERMIND])
+    CHIAKI_AND_IBUKI = ("Chiaki & Ibuki", CharacterEventType.FRIEND, [Character.CHIAKI_NANAMI, Character.IBUKI_MIODA])
+    CHIHIRO_AND_FUYUHIKO = ("Chihiro & Fuyuhiko", CharacterEventType.FRIEND, [Character.CHIHIRO_FUJISAKI, Character.FUYUHIKO_KUZURYU])
+    CHIHIRO_AND_JATARO = ("Chihiro & Jataro", CharacterEventType.FRIEND, [Character.CHIHIRO_FUJISAKI, Character.JATARO_KEMURI])
+    CHIHIRO_AND_NEKOMARU = ("Chihiro & Nekomaru", CharacterEventType.FRIEND, [Character.CHIHIRO_FUJISAKI, Character.NEKOMARU_NIDAI])
+    CHIHIRO_AND_SAKURA = ("Chihiro & Sakura", CharacterEventType.FRIEND, [Character.CHIHIRO_FUJISAKI, Character.SAKURA_OGAMI])
+    CHIHIRO_AND_SONIA_AND_SHIROKUMA = ("Chihiro & Sonia & Shirokuma", CharacterEventType.FRIEND, [Character.CHIHIRO_FUJISAKI, Character.SONIA_NEVERMIND, Character.SHIROKUMA])
+    FUYUHIKO_AND_KOTOKO = ("Fuyuhiko & Kotoko", CharacterEventType.FRIEND, [Character.FUYUHIKO_KUZURYU, Character.KOTOKO_UTSUGI])
+    FUYUHIKO_AND_MIKAN_AND_IBUKI = ("Fuyuhiko & Mikan & Ibuki", CharacterEventType.FRIEND, [Character.FUYUHIKO_KUZURYU, Character.MIKAN_TSUMIKI, Character.IBUKI_MIODA])
+    FUYUHIKO_AND_PEKO = ("Fuyuhiko & Peko", CharacterEventType.FRIEND, [Character.FUYUHIKO_KUZURYU, Character.PEKO_PEKOYAMA])
+    JACK_AND_IMPOSTER = ("Genocide Jack & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.GENOCIDE_JACK, Character.THE_ULTIMATE_IMPOSTER])
+    JACK_AND_CELESTIA_AND_KOTOKO = ("Genocide Jack & Celestia & Kotoko", CharacterEventType.FRIEND, [Character.GENOCIDE_JACK, Character.CELESTIA_LUDENBERG, Character.KOTOKO_UTSUGI])
+    JACK_AND_HIYOKO = ("Genocide Jack & Hiyoko", CharacterEventType.FRIEND, [Character.GENOCIDE_JACK, Character.HIYOKO_SAIONJI])
+    JACK_AND_KOMARU = ("Genocide Jack & Komaru", CharacterEventType.FRIEND, [Character.GENOCIDE_JACK, Character.KOMARU_NAEGI])
+    JACK_AND_SONIA = ("Genocide Jack & Sonia", CharacterEventType.FRIEND, [Character.GENOCIDE_JACK, Character.SONIA_NEVERMIND])
+    JACK_AND_TERUTERU_AND_MONOMI = ("Genocide Jack & Teruteru & Monomi", CharacterEventType.FRIEND, [Character.GENOCIDE_JACK, Character.TERUTERU_HANAMURA, Character.MONOMI])
+    GONTA_AND_AOI_AND_GUNDHAM = ("Gonta & Aoi & Gundham", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.AOI_ASAHINA, Character.GUNDHAM_TANAKA])
+    GONTA_AND_HAJIME = ("Gonta & Hajime", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.HAJIME_HINATA])
+    GONTA_AND_MUKURO_AND_MONACA = ("Gonta & Mukuro & Monaca", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.MUKURO_IKUSABA, Character.MONACA_TOWA])
+    GONTA_AND_K1_B0_AND_KUROKUMA = ("Gonta & K1-B0 & Kurokuma", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.K1_B0, Character.KUROKUMA])
+    GONTA_AND_KIYOTAKA = ("Gonta & Kiyotaka", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.KIYOTAKA_ISHIMARU])
+    GONTA_AND_KOKICHI = ("Gonta & Kokichi", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.KOKICHI_OMA])
+    GONTA_AND_SHIROKUMA = ("Gonta & Shirokuma", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.SHIROKUMA])
+    GONTA_AND_SONIA = ("Gonta & Sonia", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.SONIA_NEVERMIND])
+    GONTA_AND_TOKO = ("Gonta & Toko", CharacterEventType.FRIEND, [Character.GONTA_GOKUHARA, Character.TOKO_FUKAWA])
+    GUNDHAM_AND_KAZUICHI_AND_SONIA = ("Gundham & Kazuichi & Sonia", CharacterEventType.FRIEND, [Character.GUNDHAM_TANAKA, Character.KAZUICHI_SODA, Character.SONIA_NEVERMIND])
+    GUNDHAM_AND_PEKO = ("Gundham & Peko", CharacterEventType.FRIEND, [Character.GUNDHAM_TANAKA, Character.PEKO_PEKOYAMA])
+    HAJIME_AND_GUNDHAM = ("Hajime & Gundham", CharacterEventType.FRIEND, [Character.HAJIME_HINATA, Character.GUNDHAM_TANAKA])
+    HAJIME_AND_HIYOKO = ("Hajime & Hiyoko", CharacterEventType.FRIEND, [Character.HAJIME_HINATA, Character.HIYOKO_SAIONJI])
+    HAJIME_AND_MAHIRU_AND_MIKAN = ("Hajime & Mahiru & Mikan", CharacterEventType.FRIEND, [Character.HAJIME_HINATA, Character.MAHIRU_KOIZUMI, Character.MIKAN_TSUMIKI])
+    HIFUMI_AND_HIYOKO_AND_KOTOKO = ("Hifumi & Hiyoko & Kotoko", CharacterEventType.FRIEND, [Character.HIFUMI_YAMADA, Character.HIYOKO_SAIONJI, Character.KOTOKO_UTSUGI])
+    HIFUMI_AND_NAGISA = ("Hifumi & Nagisa", CharacterEventType.FRIEND, [Character.HIFUMI_YAMADA, Character.NAGISA_SHINGETSU])
+    HIFUMI_AND_PEKO = ("Hifumi & Peko", CharacterEventType.FRIEND, [Character.HIFUMI_YAMADA, Character.PEKO_PEKOYAMA])
+    HIFUMI_AND_TERUTERU = ("Hifumi & Teruteru", CharacterEventType.FRIEND, [Character.HIFUMI_YAMADA, Character.TERUTERU_HANAMURA])
+    HIFUMI_AND_TOKO = ("Hifumi & Toko", CharacterEventType.FRIEND, [Character.HIFUMI_YAMADA, Character.TOKO_FUKAWA])
+    HIMIKO_AND_AKANE_AND_KOTOKO = ("Himiko & Akane & Kotoko", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.AKANE_OWARI, Character.KOTOKO_UTSUGI])
+    HIMIKO_AND_CELESTIA_AND_TERUTERU = ("Himiko & Celestia & Teruteru", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.CELESTIA_LUDENBERG, Character.TERUTERU_HANAMURA])
+    HIMIKO_AND_HAJIME = ("Himiko & Hajime", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.HAJIME_HINATA])
+    HIMIKO_AND_HIYOKO_AND_MAHIRU = ("Himiko & Hiyoko & Mahiru", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.HIYOKO_SAIONJI, Character.MAHIRU_KOIZUMI])
+    HIMIKO_AND_IBUKI = ("Himiko & Ibuki", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.IBUKI_MIODA])
+    HIMIKO_AND_MASARU = ("Himiko & Masaru", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.MASARU_DAIMON])
+    HIMIKO_AND_SAKURA_AND_NEKOMARU = ("Himiko & Sakura & Nekomaru", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.SAKURA_OGAMI, Character.NEKOMARU_NIDAI])
+    HIMIKO_AND_TENKO = ("Himiko & Tenko", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.TENKO_CHABASHIRA])
+    HIMIKO_AND_YASUHIRO = ("Himiko & Yasuhiro", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.YASUHIRO_HAGAKURE])
+    HIYOKO_AND_MONACA = ("Hiyoko & Monaca", CharacterEventType.FRIEND, [Character.HIYOKO_SAIONJI, Character.MONACA_TOWA])
+    HIYOKO_AND_SHIROKUMA_AND_HIROKO = ("Hiyoko & Shirokuma & Hiroko", CharacterEventType.FRIEND, [Character.HIMIKO_YUMENO, Character.SHIROKUMA, Character.HIROKO_HAGAKURE])
+    IBUKI_AND_KUROKUMA = ("Ibuki & Kurokuma", CharacterEventType.FRIEND, [Character.IBUKI_MIODA, Character.KUROKUMA])
+    IBUKI_AND_MONOMI = ("Ibuki & Monomi", CharacterEventType.FRIEND, [Character.IBUKI_MIODA, Character.MONOMI])
+    IZURU_AND_BYAKUYA = ("Izuru & Byakuya", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.BYAKUYA_TOGAMI])
+    IZURU_AND_GONTA = ("Izuru & Gonta", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.GONTA_GOKUHARA])
+    IZURU_AND_GUNDHAM = ("Izuru & Gundham", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.GUNDHAM_TANAKA])
+    IZURU_AND_HIMIKO = ("Izuru & Himiko", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.HIMIKO_YUMENO])
+    IZURU_AND_HIYOKO = ("Izuru & Hiyoko", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.HIYOKO_SAIONJI])
+    IZURU_AND_KIRUMI_AND_CHIAKI = ("Izuru & Kirumi & Chiaki", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.KIRUMI_TOJO, Character.CHIAKI_NANAMI])
+    IZURU_AND_LEON_AND_CHIHIRO = ("Izuru & Leon & Chihiro", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.LEON_KUWATA, Character.CHIHIRO_FUJISAKI])
+    IZURU_AND_MAHIRU_AND_MIKAN = ("Izuru & Mahiru & Mikan", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.MAHIRU_KOIZUMI, Character.MIKAN_TSUMIKI])
+    IZURU_AND_MONOKUMA = ("Izuru & Monokuma", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.MONOKUMA])
+    IZURU_AND_RYOMA_AND_NAGITO = ("Izuru & Ryoma & Nagito", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.RYOMA_HOSHI, Character.NAGITO_KOMAEDA])
+    IZURU_AND_SAYAKA = ("Izuru & Sayaka", CharacterEventType.FRIEND, [Character.IZURU_KAMUKURA, Character.SAYAKA_MAIZONO])
+    JATARO_AND_KOTOKO = ("Jataro & Kotoko", CharacterEventType.FRIEND, [Character.JATARO_KEMURI, Character.KOTOKO_UTSUGI])
+    JATARO_AND_KUROKUMA = ("Jataro & Kurokuma", CharacterEventType.FRIEND, [Character.JATARO_KEMURI, Character.KUROKUMA])
+    JUNKO_AND_AOI = ("Junko & Aoi", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.AOI_ASAHINA])
+    JUNKO_AND_BYAKUYA = ("Junko & Byakuya", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.BYAKUYA_TOGAMI])
+    JUNKO_AND_GONTA_AND_MONACA = ("Junko & Gonta & Monaca", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.GONTA_GOKUHARA, Character.MONACA_TOWA])
+    JUNKO_AND_MAHIRU = ("Junko & Mahiru", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.MAHIRU_KOIZUMI])
+    JUNKO_AND_MONDO = ("Junko & Mondo", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.MONDO_OWADA])
+    JUNKO_AND_SAKURA_AND_IBUKI = ("Junko & Sakura & Ibuki", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.SAKURA_OGAMI, Character.IBUKI_MIODA])
+    JUNKO_AND_TENKO_AND_AKANE = ("Junko & Tenko & Akane", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.TENKO_CHABASHIRA, Character.AKANE_OWARI])
+    JUNKO_AND_TOKO_AND_MIKAN = ("Junko & Toko & Mikan", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.TOKO_FUKAWA, Character.MIKAN_TSUMIKI])
+    JUNKO_AND_YASUHIRO = ("Junko & Yasuhiro", CharacterEventType.FRIEND, [Character.JUNKO_ENOSHIMA, Character.YASUHIRO_HAGAKURE])
+    MUKURO_AND_MAHIRU = ("Mukuro & Mahiru", CharacterEventType.FRIEND, [Character.MUKURO_IKUSABA, Character.MAHIRU_KOIZUMI])
+    K1_B0_AND_ANGIE = ("K1-B0 & Angie", CharacterEventType.FRIEND, [Character.K1_B0, Character.ANGIE_YONAGA])
+    K1_B0_AND_IMPOSTER = ("K1-B0 & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.K1_B0, Character.THE_ULTIMATE_IMPOSTER])
+    K1_B0_AND_CELESTIA = ("K1-B0 & Celestia", CharacterEventType.FRIEND, [Character.K1_B0, Character.CELESTIA_LUDENBERG])
+    K1_B0_AND_CHIAKI = ("K1-B0 & Chiaki", CharacterEventType.FRIEND, [Character.K1_B0, Character.CHIAKI_NANAMI])
+    K1_B0_AND_CHIHIRO_AND_KAZUICHI = ("K1-B0 & Chihiro & Kazuichi", CharacterEventType.FRIEND, [Character.K1_B0, Character.CHIHIRO_FUJISAKI, Character.KAZUICHI_SODA])
+    K1_B0_AND_LEON = ("K1-B0 & Leon", CharacterEventType.FRIEND, [Character.K1_B0, Character.LEON_KUWATA])
+    K1_B0_AND_MASARU_AND_JATARO = ("K1-B0 & Masaru & Jataro", CharacterEventType.FRIEND, [Character.K1_B0, Character.MASARU_DAIMON, Character.JATARO_KEMURI])
+    K1_B0_AND_TERUTERU = ("K1-B0 & Teruteru", CharacterEventType.FRIEND, [Character.K1_B0, Character.TERUTERU_HANAMURA])
+    KAEDE_AND_FUYUHIKO = ("Kaede & Fuyuhiko", CharacterEventType.FRIEND, [Character.KAEDE_AKAMATSU, Character.FUYUHIKO_KUZURYU])
+    KAEDE_AND_KOMARU = ("Kaede & Komaru", CharacterEventType.FRIEND, [Character.KAEDE_AKAMATSU, Character.KOMARU_NAEGI])
+    KAEDE_AND_MAKOTO_AND_MASARU = ("Kaede & Makoto & Masaru", CharacterEventType.FRIEND, [Character.KAEDE_AKAMATSU, Character.MAKOTO_NAEGI, Character.MASARU_DAIMON])
+    KAEDE_AND_SAYAKA_AND_IBUKI = ("Kaede & Sayaka & Ibuki", CharacterEventType.FRIEND, [Character.KAEDE_AKAMATSU, Character.SAYAKA_MAIZONO, Character.IBUKI_MIODA])
+    KAITO_AND_AKANE = ("Kaito & Akane", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.AKANE_OWARI])
+    KAITO_AND_AOI = ("Kaito & Aoi", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.AOI_ASAHINA])
+    KAITO_AND_BYAKUYA_AND_IBUKI = ("Kaito & Byakuya & Ibuki", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.BYAKUYA_TOGAMI, Character.IBUKI_MIODA])
+    KAITO_AND_GUNDHAM = ("Kaito & Gundham", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.GUNDHAM_TANAKA])
+    KAITO_AND_JATARO = ("Kaito & Jataro", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.JATARO_KEMURI])
+    KAITO_AND_KAEDE = ("Kaito & Kaede", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.KAEDE_AKAMATSU])
+    KAITO_AND_KIYOTAKA_AND_MASARU = ("Kaito & Kiyotaka & Masaru", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.KIYOTAKA_ISHIMARU, Character.MASARU_DAIMON])
+    KAITO_AND_RYOMA = ("Kaito & Ryoma", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.RYOMA_HOSHI])
+    KAITO_AND_TENKO_AND_LEON = ("Kaito & Tenko & Leon", CharacterEventType.FRIEND, [Character.KAITO_MOMOTA, Character.TENKO_CHABASHIRA, Character.LEON_KUWATA])
+    KAZUICHI_AND_FUYUHIKO_AND_NAGISA = ("Kazuichi & Fuyuhiko & Nagisa", CharacterEventType.FRIEND, [Character.KAZUICHI_SODA, Character.FUYUHIKO_KUZURYU, Character.NAGISA_SHINGETSU])
+    KAZUICHI_AND_JATARO = ("Kazuichi & Jataro", CharacterEventType.FRIEND, [Character.KAZUICHI_SODA, Character.JATARO_KEMURI])
+    KAZUICHI_AND_MAHIRU = ("Kazuichi & Mahiru", CharacterEventType.FRIEND, [Character.KAZUICHI_SODA, Character.MAHIRU_KOIZUMI])
+    KIRUMI_AND_CHIHIRO = ("Kirumi & Chihiro", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.CHIHIRO_FUJISAKI])
+    KIRUMI_AND_HAJIME_AND_CHIAKI = ("Kirumi & Hajime & Chiaki", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.HAJIME_HINATA, Character.CHIAKI_NANAMI])
+    KIRUMI_AND_KOMARU = ("Kirumi & Komaru", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.KOMARU_NAEGI])
+    KIRUMI_AND_LEON_AND_KYOKO = ("Kirumi & Leon & Kyoko", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.LEON_KUWATA, Character.KYOKO_KIRIGIRI])
+    KIRUMI_AND_MAHIRU = ("Kirumi & Mahiru", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.MAHIRU_KOIZUMI])
+    KIRUMI_AND_SAKURA = ("Kirumi & Sakura", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.SAKURA_OGAMI])
+    KIRUMI_AND_SONIA = ("Kirumi & Sonia", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.SONIA_NEVERMIND])
+    KIRUMI_AND_TERUTERU_AND_SONIA = ("Kirumi & Teruteru & Sonia", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.TERUTERU_HANAMURA, Character.SONIA_NEVERMIND])
+    KIRUMI_AND_TSUMUGI = ("Kirumi & Tsumugi", CharacterEventType.FRIEND, [Character.KIRUMI_TOJO, Character.TSUMUGI_SHIROGANE])
+    KIYOTAKA_AND_AKANE = ("Kiyotaka & Akane", CharacterEventType.FRIEND, [Character.KIYOTAKA_ISHIMARU, Character.AKANE_OWARI])
+    KIYOTAKA_AND_CELESTIA = ("Kiyotaka & Celestia", CharacterEventType.FRIEND, [Character.KIYOTAKA_ISHIMARU, Character.CELESTIA_LUDENBERG])
+    KIYOTAKA_AND_MONDO_AND_SAYAKA = ("Kiyotaka & Mondo & Sayaka", CharacterEventType.FRIEND, [Character.KIYOTAKA_ISHIMARU, Character.MONDO_OWADA, Character.SAYAKA_MAIZONO])
+    KIYOTAKA_AND_NAGISA = ("Kiyotaka & Nagisa", CharacterEventType.FRIEND, [Character.KIYOTAKA_ISHIMARU, Character.NAGISA_SHINGETSU])
+    KIYOTAKA_AND_NEKOMARU = ("Kiyotaka & Nekomaru", CharacterEventType.FRIEND, [Character.KIYOTAKA_ISHIMARU, Character.NEKOMARU_NIDAI])
+    KOKICHI_AND_BYAKUYA_AND_IMPOSTER = ("Kokichi & Byakuya & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.BYAKUYA_TOGAMI, Character.THE_ULTIMATE_IMPOSTER])
+    KOKICHI_AND_JACK = ("Kokichi & Genocide Jack", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.GENOCIDE_JACK])
+    KOKICHI_AND_HIYOKO = ("Kokichi & Hiyoko", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.HIYOKO_SAIONJI])
+    KOKICHI_AND_KAZUICHI = ("Kokichi & Kazuichi", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.KAZUICHI_SODA])
+    KOKICHI_AND_MAHIRU = ("Kokichi & Mahiru", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.MAHIRU_KOIZUMI])
+    KOKICHI_AND_MAKOTO_AND_HIROKO = ("Kokichi & Makoto & Hiroko", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.MAKOTO_NAEGI, Character.HIROKO_HAGAKURE])
+    KOKICHI_AND_MONACA = ("Kokichi & Monaca", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.MONACA_TOWA])
+    KOKICHI_AND_MONOKUMA_AND_CHIAKI = ("Kokichi & Monokuma & Chiaki", CharacterEventType.FRIEND, [Character.KOKICHI_OMA, Character.MONOKUMA, Character.CHIAKI_NANAMI])
+    KOMARU_AND_KOTOKO_AND_MONACA = ("Komaru & Kotoko & Monaca", CharacterEventType.FRIEND, [Character.KOMARU_NAEGI, Character.KOTOKO_UTSUGI, Character.MONACA_TOWA])
+    KOREKIYO_AND_ANGIE_AND_TOKO = ("Korekiyo & Angie & Toko", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.ANGIE_YONAGA, Character.TOKO_FUKAWA])
+    KOREKIYO_AND_HIFUMI = ("Korekiyo & Hifumi", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.HIFUMI_YAMADA])
+    KOREKIYO_AND_HIFUMI_AND_SONIA = ("Korekiyo & Hifumi & Sonia", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.HIFUMI_YAMADA, Character.SONIA_NEVERMIND])
+    KOREKIYO_AND_MIKAN = ("Korekiyo & Mikan", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.MIKAN_TSUMIKI])
+    KOREKIYO_AND_NAGITO = ("Korekiyo & Nagito", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.NAGITO_KOMAEDA])
+    KOREKIYO_AND_SAYAKA = ("Korekiyo & Sayaka", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.SAYAKA_MAIZONO])
+    KOREKIYO_AND_SHIROKUMA = ("Korekiyo & Shirokuma", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.SHIROKUMA])
+    KOREKIYO_AND_TSUMUGI = ("Korekiyo & Tsumugi", CharacterEventType.FRIEND, [Character.KOREKIYO_SHINGUJI, Character.TSUMUGI_SHIROGANE])
+    KYOKO_AND_FUYUHIKO_AND_KUROKUMA = ("Kyoko & Fuyuhiko & Kurokuma", CharacterEventType.FRIEND, [Character.KYOKO_KIRIGIRI, Character.FUYUHIKO_KUZURYU, Character.KUROKUMA])
+    KYOKO_AND_GUNDHAM = ("Kyoko & Gundham", CharacterEventType.FRIEND, [Character.KYOKO_KIRIGIRI, Character.GUNDHAM_TANAKA])
+    KYOKO_AND_MAHIRU = ("Kyoko & Mahiru", CharacterEventType.FRIEND, [Character.KYOKO_KIRIGIRI, Character.MAHIRU_KOIZUMI])
+    KYOKO_AND_MONACA = ("Kyoko & Monaca", CharacterEventType.FRIEND, [Character.KYOKO_KIRIGIRI, Character.MONACA_TOWA])
+    LEON_AND_CHIAKI = ("Leon & Chiaki", CharacterEventType.FRIEND, [Character.LEON_KUWATA, Character.CHIAKI_NANAMI])
+    LEON_AND_HAJIME_AND_CHIHIRO = ("Leon & Hajime & Chihiro", CharacterEventType.FRIEND, [Character.LEON_KUWATA, Character.HAJIME_HINATA, Character.CHIHIRO_FUJISAKI])
+    LEON_AND_HIFUMI = ("Leon & Hifumi", CharacterEventType.FRIEND, [Character.LEON_KUWATA, Character.HIFUMI_YAMADA])
+    LEON_AND_NAGITO = ("Leon & Nagito", CharacterEventType.FRIEND, [Character.LEON_KUWATA, Character.NAGITO_KOMAEDA])
+    LEON_AND_SAKURA = ("Leon & Sakura", CharacterEventType.FRIEND, [Character.LEON_KUWATA, Character.SAKURA_OGAMI])
+    MAHIRU_AND_NAGISA = ("Mahiru & Nagisa", CharacterEventType.FRIEND, [Character.MAHIRU_KOIZUMI, Character.NAGISA_SHINGETSU])
+    MAKI_AND_IMPOSTER = ("Maki & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.THE_ULTIMATE_IMPOSTER])
+    MAKI_AND_CHIHIRO_AND_CHIAKI = ("Maki & Chihiro & Chiaki", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.CHIHIRO_FUJISAKI, Character.CHIAKI_NANAMI])
+    MAKI_AND_KAEDE = ("Maki & Kaede", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.KAEDE_AKAMATSU])
+    MAKI_AND_KOMARU = ("Maki & Komaru", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.KOMARU_NAEGI])
+    MAKI_AND_MAKOTO = ("Maki & Makoto", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.MAKOTO_NAEGI])
+    MAKI_AND_MONOMI = ("Maki & Monomi", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.MONOMI])
+    MAKI_AND_NEKOMARU_AND_PEKO = ("Maki & Nekomaru & Peko", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.NEKOMARU_NIDAI, Character.PEKO_PEKOYAMA])
+    MAKI_AND_SAKURA_AND_NAGISA = ("Maki & Sakura & Nagisa", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.SAKURA_OGAMI, Character.NAGISA_SHINGETSU])
+    MAKI_AND_SAYAKA = ("Maki & Sayaka", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.SAYAKA_MAIZONO])
+    MAKI_AND_YASUHIRO_AND_HIYOKO = ("Maki & Yasuhiro & Hiyoko", CharacterEventType.FRIEND, [Character.MAKI_HARUKAWA, Character.YASUHIRO_HAGAKURE, Character.HIYOKO_SAIONJI])
+    MAKOTO_AND_BYAKUYA = ("Makoto & Byakuya", CharacterEventType.FRIEND, [Character.MAKOTO_NAEGI, Character.BYAKUYA_TOGAMI])
+    MAKOTO_AND_CHIAKI = ("Makoto & Chiaki", CharacterEventType.FRIEND, [Character.MAKOTO_NAEGI, Character.CHIAKI_NANAMI])
+    MAKOTO_AND_GUNDHAM = ("Makoto & Gundham", CharacterEventType.FRIEND, [Character.MAKOTO_NAEGI, Character.GUNDHAM_TANAKA])
+    MAKOTO_AND_MUKURO = ("Makoto & Mukuro", CharacterEventType.FRIEND, [Character.MAKOTO_NAEGI, Character.MUKURO_IKUSABA])
+    MAKOTO_AND_SAYAKA_AND_KOMARU = ("Makoto & Sayaka & Komaru", CharacterEventType.FRIEND, [Character.MAKOTO_NAEGI, Character.SAYAKA_MAIZONO, Character.KOMARU_NAEGI])
+    MASARU_AND_JATARO_AND_NAGISA = ("Masaru & Jataro & Nagisa", CharacterEventType.FRIEND, [Character.MASARU_DAIMON, Character.JATARO_KEMURI, Character.NAGISA_SHINGETSU])
+    MASARU_AND_KOTOKO = ("Masaru & Kotoko", CharacterEventType.FRIEND, [Character.MASARU_DAIMON, Character.KOTOKO_UTSUGI])
+    MIKAN_AND_SHIROKUMA = ("Mikan & Shirokuma", CharacterEventType.FRIEND, [Character.MIKAN_TSUMIKI, Character.SHIROKUMA])
+    MIU_AND_BYAKUYA_JACK = ("Miu & Byakuya & Genocide Jack", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.BYAKUYA_TOGAMI, Character.GENOCIDE_JACK])
+    MIU_AND_JATARO = ("Miu & Jataro", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.JATARO_KEMURI])
+    MIU_AND_KAEDE = ("Miu & Kaede", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.KAEDE_AKAMATSU])
+    MIU_AND_KAZUICHI_AND_MONOMI = ("Miu & Kazuichi & Monomi", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.KAZUICHI_SODA, Character.MONOMI])
+    MIU_AND_KUROKUMA = ("Miu & Kurokuma", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.KUROKUMA])
+    MIU_AND_MIKAN = ("Miu & Mikan", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.MIKAN_TSUMIKI])
+    MIU_AND_MONDO_AND_HIROKO = ("Miu & Mondo & Hiroko", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.MONDO_OWADA, Character.HIROKO_HAGAKURE])
+    MIU_AND_MONOMI = ("Miu & Monomi", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.MONOMI])
+    MIU_AND_YASUHIRO = ("Miu & Yasuhiro", CharacterEventType.FRIEND, [Character.MIU_IRUMA, Character.YASUHIRO_HAGAKURE])
+    MONACA_AND_HIROKO = ("Monaca & Hiroko", CharacterEventType.FRIEND, [Character.MONACA_TOWA, Character.HIROKO_HAGAKURE])
+    MONDO_AND_FUYUHIKO = ("Mondo & Fuyuhiko", CharacterEventType.FRIEND, [Character.MONDO_OWADA, Character.FUYUHIKO_KUZURYU])
+    MONDO_AND_MUKURO = ("Mondo & Mukuro", CharacterEventType.FRIEND, [Character.MONDO_OWADA, Character.MUKURO_IKUSABA])
+    MONDO_AND_KAZUICHI = ("Mondo & Kazuichi", CharacterEventType.FRIEND, [Character.MONDO_OWADA, Character.KAZUICHI_SODA])
+    MONDO_AND_MIKAN = ("Mondo & Mikan", CharacterEventType.FRIEND, [Character.MONDO_OWADA, Character.MIKAN_TSUMIKI])
+    MONDO_AND_NAGISA = ("Mondo & Nagisa", CharacterEventType.FRIEND, [Character.MONDO_OWADA, Character.NAGISA_SHINGETSU])
+    MONDO_AND_NEKOMARU_AND_KUROKUMA = ("Mondo & Nekomaru & Kurokuma", CharacterEventType.FRIEND, [Character.MONDO_OWADA, Character.NEKOMARU_NIDAI, Character.KUROKUMA])
+    MONOKUMA_AND_CHIHIRO = ("Monokuma & Chihiro", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.CHIHIRO_FUJISAKI])
+    MONOKUMA_AND_JACK = ("Monokuma & Genocide Jack", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.GENOCIDE_JACK])
+    MONOKUMA_AND_HAJIME = ("Monokuma & Hajime", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.HAJIME_HINATA])
+    MONOKUMA_AND_HIYOKO = ("Monokuma & Hiyoko", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.HIYOKO_SAIONJI])
+    MONOKUMA_AND_KOMARU_AND_HIROKO = ("Monokuma & Komaru & Hiroko", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.KOMARU_NAEGI, Character.HIROKO_HAGAKURE])
+    MONOKUMA_AND_MONOMI = ("Monokuma & Monomi", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.MONOMI])
+    MONOKUMA_AND_SHIROKUMA_AND_KUROKUMA = ("Monokuma & Shirokuma & Kurokuma", CharacterEventType.FRIEND, [Character.MONOKUMA, Character.SHIROKUMA, Character.KUROKUMA])
+    MONOMI_AND_KUROKUMA = ("Monomi & Kurokuma", CharacterEventType.FRIEND, [Character.MONOMI, Character.KUROKUMA])
+    NAGISA_AND_MONACA = ("Nagisa & Monaca", CharacterEventType.FRIEND, [Character.NAGISA_SHINGETSU, Character.MONACA_TOWA])
+    NAGISA_AND_SHIROKUMA = ("Nagisa & Shirokuma", CharacterEventType.FRIEND, [Character.NAGISA_SHINGETSU, Character.SHIROKUMA])
+    NAGITO_AND_KAZUICHI = ("Nagito & Kazuichi", CharacterEventType.FRIEND, [Character.NAGITO_KOMAEDA, Character.KAZUICHI_SODA])
+    NAGITO_AND_MIKAN = ("Nagito & Mikan", CharacterEventType.FRIEND, [Character.NAGITO_KOMAEDA, Character.MIKAN_TSUMIKI])
+    NAGITO_AND_MONACA = ("Nagito & Monaca", CharacterEventType.FRIEND, [Character.NAGITO_KOMAEDA, Character.MONACA_TOWA])
+    NEKOMARU_AND_MASARU = ("Nekomaru & Masaru", CharacterEventType.FRIEND, [Character.NEKOMARU_NIDAI, Character.MASARU_DAIMON])
+    PEKO_AND_MASARU = ("Peko & Masaru", CharacterEventType.FRIEND, [Character.PEKO_PEKOYAMA, Character.MASARU_DAIMON])
+    RANTARO_AND_GONTA = ("Rantaro & Gonta", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.GONTA_GOKUHARA])
+    RANTARO_AND_HIROKO = ("Rantaro & Hiroko", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.HIROKO_HAGAKURE])
+    RANTARO_AND_IBUKI = ("Rantaro & Ibuki", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.IBUKI_MIODA])
+    RANTARO_AND_KAEDE = ("Rantaro & Kaede", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.KAEDE_AKAMATSU])
+    RANTARO_AND_KIYOTAKA_AND_IMPOSTER = ("Rantaro & Kiyotaka & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.KIYOTAKA_ISHIMARU, Character.THE_ULTIMATE_IMPOSTER])
+    RANTARO_AND_KOREKIYO_AND_FUYUHIKO = ("Rantaro & Korekiyo & Fuyuhiko", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.KOREKIYO_SHINGUJI, Character.FUYUHIKO_KUZURYU])
+    RANTARO_AND_LEON = ("Rantaro & Leon", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.LEON_KUWATA])
+    RANTARO_AND_MAHIRU = ("Rantaro & Mahiru", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.MAHIRU_KOIZUMI])
+    RANTARO_AND_PEKO_AND_SHIROKUMA = ("Rantaro & Peko & Shirokuma", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.PEKO_PEKOYAMA, Character.SHIROKUMA])
+    RANTARO_AND_TERUTERU = ("Rantaro & Teruteru", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.TERUTERU_HANAMURA])
+    RANTARO_AND_YASUHIRO_AND_NAGITO = ("Rantaro & Yasuhiro & Nagito", CharacterEventType.FRIEND, [Character.RANTARO_AMAMI, Character.YASUHIRO_HAGAKURE, Character.NAGITO_KOMAEDA])
+    RYOMA_AND_IMPOSTER = ("Ryoma & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.THE_ULTIMATE_IMPOSTER])
+    RYOMA_AND_HAJIME_AND_NAGITO = ("Ryoma & Hajime & Nagito", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.HAJIME_HINATA, Character.NAGITO_KOMAEDA])
+    RYOMA_AND_HIMIKO = ("Ryoma & Himiko", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.HIMIKO_YUMENO])
+    RYOMA_AND_KUROKUMA = ("Ryoma & Kurokuma", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.KUROKUMA])
+    RYOMA_AND_KYOKO = ("Ryoma & Kyoko", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.KYOKO_KIRIGIRI])
+    RYOMA_AND_MIU_AND_MONOKUMA = ("Ryoma & Miu & Monokuma", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.MIU_IRUMA, Character.MONOKUMA])
+    RYOMA_AND_MONDO = ("Ryoma & Mondo", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.MONDO_OWADA])
+    RYOMA_AND_NEKOMARU_AND_MIKAN = ("Ryoma & Nekomaru & Mikan", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.NEKOMARU_NIDAI, Character.MIKAN_TSUMIKI])
+    RYOMA_AND_PEKO = ("Ryoma & Peko", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.PEKO_PEKOYAMA])
+    RYOMA_AND_YASUHIRO_AND_MONACA = ("Ryoma & Yasuhiro & Monaca", CharacterEventType.FRIEND, [Character.RYOMA_HOSHI, Character.YASUHIRO_HAGAKURE, Character.MONACA_TOWA])
+    SAKURA_AND_AKANE = ("Sakura & Akane", CharacterEventType.FRIEND, [Character.SAKURA_OGAMI, Character.AKANE_OWARI])
+    SAKURA_AND_CELESTIA = ("Sakura & Celestia", CharacterEventType.FRIEND, [Character.SAKURA_OGAMI, Character.CELESTIA_LUDENBERG])
+    SAKURA_AND_GUNDHAM = ("Sakura & Gundham", CharacterEventType.FRIEND, [Character.SAKURA_OGAMI, Character.GUNDHAM_TANAKA])
+    SAKURA_AND_MUKURO_AND_IBUKI = ("Sakura & Mukuro & Ibuki", CharacterEventType.FRIEND, [Character.SAKURA_OGAMI, Character.MUKURO_IKUSABA, Character.IBUKI_MIODA])
+    SAKURA_AND_NEKOMARU = ("Sakura & Nekomaru", CharacterEventType.FRIEND, [Character.SAKURA_OGAMI, Character.NEKOMARU_NIDAI])
+    SAYAKA_AND_HAJIME = ("Sayaka & Hajime", CharacterEventType.FRIEND, [Character.SAYAKA_MAIZONO, Character.HAJIME_HINATA])
+    SAYAKA_AND_KAZUICHI = ("Sayaka & Kazuichi", CharacterEventType.FRIEND, [Character.SAYAKA_MAIZONO, Character.KAZUICHI_SODA])
+    SAYAKA_AND_KOTOKO = ("Sayaka & Kotoko", CharacterEventType.FRIEND, [Character.SAYAKA_MAIZONO, Character.KOTOKO_UTSUGI])
+    SAYAKA_AND_KYOKO_AND_AOI = ("Sayaka & Kyoko & Aoi", CharacterEventType.FRIEND, [Character.SAKURA_OGAMI, Character.KYOKO_KIRIGIRI, Character.AOI_ASAHINA])
+    SAYAKA_AND_PEKO = ("Sayaka & Peko", CharacterEventType.FRIEND, [Character.SAYAKA_MAIZONO, Character.PEKO_PEKOYAMA])
+    SHIROKUMA_AND_KUROKUMA = ("Shirokuma & Kurokuma", CharacterEventType.FRIEND, [Character.SHIROKUMA, Character.KUROKUMA])
+    SHUICHI_AND_IMPOSTER = ("Shuichi & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.THE_ULTIMATE_IMPOSTER])
+    SHUICHI_AND_KAEDE_AND_TOKO = ("Shuichi & Kaede & Toko", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KAEDE_AKAMATSU, Character.TOKO_FUKAWA])
+    SHUICHI_AND_KAITO_AND_MAKI = ("Shuichi & Kaito & Maki", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KAITO_MOMOTA, Character.MAKI_HARUKAWA])
+    SHUICHI_AND_KIRUMI = ("Shuichi & Kirumi", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KIRUMI_TOJO])
+    SHUICHI_AND_KIYOTAKA = ("Shuichi & Kiyotaka", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KIYOTAKA_ISHIMARU])
+    SHUICHI_AND_KOKICHI_AND_K1_B0 = ("Shuichi & Kokichi & K1-B0", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KOKICHI_OMA, Character.K1_B0])
+    SHUICHI_AND_KOMARU = ("Shuichi & Komaru", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KOMARU_NAEGI])
+    SHUICHI_AND_KOREKIYO = ("Shuichi & Korekiyo", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KOREKIYO_SHINGUJI])
+    SHUICHI_AND_KYOKO_AND_MAKOTO = ("Shuichi & Kyoko & Makoto", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.KYOKO_KIRIGIRI, Character.MAKOTO_NAEGI])
+    SHUICHI_AND_NAGITO_AND_MAHIRU = ("Shuichi & Nagito & Mahiru", CharacterEventType.FRIEND, [Character.SHUICHI_SAIHARA, Character.NAGITO_KOMAEDA, Character.MAHIRU_KOIZUMI])
+    TENKO_AND_AOI = ("Tenko & Aoi", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.AOI_ASAHINA])
+    TENKO_AND_HIROKO = ("Tenko & Hiroko", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.HIROKO_HAGAKURE])
+    TENKO_AND_IBUKI = ("Tenko & Ibuki", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.IBUKI_MIODA])
+    TENKO_AND_MUKURO_AND_AKANE = ("Tenko & Mukuro & Akane", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.MUKURO_IKUSABA, Character.AKANE_OWARI])
+    TENKO_AND_MAKOTO_AND_IMPOSTER = ("Tenko & Makoto & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.MAKOTO_NAEGI, Character.THE_ULTIMATE_IMPOSTER])
+    TENKO_AND_MASARU = ("Tenko & Masaru", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.MASARU_DAIMON])
+    TENKO_AND_MONDO_AND_CHIHIRO = ("Tenko & Mondo & Chihiro", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.MONDO_OWADA, Character.CHIHIRO_FUJISAKI])
+    TENKO_AND_NEKOMARU = ("Tenko & Nekomaru", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.NEKOMARU_NIDAI])
+    TERUTERU_AND_HIROKO = ("Teruteru & Hiroko", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.HIROKO_HAGAKURE])
+    TERUTERU_AND_KOTOKO = ("Teruteru & Kotoko", CharacterEventType.FRIEND, [Character.TENKO_CHABASHIRA, Character.KOTOKO_UTSUGI])
+    TERUTERU_AND_NEKOMARU = ("Teruteru & Nekomaru", CharacterEventType.FRIEND, [Character.TERUTERU_HANAMURA, Character.NEKOMARU_NIDAI])
+    TOKO_AND_HIYOKO = ("Toko & Hiyoko", CharacterEventType.FRIEND, [Character.TOKO_FUKAWA, Character.HIYOKO_SAIONJI])
+    TOKO_AND_MUKURO_AND_MIKAN = ("Toko & Mukuro & Mikan", CharacterEventType.FRIEND, [Character.TOKO_FUKAWA, Character.MUKURO_IKUSABA, Character.MIKAN_TSUMIKI])
+    TOKO_AND_KOMARU = ("Toko & Komaru", CharacterEventType.FRIEND, [Character.TOKO_FUKAWA, Character.KOMARU_NAEGI])
+    TOKO_AND_MONACA = ("Toko & Monaca", CharacterEventType.FRIEND, [Character.TOKO_FUKAWA, Character.MONACA_TOWA])
+    TOKO_AND_NAGITO = ("Toko & Nagito", CharacterEventType.FRIEND, [Character.TOKO_FUKAWA, Character.NAGITO_KOMAEDA])
+    TSUMUGI_AND_AOI_AND_AKANE = ("Tsumugi & Aoi & Akane", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.AOI_ASAHINA, Character.AKANE_OWARI])
+    TSUMUGI_AND_IMPOSTER = ("Tsumugi & The Ultimate Imposter", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.THE_ULTIMATE_IMPOSTER])
+    TSUMUGI_AND_JACK_AND_GUNDHAM = ("Tsumugi & Genocide Jack & Gundham", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.GENOCIDE_JACK, Character.GUNDHAM_TANAKA])
+    TSUMUGI_AND_HIFUMI_AND_MAHIRU = ("Tsumugi & Hifumi & Mahiru", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.HIFUMI_YAMADA, Character.MAHIRU_KOIZUMI])
+    TSUMUGI_AND_KIYOTAKA_AND_YASUHIRO = ("Tsumugi & Kiyotaka & Yasuhiro", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.KIYOTAKA_ISHIMARU, Character.YASUHIRO_HAGAKURE])
+    TSUMUGI_AND_KOTOKO = ("Tsumugi & Kotoko", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.KOTOKO_UTSUGI])
+    TSUMUGI_AND_KYOKO = ("Tsumugi & Kyoko", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.KYOKO_KIRIGIRI])
+    TSUMUGI_AND_MAKOTO = ("Tsumugi & Makoto", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.MAKOTO_NAEGI])
+    TSUMUGI_AND_MONOMI = ("Tsumugi & Monomi", CharacterEventType.FRIEND, [Character.TSUMUGI_SHIROGANE, Character.MONOMI])
+    USAMI_AND_ANGIE_AND_JATARO = ("Usami & Angie & Jataro", CharacterEventType.FRIEND, [Character.USAMI, Character.ANGIE_YONAGA, Character.JATARO_KEMURI])
+    USAMI_AND_JACK_AND_TERUTERU = ("Usami & Genocide Jack & Teruteru", CharacterEventType.FRIEND, [Character.USAMI, Character.GENOCIDE_JACK, Character.TERUTERU_HANAMURA])
+    USAMI_AND_IBUKI = ("Usami & Ibuki", CharacterEventType.FRIEND, [Character.USAMI , Character.IBUKI_MIODA])
+    USAMI_AND_KUROKUMA = ("Usami & Kurokuma", CharacterEventType.FRIEND, [Character.USAMI , Character.KUROKUMA])
+    USAMI_AND_MAKI = ("Usami & Maki", CharacterEventType.FRIEND, [Character.USAMI , Character.MAKI_HARUKAWA])
+    USAMI_AND_MIU = ("Usami & Miu", CharacterEventType.FRIEND, [Character.USAMI , Character.MIU_IRUMA])
+    USAMI_AND_MIU_AND_KAZUICHI = ("Usami & Miu & Kazuichi", CharacterEventType.FRIEND, [Character.USAMI, Character.MIU_IRUMA, Character.KAZUICHI_SODA])
+    USAMI_AND_MONOKUMA = ("Usami & Monokuma", CharacterEventType.FRIEND, [Character.USAMI , Character.MONOKUMA])
+    USAMI_AND_TSUMUGI = ("Usami & Tsumugi", CharacterEventType.FRIEND, [Character.USAMI , Character.TSUMUGI_SHIROGANE])
+    YASUHIRO_AND_AOI = ("Yasuhiro & Aoi", CharacterEventType.FRIEND, [Character.YASUHIRO_HAGAKURE , Character.AOI_ASAHINA])
+    YASUHIRO_AND_GUNDHAM = ("Yasuhiro & Gundham", CharacterEventType.FRIEND, [Character.YASUHIRO_HAGAKURE , Character.GUNDHAM_TANAKA])
+    YASUHIRO_AND_HIROKO = ("Yasuhiro & Hiroko", CharacterEventType.FRIEND, [Character.YASUHIRO_HAGAKURE , Character.HIROKO_HAGAKURE])
+    YASUHIRO_AND_MUKURO = ("Yasuhiro & Mukuro", CharacterEventType.FRIEND, [Character.YASUHIRO_HAGAKURE , Character.MUKURO_IKUSABA])
+    YASUHIRO_AND_MIKAN = ("Yasuhiro & Mikan", CharacterEventType.FRIEND, [Character.YASUHIRO_HAGAKURE , Character.MIKAN_TSUMIKI])
     MAKOTO_CAMPFIRE = ("Campfire - Makoto", CharacterEventType.CAMPFIRE, [Character.MAKOTO_NAEGI])
+    AKANE_CAMPFIRE = ("Campfire - Akane", CharacterEventType.CAMPFIRE, [Character.AKANE_OWARI])
+    ANGIE_CAMPFIRE = ("Campfire - Angie", CharacterEventType.CAMPFIRE, [Character.ANGIE_YONAGA])
+    AOI_CAMPFIRE = ("Campfire - Aoi", CharacterEventType.CAMPFIRE, [Character.AOI_ASAHINA])
+    BYAKUYA_CAMPFIRE = ("Campfire - Byakuya", CharacterEventType.CAMPFIRE, [Character.BYAKUYA_TOGAMI])
+    IMPOSTER_CAMPFIRE = ("Campfire - The Ultimate Imposter", CharacterEventType.CAMPFIRE, [Character.THE_ULTIMATE_IMPOSTER])
+    CELESTIA_CAMPFIRE = ("Campfire - Celestia", CharacterEventType.CAMPFIRE, [Character.CELESTIA_LUDENBERG])
+    CHIAKI_CAMPFIRE = ("Campfire - Chiaki", CharacterEventType.CAMPFIRE, [Character.CHIAKI_NANAMI])
+    CHIHIRO_CAMPFIRE = ("Campfire - Chihiro", CharacterEventType.CAMPFIRE, [Character.CHIHIRO_FUJISAKI])
+    FUYUHIKO_CAMPFIRE = ("Campfire - Fuyuhiko", CharacterEventType.CAMPFIRE, [Character.FUYUHIKO_KUZURYU])
+    GONTA_CAMPFIRE = ("Campfire - Gonta", CharacterEventType.CAMPFIRE, [Character.GONTA_GOKUHARA])
+    GUNDHAM_CAMPFIRE = ("Campfire - Gundham", CharacterEventType.CAMPFIRE, [Character.GUNDHAM_TANAKA])
+    HAJIME_CAMPFIRE = ("Campfire - Hajime", CharacterEventType.CAMPFIRE, [Character.HAJIME_HINATA])
+    HIFUMI_CAMPFIRE = ("Campfire - Hifumi", CharacterEventType.CAMPFIRE, [Character.HIFUMI_YAMADA])
+    HIMIKO_CAMPFIRE = ("Campfire - Himiko", CharacterEventType.CAMPFIRE, [Character.HIMIKO_YUMENO])
+    HIROKO_CAMPFIRE = ("Campfire - Hiroko", CharacterEventType.CAMPFIRE, [Character.HIROKO_HAGAKURE])
+    HIYOKO_CAMPFIRE = ("Campfire - Hiyoko", CharacterEventType.CAMPFIRE, [Character.HIYOKO_SAIONJI])
+    IBUKI_CAMPFIRE = ("Campfire - Ibuki", CharacterEventType.CAMPFIRE, [Character.IBUKI_MIODA])
+    IZURU_CAMPFIRE = ("Campfire - Izuru", CharacterEventType.CAMPFIRE, [Character.IZURU_KAMUKURA])
+    JACK_CAMPFIRE = ("Campfire - Jack", CharacterEventType.CAMPFIRE, [Character.GENOCIDE_JACK])
+    JATARO_CAMPFIRE = ("Campfire - Jataro", CharacterEventType.CAMPFIRE, [Character.JATARO_KEMURI])
+    JUNKO_CAMPFIRE = ("Campfire - Junko", CharacterEventType.CAMPFIRE, [Character.JUNKO_ENOSHIMA])
+    MUKURO_CAMPFIRE = ("Campfire - Mukuro", CharacterEventType.CAMPFIRE, [Character.MUKURO_IKUSABA])
+    K1_B0_CAMPFIRE = ("Campfire - K1-B0", CharacterEventType.CAMPFIRE, [Character.K1_B0])
+    KAEDE_CAMPFIRE = ("Campfire - Kaede", CharacterEventType.CAMPFIRE, [Character.KAEDE_AKAMATSU])
+    KAITO_CAMPFIRE = ("Campfire - Kaito", CharacterEventType.CAMPFIRE, [Character.KAITO_MOMOTA])
+    KAZUICHI_CAMPFIRE = ("Campfire - Kazuichi", CharacterEventType.CAMPFIRE, [Character.KAZUICHI_SODA])
+    KIRUMI_CAMPFIRE = ("Campfire - Kirumi", CharacterEventType.CAMPFIRE, [Character.KIRUMI_TOJO])
+    KIYOTAKA_CAMPFIRE = ("Campfire - Kiyotaka", CharacterEventType.CAMPFIRE, [Character.KIYOTAKA_ISHIMARU])
+    KOKICHI_CAMPFIRE = ("Campfire - Kokichi", CharacterEventType.CAMPFIRE, [Character.KOKICHI_OMA])
+    KOMARU_CAMPFIRE = ("Campfire - Komaru", CharacterEventType.CAMPFIRE, [Character.KOMARU_NAEGI])
+    KOREKIYO_CAMPFIRE = ("Campfire - Korekiyo", CharacterEventType.CAMPFIRE, [Character.KOREKIYO_SHINGUJI])
+    KOTOKO_CAMPFIRE = ("Campfire - Kotoko", CharacterEventType.CAMPFIRE, [Character.KOTOKO_UTSUGI])
+    KUROKUMA_CAMPFIRE = ("Campfire - Kurokuma", CharacterEventType.CAMPFIRE, [Character.KUROKUMA])
+    KYOKO_CAMPFIRE = ("Campfire - Kyoko", CharacterEventType.CAMPFIRE, [Character.KYOKO_KIRIGIRI])
+    LEON_CAMPFIRE = ("Campfire - Leon", CharacterEventType.CAMPFIRE, [Character.LEON_KUWATA])
+    MAHIRU_CAMPFIRE = ("Campfire - Mahiru", CharacterEventType.CAMPFIRE, [Character.MAHIRU_KOIZUMI])
+    MAKI_CAMPFIRE = ("Campfire - Maki", CharacterEventType.CAMPFIRE, [Character.MAKI_HARUKAWA])
+    MASARU_CAMPFIRE = ("Campfire - Masaru", CharacterEventType.CAMPFIRE, [Character.MASARU_DAIMON])
+    MIKAN_CAMPFIRE = ("Campfire - Mikan", CharacterEventType.CAMPFIRE, [Character.MIKAN_TSUMIKI])
+    MIU_CAMPFIRE = ("Campfire - Miu", CharacterEventType.CAMPFIRE, [Character.MIU_IRUMA])
+    MONACA_CAMPFIRE = ("Campfire - Monaca", CharacterEventType.CAMPFIRE, [Character.MONACA_TOWA])
+    MONDO_CAMPFIRE = ("Campfire - Mondo", CharacterEventType.CAMPFIRE, [Character.MONDO_OWADA])
+    MONOKUMA_CAMPFIRE = ("Campfire - Monokuma", CharacterEventType.CAMPFIRE, [Character.MONOKUMA])
+    MONOMI_CAMPFIRE = ("Campfire - Monomi", CharacterEventType.CAMPFIRE, [Character.MONOMI])
+    NAGISA_CAMPFIRE = ("Campfire - Nagisa", CharacterEventType.CAMPFIRE, [Character.NAGISA_SHINGETSU])
+    NAGITO_CAMPFIRE = ("Campfire - Nagito", CharacterEventType.CAMPFIRE, [Character.NAGITO_KOMAEDA])
+    NEKOMARU_CAMPFIRE = ("Campfire - Nekomaru", CharacterEventType.CAMPFIRE, [Character.NEKOMARU_NIDAI])
+    PEKO_CAMPFIRE = ("Campfire - Peko", CharacterEventType.CAMPFIRE, [Character.PEKO_PEKOYAMA])
+    RANTARO_CAMPFIRE = ("Campfire - Rantaro", CharacterEventType.CAMPFIRE, [Character.RANTARO_AMAMI])
+    RYOMA_CAMPFIRE = ("Campfire - Ryoma", CharacterEventType.CAMPFIRE, [Character.RYOMA_HOSHI])
+    SAKURA_CAMPFIRE = ("Campfire - Sakura", CharacterEventType.CAMPFIRE, [Character.SAKURA_OGAMI])
+    SAYAKA_CAMPFIRE = ("Campfire - Sayaka", CharacterEventType.CAMPFIRE, [Character.SAYAKA_MAIZONO])
+    SHIROKUMA_CAMPFIRE = ("Campfire - Shirokuma", CharacterEventType.CAMPFIRE, [Character.SHIROKUMA])
+    SHUICHI_CAMPFIRE = ("Campfire - Shuichi", CharacterEventType.CAMPFIRE, [Character.SHUICHI_SAIHARA])
+    SONIA_CAMPFIRE = ("Campfire - Sonia", CharacterEventType.CAMPFIRE, [Character.SONIA_NEVERMIND])
+    TENKO_CAMPFIRE = ("Campfire - Tenko", CharacterEventType.CAMPFIRE, [Character.TENKO_CHABASHIRA])
+    TERUTERU_CAMPFIRE = ("Campfire - Teruteru", CharacterEventType.CAMPFIRE, [Character.TERUTERU_HANAMURA])
+    TOKO_CAMPFIRE = ("Campfire - Toko", CharacterEventType.CAMPFIRE, [Character.TOKO_FUKAWA])
+    TSUMUGI_CAMPFIRE = ("Campfire - Tsumugi", CharacterEventType.CAMPFIRE, [Character.TSUMUGI_SHIROGANE])
+    USAMI_CAMPFIRE = ("Campfire - Usami", CharacterEventType.CAMPFIRE, [Character.USAMI])
+    YASUHIRO_CAMPFIRE = ("Campfire - Yasuhiro", CharacterEventType.CAMPFIRE, [Character.YASUHIRO_HAGAKURE])
     MAKOTO_FUTURE = ("My Future... - Makoto", CharacterEventType.MY_FUTURE, [Character.MAKOTO_NAEGI])
+    AKANE_FUTURE = ("My Future... - Akane", CharacterEventType.MY_FUTURE, [Character.AKANE_OWARI])
+    ANGIE_FUTURE = ("My Future... - Angie", CharacterEventType.MY_FUTURE, [Character.ANGIE_YONAGA])
+    AOI_FUTURE = ("My Future... - Aoi", CharacterEventType.MY_FUTURE, [Character.AOI_ASAHINA])
+    BYAKUYA_FUTURE = ("My Future... - Byakuya", CharacterEventType.MY_FUTURE, [Character.BYAKUYA_TOGAMI])
+    IMPOSTER_FUTURE = ("My Future... - The Ultimate Imposter", CharacterEventType.MY_FUTURE, [Character.THE_ULTIMATE_IMPOSTER])
+    CELESTIA_FUTURE = ("My Future... - Celestia", CharacterEventType.MY_FUTURE, [Character.CELESTIA_LUDENBERG])
+    CHIAKI_FUTURE = ("My Future... - Chiaki", CharacterEventType.MY_FUTURE, [Character.CHIAKI_NANAMI])
+    CHIHIRO_FUTURE = ("My Future... - Chihiro", CharacterEventType.MY_FUTURE, [Character.CHIHIRO_FUJISAKI])
+    FUYUHIKO_FUTURE = ("My Future... - Fuyuhiko", CharacterEventType.MY_FUTURE, [Character.FUYUHIKO_KUZURYU])
+    GONTA_FUTURE = ("My Future... - Gonta", CharacterEventType.MY_FUTURE, [Character.GONTA_GOKUHARA])
+    GUNDHAM_FUTURE = ("My Future... - Gundham", CharacterEventType.MY_FUTURE, [Character.GUNDHAM_TANAKA])
+    HAJIME_FUTURE = ("My Future... - Hajime", CharacterEventType.MY_FUTURE, [Character.HAJIME_HINATA])
+    HIFUMI_FUTURE = ("My Future... - Hifumi", CharacterEventType.MY_FUTURE, [Character.HIFUMI_YAMADA])
+    HIMIKO_FUTURE = ("My Future... - Himiko", CharacterEventType.MY_FUTURE, [Character.HIMIKO_YUMENO])
+    HIROKO_FUTURE = ("My Future... - Hiroko", CharacterEventType.MY_FUTURE, [Character.HIROKO_HAGAKURE])
+    HIYOKO_FUTURE = ("My Future... - Hiyoko", CharacterEventType.MY_FUTURE, [Character.HIYOKO_SAIONJI])
+    IBUKI_FUTURE = ("My Future... - Ibuki", CharacterEventType.MY_FUTURE, [Character.IBUKI_MIODA])
+    IZURU_FUTURE = ("My Future... - Izuru", CharacterEventType.MY_FUTURE, [Character.IZURU_KAMUKURA])
+    JACK_FUTURE = ("My Future... - Jack", CharacterEventType.MY_FUTURE, [Character.GENOCIDE_JACK])
+    JATARO_FUTURE = ("My Future... - Jataro", CharacterEventType.MY_FUTURE, [Character.JATARO_KEMURI])
+    JUNKO_FUTURE = ("My Future... - Junko", CharacterEventType.MY_FUTURE, [Character.JUNKO_ENOSHIMA])
+    MUKURO_FUTURE = ("My Future... - Mukuro", CharacterEventType.MY_FUTURE, [Character.MUKURO_IKUSABA])
+    K1_B0_FUTURE = ("My Future... - K1-B0", CharacterEventType.MY_FUTURE, [Character.K1_B0])
+    KAEDE_FUTURE = ("My Future... - Kaede", CharacterEventType.MY_FUTURE, [Character.KAEDE_AKAMATSU])
+    KAITO_FUTURE = ("My Future... - Kaito", CharacterEventType.MY_FUTURE, [Character.KAITO_MOMOTA])
+    KAZUICHI_FUTURE = ("My Future... - Kazuichi", CharacterEventType.MY_FUTURE, [Character.KAZUICHI_SODA])
+    KIRUMI_FUTURE = ("My Future... - Kirumi", CharacterEventType.MY_FUTURE, [Character.KIRUMI_TOJO])
+    KIYOTAKA_FUTURE = ("My Future... - Kiyotaka", CharacterEventType.MY_FUTURE, [Character.KIYOTAKA_ISHIMARU])
+    KOKICHI_FUTURE = ("My Future... - Kokichi", CharacterEventType.MY_FUTURE, [Character.KOKICHI_OMA])
+    KOMARU_FUTURE = ("My Future... - Komaru", CharacterEventType.MY_FUTURE, [Character.KOMARU_NAEGI])
+    KOREKIYO_FUTURE = ("My Future... - Korekiyo", CharacterEventType.MY_FUTURE, [Character.KOREKIYO_SHINGUJI])
+    KOTOKO_FUTURE = ("My Future... - Kotoko", CharacterEventType.MY_FUTURE, [Character.KOTOKO_UTSUGI])
+    KUROKUMA_FUTURE = ("My Future... - Kurokuma", CharacterEventType.MY_FUTURE, [Character.KUROKUMA])
+    KYOKO_FUTURE = ("My Future... - Kyoko", CharacterEventType.MY_FUTURE, [Character.KYOKO_KIRIGIRI])
+    LEON_FUTURE = ("My Future... - Leon", CharacterEventType.MY_FUTURE, [Character.LEON_KUWATA])
+    MAHIRU_FUTURE = ("My Future... - Mahiru", CharacterEventType.MY_FUTURE, [Character.MAHIRU_KOIZUMI])
+    MAKI_FUTURE = ("My Future... - Maki", CharacterEventType.MY_FUTURE, [Character.MAKI_HARUKAWA])
+    MASARU_FUTURE = ("My Future... - Masaru", CharacterEventType.MY_FUTURE, [Character.MASARU_DAIMON])
+    MIKAN_FUTURE = ("My Future... - Mikan", CharacterEventType.MY_FUTURE, [Character.MIKAN_TSUMIKI])
+    MIU_FUTURE = ("My Future... - Miu", CharacterEventType.MY_FUTURE, [Character.MIU_IRUMA])
+    MONACA_FUTURE = ("My Future... - Monaca", CharacterEventType.MY_FUTURE, [Character.MONACA_TOWA])
+    MONDO_FUTURE = ("My Future... - Mondo", CharacterEventType.MY_FUTURE, [Character.MONDO_OWADA])
+    MONOKUMA_FUTURE = ("My Future... - Monokuma", CharacterEventType.MY_FUTURE, [Character.MONOKUMA])
+    MONOMI_FUTURE = ("My Future... - Monomi", CharacterEventType.MY_FUTURE, [Character.MONOMI])
+    NAGISA_FUTURE = ("My Future... - Nagisa", CharacterEventType.MY_FUTURE, [Character.NAGISA_SHINGETSU])
+    NAGITO_FUTURE = ("My Future... - Nagito", CharacterEventType.MY_FUTURE, [Character.NAGITO_KOMAEDA])
+    NEKOMARU_FUTURE = ("My Future... - Nekomaru", CharacterEventType.MY_FUTURE, [Character.NEKOMARU_NIDAI])
+    PEKO_FUTURE = ("My Future... - Peko", CharacterEventType.MY_FUTURE, [Character.PEKO_PEKOYAMA])
+    RANTARO_FUTURE = ("My Future... - Rantaro", CharacterEventType.MY_FUTURE, [Character.RANTARO_AMAMI])
+    RYOMA_FUTURE = ("My Future... - Ryoma", CharacterEventType.MY_FUTURE, [Character.RYOMA_HOSHI])
+    SAKURA_FUTURE = ("My Future... - Sakura", CharacterEventType.MY_FUTURE, [Character.SAKURA_OGAMI])
+    SAYAKA_FUTURE = ("My Future... - Sayaka", CharacterEventType.MY_FUTURE, [Character.SAYAKA_MAIZONO])
+    SHIROKUMA_FUTURE = ("My Future... - Shirokuma", CharacterEventType.MY_FUTURE, [Character.SHIROKUMA])
+    SHUICHI_FUTURE = ("My Future... - Shuichi", CharacterEventType.MY_FUTURE, [Character.SHUICHI_SAIHARA])
+    SONIA_FUTURE = ("My Future... - Sonia", CharacterEventType.MY_FUTURE, [Character.SONIA_NEVERMIND])
+    TENKO_FUTURE = ("My Future... - Tenko", CharacterEventType.MY_FUTURE, [Character.TENKO_CHABASHIRA])
+    TERUTERU_FUTURE = ("My Future... - Teruteru", CharacterEventType.MY_FUTURE, [Character.TERUTERU_HANAMURA])
+    TOKO_FUTURE = ("My Future... - Toko", CharacterEventType.MY_FUTURE, [Character.TOKO_FUKAWA])
+    TSUMUGI_FUTURE = ("My Future... - Tsumugi", CharacterEventType.MY_FUTURE, [Character.TSUMUGI_SHIROGANE])
+    USAMI_FUTURE = ("My Future... - Usami", CharacterEventType.MY_FUTURE, [Character.USAMI])
+    YASUHIRO_FUTURE = ("My Future... - Yasuhiro", CharacterEventType.MY_FUTURE, [Character.YASUHIRO_HAGAKURE])
     MAKOTO_POTENTIAL = ("Potential of Talent - Makoto", CharacterEventType.POTENTIAL_TALENT, [Character.MAKOTO_NAEGI])
+    AKANE_POTENTIAL = ("Potential of Talent - Akane", CharacterEventType.POTENTIAL_TALENT, [Character.AKANE_OWARI])
+    ANGIE_POTENTIAL = ("Potential of Talent - Angie", CharacterEventType.POTENTIAL_TALENT, [Character.ANGIE_YONAGA])
+    AOI_POTENTIAL = ("Potential of Talent - Aoi", CharacterEventType.POTENTIAL_TALENT, [Character.AOI_ASAHINA])
+    BYAKUYA_POTENTIAL = ("Potential of Talent - Byakuya", CharacterEventType.POTENTIAL_TALENT, [Character.BYAKUYA_TOGAMI])
+    IMPOSTER_POTENTIAL = ("Potential of Talent - The Ultimate Imposter", CharacterEventType.POTENTIAL_TALENT, [Character.THE_ULTIMATE_IMPOSTER])
+    CELESTIA_POTENTIAL = ("Potential of Talent - Celestia", CharacterEventType.POTENTIAL_TALENT, [Character.CELESTIA_LUDENBERG])
+    CHIAKI_POTENTIAL = ("Potential of Talent - Chiaki", CharacterEventType.POTENTIAL_TALENT, [Character.CHIAKI_NANAMI])
+    CHIHIRO_POTENTIAL = ("Potential of Talent - Chihiro", CharacterEventType.POTENTIAL_TALENT, [Character.CHIHIRO_FUJISAKI])
+    FUYUHIKO_POTENTIAL = ("Potential of Talent - Fuyuhiko", CharacterEventType.POTENTIAL_TALENT, [Character.FUYUHIKO_KUZURYU])
+    GONTA_POTENTIAL = ("Potential of Talent - Gonta", CharacterEventType.POTENTIAL_TALENT, [Character.GONTA_GOKUHARA])
+    GUNDHAM_POTENTIAL = ("Potential of Talent - Gundham", CharacterEventType.POTENTIAL_TALENT, [Character.GUNDHAM_TANAKA])
+    HAJIME_POTENTIAL = ("Potential of Talent - Hajime", CharacterEventType.POTENTIAL_TALENT, [Character.HAJIME_HINATA])
+    HIFUMI_POTENTIAL = ("Potential of Talent - Hifumi", CharacterEventType.POTENTIAL_TALENT, [Character.HIFUMI_YAMADA])
+    HIMIKO_POTENTIAL = ("Potential of Talent - Himiko", CharacterEventType.POTENTIAL_TALENT, [Character.HIMIKO_YUMENO])
+    HIROKO_POTENTIAL = ("Potential of Talent - Hiroko", CharacterEventType.POTENTIAL_TALENT, [Character.HIROKO_HAGAKURE])
+    HIYOKO_POTENTIAL = ("Potential of Talent - Hiyoko", CharacterEventType.POTENTIAL_TALENT, [Character.HIYOKO_SAIONJI])
+    IBUKI_POTENTIAL = ("Potential of Talent - Ibuki", CharacterEventType.POTENTIAL_TALENT, [Character.IBUKI_MIODA])
+    IZURU_POTENTIAL = ("Potential of Talent - Izuru", CharacterEventType.POTENTIAL_TALENT, [Character.IZURU_KAMUKURA])
+    JACK_POTENTIAL = ("Potential of Talent - Jack", CharacterEventType.POTENTIAL_TALENT, [Character.GENOCIDE_JACK])
+    JATARO_POTENTIAL = ("Potential of Talent - Jataro", CharacterEventType.POTENTIAL_TALENT, [Character.JATARO_KEMURI])
+    JUNKO_POTENTIAL = ("Potential of Talent - Junko", CharacterEventType.POTENTIAL_TALENT, [Character.JUNKO_ENOSHIMA])
+    MUKURO_POTENTIAL = ("Potential of Talent - Mukuro", CharacterEventType.POTENTIAL_TALENT, [Character.MUKURO_IKUSABA])
+    K1_B0_POTENTIAL = ("Potential of Talent - K1-B0", CharacterEventType.POTENTIAL_TALENT, [Character.K1_B0])
+    KAEDE_POTENTIAL = ("Potential of Talent - Kaede", CharacterEventType.POTENTIAL_TALENT, [Character.KAEDE_AKAMATSU])
+    KAITO_POTENTIAL = ("Potential of Talent - Kaito", CharacterEventType.POTENTIAL_TALENT, [Character.KAITO_MOMOTA])
+    KAZUICHI_POTENTIAL = ("Potential of Talent - Kazuichi", CharacterEventType.POTENTIAL_TALENT, [Character.KAZUICHI_SODA])
+    KIRUMI_POTENTIAL = ("Potential of Talent - Kirumi", CharacterEventType.POTENTIAL_TALENT, [Character.KIRUMI_TOJO])
+    KIYOTAKA_POTENTIAL = ("Potential of Talent - Kiyotaka", CharacterEventType.POTENTIAL_TALENT, [Character.KIYOTAKA_ISHIMARU])
+    KOKICHI_POTENTIAL = ("Potential of Talent - Kokichi", CharacterEventType.POTENTIAL_TALENT, [Character.KOKICHI_OMA])
+    KOMARU_POTENTIAL = ("Potential of Talent - Komaru", CharacterEventType.POTENTIAL_TALENT, [Character.KOMARU_NAEGI])
+    KOREKIYO_POTENTIAL = ("Potential of Talent - Korekiyo", CharacterEventType.POTENTIAL_TALENT, [Character.KOREKIYO_SHINGUJI])
+    KOTOKO_POTENTIAL = ("Potential of Talent - Kotoko", CharacterEventType.POTENTIAL_TALENT, [Character.KOTOKO_UTSUGI])
+    KUROKUMA_POTENTIAL = ("Potential of Talent - Kurokuma", CharacterEventType.POTENTIAL_TALENT, [Character.KUROKUMA])
+    KYOKO_POTENTIAL = ("Potential of Talent - Kyoko", CharacterEventType.POTENTIAL_TALENT, [Character.KYOKO_KIRIGIRI])
+    LEON_POTENTIAL = ("Potential of Talent - Leon", CharacterEventType.POTENTIAL_TALENT, [Character.LEON_KUWATA])
+    MAHIRU_POTENTIAL = ("Potential of Talent - Mahiru", CharacterEventType.POTENTIAL_TALENT, [Character.MAHIRU_KOIZUMI])
+    MAKI_POTENTIAL = ("Potential of Talent - Maki", CharacterEventType.POTENTIAL_TALENT, [Character.MAKI_HARUKAWA])
+    MASARU_POTENTIAL = ("Potential of Talent - Masaru", CharacterEventType.POTENTIAL_TALENT, [Character.MASARU_DAIMON])
+    MIKAN_POTENTIAL = ("Potential of Talent - Mikan", CharacterEventType.POTENTIAL_TALENT, [Character.MIKAN_TSUMIKI])
+    MIU_POTENTIAL = ("Potential of Talent - Miu", CharacterEventType.POTENTIAL_TALENT, [Character.MIU_IRUMA])
+    MONACA_POTENTIAL = ("Potential of Talent - Monaca", CharacterEventType.POTENTIAL_TALENT, [Character.MONACA_TOWA])
+    MONDO_POTENTIAL = ("Potential of Talent - Mondo", CharacterEventType.POTENTIAL_TALENT, [Character.MONDO_OWADA])
+    MONOKUMA_POTENTIAL = ("Potential of Talent - Monokuma", CharacterEventType.POTENTIAL_TALENT, [Character.MONOKUMA])
+    MONOMI_POTENTIAL = ("Potential of Talent - Monomi", CharacterEventType.POTENTIAL_TALENT, [Character.MONOMI])
+    NAGISA_POTENTIAL = ("Potential of Talent - Nagisa", CharacterEventType.POTENTIAL_TALENT, [Character.NAGISA_SHINGETSU])
+    NAGITO_POTENTIAL = ("Potential of Talent - Nagito", CharacterEventType.POTENTIAL_TALENT, [Character.NAGITO_KOMAEDA])
+    NEKOMARU_POTENTIAL = ("Potential of Talent - Nekomaru", CharacterEventType.POTENTIAL_TALENT, [Character.NEKOMARU_NIDAI])
+    PEKO_POTENTIAL = ("Potential of Talent - Peko", CharacterEventType.POTENTIAL_TALENT, [Character.PEKO_PEKOYAMA])
+    RANTARO_POTENTIAL = ("Potential of Talent - Rantaro", CharacterEventType.POTENTIAL_TALENT, [Character.RANTARO_AMAMI])
+    RYOMA_POTENTIAL = ("Potential of Talent - Ryoma", CharacterEventType.POTENTIAL_TALENT, [Character.RYOMA_HOSHI])
+    SAKURA_POTENTIAL = ("Potential of Talent - Sakura", CharacterEventType.POTENTIAL_TALENT, [Character.SAKURA_OGAMI])
+    SAYAKA_POTENTIAL = ("Potential of Talent - Sayaka", CharacterEventType.POTENTIAL_TALENT, [Character.SAYAKA_MAIZONO])
+    SHIROKUMA_POTENTIAL = ("Potential of Talent - Shirokuma", CharacterEventType.POTENTIAL_TALENT, [Character.SHIROKUMA])
+    SHUICHI_POTENTIAL = ("Potential of Talent - Shuichi", CharacterEventType.POTENTIAL_TALENT, [Character.SHUICHI_SAIHARA])
+    SONIA_POTENTIAL = ("Potential of Talent - Sonia", CharacterEventType.POTENTIAL_TALENT, [Character.SONIA_NEVERMIND])
+    TENKO_POTENTIAL = ("Potential of Talent - Tenko", CharacterEventType.POTENTIAL_TALENT, [Character.TENKO_CHABASHIRA])
+    TERUTERU_POTENTIAL = ("Potential of Talent - Teruteru", CharacterEventType.POTENTIAL_TALENT, [Character.TERUTERU_HANAMURA])
+    TOKO_POTENTIAL = ("Potential of Talent - Toko", CharacterEventType.POTENTIAL_TALENT, [Character.TOKO_FUKAWA])
+    TSUMUGI_POTENTIAL = ("Potential of Talent - Tsumugi", CharacterEventType.POTENTIAL_TALENT, [Character.TSUMUGI_SHIROGANE])
+    USAMI_POTENTIAL = ("Potential of Talent - Usami", CharacterEventType.POTENTIAL_TALENT, [Character.USAMI])
+    YASUHIRO_POTENTIAL = ("Potential of Talent - Yasuhiro", CharacterEventType.POTENTIAL_TALENT, [Character.YASUHIRO_HAGAKURE])
     MAKOTO_SUMMER = ("Summer Festival - Makoto", CharacterEventType.SUMMER_FESTIVAL, [Character.MAKOTO_NAEGI])
+    AKANE_SUMMER = ("Summer Festival - Akane", CharacterEventType.SUMMER_FESTIVAL, [Character.AKANE_OWARI])
+    ANGIE_SUMMER = ("Summer Festival - Angie", CharacterEventType.SUMMER_FESTIVAL, [Character.ANGIE_YONAGA])
+    AOI_SUMMER = ("Summer Festival - Aoi", CharacterEventType.SUMMER_FESTIVAL, [Character.AOI_ASAHINA])
+    BYAKUYA_SUMMER = ("Summer Festival - Byakuya", CharacterEventType.SUMMER_FESTIVAL, [Character.BYAKUYA_TOGAMI])
+    IMPOSTER_SUMMER = ("Summer Festival - The Ultimate Imposter", CharacterEventType.SUMMER_FESTIVAL, [Character.THE_ULTIMATE_IMPOSTER])
+    CELESTIA_SUMMER = ("Summer Festival - Celestia", CharacterEventType.SUMMER_FESTIVAL, [Character.CELESTIA_LUDENBERG])
+    CHIAKI_SUMMER = ("Summer Festival - Chiaki", CharacterEventType.SUMMER_FESTIVAL, [Character.CHIAKI_NANAMI])
+    CHIHIRO_SUMMER = ("Summer Festival - Chihiro", CharacterEventType.SUMMER_FESTIVAL, [Character.CHIHIRO_FUJISAKI])
+    FUYUHIKO_SUMMER = ("Summer Festival - Fuyuhiko", CharacterEventType.SUMMER_FESTIVAL, [Character.FUYUHIKO_KUZURYU])
+    GONTA_SUMMER = ("Summer Festival - Gonta", CharacterEventType.SUMMER_FESTIVAL, [Character.GONTA_GOKUHARA])
+    GUNDHAM_SUMMER = ("Summer Festival - Gundham", CharacterEventType.SUMMER_FESTIVAL, [Character.GUNDHAM_TANAKA])
+    HAJIME_SUMMER = ("Summer Festival - Hajime", CharacterEventType.SUMMER_FESTIVAL, [Character.HAJIME_HINATA])
+    HIFUMI_SUMMER = ("Summer Festival - Hifumi", CharacterEventType.SUMMER_FESTIVAL, [Character.HIFUMI_YAMADA])
+    HIMIKO_SUMMER = ("Summer Festival - Himiko", CharacterEventType.SUMMER_FESTIVAL, [Character.HIMIKO_YUMENO])
+    HIROKO_SUMMER = ("Summer Festival - Hiroko", CharacterEventType.SUMMER_FESTIVAL, [Character.HIROKO_HAGAKURE])
+    HIYOKO_SUMMER = ("Summer Festival - Hiyoko", CharacterEventType.SUMMER_FESTIVAL, [Character.HIYOKO_SAIONJI])
+    IBUKI_SUMMER = ("Summer Festival - Ibuki", CharacterEventType.SUMMER_FESTIVAL, [Character.IBUKI_MIODA])
+    IZURU_SUMMER = ("Summer Festival - Izuru", CharacterEventType.SUMMER_FESTIVAL, [Character.IZURU_KAMUKURA])
+    JACK_SUMMER = ("Summer Festival - Jack", CharacterEventType.SUMMER_FESTIVAL, [Character.GENOCIDE_JACK])
+    JATARO_SUMMER = ("Summer Festival - Jataro", CharacterEventType.SUMMER_FESTIVAL, [Character.JATARO_KEMURI])
+    JUNKO_SUMMER = ("Summer Festival - Junko", CharacterEventType.SUMMER_FESTIVAL, [Character.JUNKO_ENOSHIMA])
+    MUKURO_SUMMER = ("Summer Festival - Mukuro", CharacterEventType.SUMMER_FESTIVAL, [Character.MUKURO_IKUSABA])
+    K1_B0_SUMMER = ("Summer Festival - K1-B0", CharacterEventType.SUMMER_FESTIVAL, [Character.K1_B0])
+    KAEDE_SUMMER = ("Summer Festival - Kaede", CharacterEventType.SUMMER_FESTIVAL, [Character.KAEDE_AKAMATSU])
+    KAITO_SUMMER = ("Summer Festival - Kaito", CharacterEventType.SUMMER_FESTIVAL, [Character.KAITO_MOMOTA])
+    KAZUICHI_SUMMER = ("Summer Festival - Kazuichi", CharacterEventType.SUMMER_FESTIVAL, [Character.KAZUICHI_SODA])
+    KIRUMI_SUMMER = ("Summer Festival - Kirumi", CharacterEventType.SUMMER_FESTIVAL, [Character.KIRUMI_TOJO])
+    KIYOTAKA_SUMMER = ("Summer Festival - Kiyotaka", CharacterEventType.SUMMER_FESTIVAL, [Character.KIYOTAKA_ISHIMARU])
+    KOKICHI_SUMMER = ("Summer Festival - Kokichi", CharacterEventType.SUMMER_FESTIVAL, [Character.KOKICHI_OMA])
+    KOMARU_SUMMER = ("Summer Festival - Komaru", CharacterEventType.SUMMER_FESTIVAL, [Character.KOMARU_NAEGI])
+    KOREKIYO_SUMMER = ("Summer Festival - Korekiyo", CharacterEventType.SUMMER_FESTIVAL, [Character.KOREKIYO_SHINGUJI])
+    KOTOKO_SUMMER = ("Summer Festival - Kotoko", CharacterEventType.SUMMER_FESTIVAL, [Character.KOTOKO_UTSUGI])
+    KUROKUMA_SUMMER = ("Summer Festival - Kurokuma", CharacterEventType.SUMMER_FESTIVAL, [Character.KUROKUMA])
+    KYOKO_SUMMER = ("Summer Festival - Kyoko", CharacterEventType.SUMMER_FESTIVAL, [Character.KYOKO_KIRIGIRI])
+    LEON_SUMMER = ("Summer Festival - Leon", CharacterEventType.SUMMER_FESTIVAL, [Character.LEON_KUWATA])
+    MAHIRU_SUMMER = ("Summer Festival - Mahiru", CharacterEventType.SUMMER_FESTIVAL, [Character.MAHIRU_KOIZUMI])
+    MAKI_SUMMER = ("Summer Festival - Maki", CharacterEventType.SUMMER_FESTIVAL, [Character.MAKI_HARUKAWA])
+    MASARU_SUMMER = ("Summer Festival - Masaru", CharacterEventType.SUMMER_FESTIVAL, [Character.MASARU_DAIMON])
+    MIKAN_SUMMER = ("Summer Festival - Mikan", CharacterEventType.SUMMER_FESTIVAL, [Character.MIKAN_TSUMIKI])
+    MIU_SUMMER = ("Summer Festival - Miu", CharacterEventType.SUMMER_FESTIVAL, [Character.MIU_IRUMA])
+    MONACA_SUMMER = ("Summer Festival - Monaca", CharacterEventType.SUMMER_FESTIVAL, [Character.MONACA_TOWA])
+    MONDO_SUMMER = ("Summer Festival - Mondo", CharacterEventType.SUMMER_FESTIVAL, [Character.MONDO_OWADA])
+    MONOKUMA_SUMMER = ("Summer Festival - Monokuma", CharacterEventType.SUMMER_FESTIVAL, [Character.MONOKUMA])
+    MONOMI_SUMMER = ("Summer Festival - Monomi", CharacterEventType.SUMMER_FESTIVAL, [Character.MONOMI])
+    NAGISA_SUMMER = ("Summer Festival - Nagisa", CharacterEventType.SUMMER_FESTIVAL, [Character.NAGISA_SHINGETSU])
+    NAGITO_SUMMER = ("Summer Festival - Nagito", CharacterEventType.SUMMER_FESTIVAL, [Character.NAGITO_KOMAEDA])
+    NEKOMARU_SUMMER = ("Summer Festival - Nekomaru", CharacterEventType.SUMMER_FESTIVAL, [Character.NEKOMARU_NIDAI])
+    PEKO_SUMMER = ("Summer Festival - Peko", CharacterEventType.SUMMER_FESTIVAL, [Character.PEKO_PEKOYAMA])
+    RANTARO_SUMMER = ("Summer Festival - Rantaro", CharacterEventType.SUMMER_FESTIVAL, [Character.RANTARO_AMAMI])
+    RYOMA_SUMMER = ("Summer Festival - Ryoma", CharacterEventType.SUMMER_FESTIVAL, [Character.RYOMA_HOSHI])
+    SAKURA_SUMMER = ("Summer Festival - Sakura", CharacterEventType.SUMMER_FESTIVAL, [Character.SAKURA_OGAMI])
+    SAYAKA_SUMMER = ("Summer Festival - Sayaka", CharacterEventType.SUMMER_FESTIVAL, [Character.SAYAKA_MAIZONO])
+    SHIROKUMA_SUMMER = ("Summer Festival - Shirokuma", CharacterEventType.SUMMER_FESTIVAL, [Character.SHIROKUMA])
+    SHUICHI_SUMMER = ("Summer Festival - Shuichi", CharacterEventType.SUMMER_FESTIVAL, [Character.SHUICHI_SAIHARA])
+    SONIA_SUMMER = ("Summer Festival - Sonia", CharacterEventType.SUMMER_FESTIVAL, [Character.SONIA_NEVERMIND])
+    TENKO_SUMMER = ("Summer Festival - Tenko", CharacterEventType.SUMMER_FESTIVAL, [Character.TENKO_CHABASHIRA])
+    TERUTERU_SUMMER = ("Summer Festival - Teruteru", CharacterEventType.SUMMER_FESTIVAL, [Character.TERUTERU_HANAMURA])
+    TOKO_SUMMER = ("Summer Festival - Toko", CharacterEventType.SUMMER_FESTIVAL, [Character.TOKO_FUKAWA])
+    TSUMUGI_SUMMER = ("Summer Festival - Tsumugi", CharacterEventType.SUMMER_FESTIVAL, [Character.TSUMUGI_SHIROGANE])
+    USAMI_SUMMER = ("Summer Festival - Usami", CharacterEventType.SUMMER_FESTIVAL, [Character.USAMI])
+    YASUHIRO_SUMMER = ("Summer Festival - Yasuhiro", CharacterEventType.SUMMER_FESTIVAL, [Character.YASUHIRO_HAGAKURE])
     MAKOTO_SWIMSUIT = ("With Swimsuits - Makoto", CharacterEventType.SWIMSUIT, [Character.MAKOTO_NAEGI])
+    AKANE_SWIMSUIT = ("With Swimsuits - Akane", CharacterEventType.SWIMSUIT, [Character.AKANE_OWARI])
+    ANGIE_SWIMSUIT = ("With Swimsuits - Angie", CharacterEventType.SWIMSUIT, [Character.ANGIE_YONAGA])
+    AOI_SWIMSUIT = ("With Swimsuits - Aoi", CharacterEventType.SWIMSUIT, [Character.AOI_ASAHINA])
+    BYAKUYA_SWIMSUIT = ("With Swimsuits - Byakuya", CharacterEventType.SWIMSUIT, [Character.BYAKUYA_TOGAMI])
+    IMPOSTER_SWIMSUIT = ("With Swimsuits - The Ultimate Imposter", CharacterEventType.SWIMSUIT, [Character.THE_ULTIMATE_IMPOSTER])
+    CELESTIA_SWIMSUIT = ("With Swimsuits - Celestia", CharacterEventType.SWIMSUIT, [Character.CELESTIA_LUDENBERG])
+    CHIAKI_SWIMSUIT = ("With Swimsuits - Chiaki", CharacterEventType.SWIMSUIT, [Character.CHIAKI_NANAMI])
+    CHIHIRO_SWIMSUIT = ("With Swimsuits - Chihiro", CharacterEventType.SWIMSUIT, [Character.CHIHIRO_FUJISAKI])
+    FUYUHIKO_SWIMSUIT = ("With Swimsuits - Fuyuhiko", CharacterEventType.SWIMSUIT, [Character.FUYUHIKO_KUZURYU])
+    GONTA_SWIMSUIT = ("With Swimsuits - Gonta", CharacterEventType.SWIMSUIT, [Character.GONTA_GOKUHARA])
+    GUNDHAM_SWIMSUIT = ("With Swimsuits - Gundham", CharacterEventType.SWIMSUIT, [Character.GUNDHAM_TANAKA])
+    HAJIME_SWIMSUIT = ("With Swimsuits - Hajime", CharacterEventType.SWIMSUIT, [Character.HAJIME_HINATA])
+    HIFUMI_SWIMSUIT = ("With Swimsuits - Hifumi", CharacterEventType.SWIMSUIT, [Character.HIFUMI_YAMADA])
+    HIMIKO_SWIMSUIT = ("With Swimsuits - Himiko", CharacterEventType.SWIMSUIT, [Character.HIMIKO_YUMENO])
+    HIROKO_SWIMSUIT = ("With Swimsuits - Hiroko", CharacterEventType.SWIMSUIT, [Character.HIROKO_HAGAKURE])
+    HIYOKO_SWIMSUIT = ("With Swimsuits - Hiyoko", CharacterEventType.SWIMSUIT, [Character.HIYOKO_SAIONJI])
+    IBUKI_SWIMSUIT = ("With Swimsuits - Ibuki", CharacterEventType.SWIMSUIT, [Character.IBUKI_MIODA])
+    IZURU_SWIMSUIT = ("With Swimsuits - Izuru", CharacterEventType.SWIMSUIT, [Character.IZURU_KAMUKURA])
+    JACK_SWIMSUIT = ("With Swimsuits - Jack", CharacterEventType.SWIMSUIT, [Character.GENOCIDE_JACK])
+    JATARO_SWIMSUIT = ("With Swimsuits - Jataro", CharacterEventType.SWIMSUIT, [Character.JATARO_KEMURI])
+    JUNKO_SWIMSUIT = ("With Swimsuits - Junko", CharacterEventType.SWIMSUIT, [Character.JUNKO_ENOSHIMA])
+    MUKURO_SWIMSUIT = ("With Swimsuits - Mukuro", CharacterEventType.SWIMSUIT, [Character.MUKURO_IKUSABA])
+    K1_B0_SWIMSUIT = ("With Swimsuits - K1-B0", CharacterEventType.SWIMSUIT, [Character.K1_B0])
+    KAEDE_SWIMSUIT = ("With Swimsuits - Kaede", CharacterEventType.SWIMSUIT, [Character.KAEDE_AKAMATSU])
+    KAITO_SWIMSUIT = ("With Swimsuits - Kaito", CharacterEventType.SWIMSUIT, [Character.KAITO_MOMOTA])
+    KAZUICHI_SWIMSUIT = ("With Swimsuits - Kazuichi", CharacterEventType.SWIMSUIT, [Character.KAZUICHI_SODA])
+    KIRUMI_SWIMSUIT = ("With Swimsuits - Kirumi", CharacterEventType.SWIMSUIT, [Character.KIRUMI_TOJO])
+    KIYOTAKA_SWIMSUIT = ("With Swimsuits - Kiyotaka", CharacterEventType.SWIMSUIT, [Character.KIYOTAKA_ISHIMARU])
+    KOKICHI_SWIMSUIT = ("With Swimsuits - Kokichi", CharacterEventType.SWIMSUIT, [Character.KOKICHI_OMA])
+    KOMARU_SWIMSUIT = ("With Swimsuits - Komaru", CharacterEventType.SWIMSUIT, [Character.KOMARU_NAEGI])
+    KOREKIYO_SWIMSUIT = ("With Swimsuits - Korekiyo", CharacterEventType.SWIMSUIT, [Character.KOREKIYO_SHINGUJI])
+    KOTOKO_SWIMSUIT = ("With Swimsuits - Kotoko", CharacterEventType.SWIMSUIT, [Character.KOTOKO_UTSUGI])
+    KUROKUMA_SWIMSUIT = ("With Swimsuits - Kurokuma", CharacterEventType.SWIMSUIT, [Character.KUROKUMA])
+    KYOKO_SWIMSUIT = ("With Swimsuits - Kyoko", CharacterEventType.SWIMSUIT, [Character.KYOKO_KIRIGIRI])
+    LEON_SWIMSUIT = ("With Swimsuits - Leon", CharacterEventType.SWIMSUIT, [Character.LEON_KUWATA])
+    MAHIRU_SWIMSUIT = ("With Swimsuits - Mahiru", CharacterEventType.SWIMSUIT, [Character.MAHIRU_KOIZUMI])
+    MAKI_SWIMSUIT = ("With Swimsuits - Maki", CharacterEventType.SWIMSUIT, [Character.MAKI_HARUKAWA])
+    MASARU_SWIMSUIT = ("With Swimsuits - Masaru", CharacterEventType.SWIMSUIT, [Character.MASARU_DAIMON])
+    MIKAN_SWIMSUIT = ("With Swimsuits - Mikan", CharacterEventType.SWIMSUIT, [Character.MIKAN_TSUMIKI])
+    MIU_SWIMSUIT = ("With Swimsuits - Miu", CharacterEventType.SWIMSUIT, [Character.MIU_IRUMA])
+    MONACA_SWIMSUIT = ("With Swimsuits - Monaca", CharacterEventType.SWIMSUIT, [Character.MONACA_TOWA])
+    MONDO_SWIMSUIT = ("With Swimsuits - Mondo", CharacterEventType.SWIMSUIT, [Character.MONDO_OWADA])
+    MONOKUMA_SWIMSUIT = ("With Swimsuits - Monokuma", CharacterEventType.SWIMSUIT, [Character.MONOKUMA])
+    MONOMI_SWIMSUIT = ("With Swimsuits - Monomi", CharacterEventType.SWIMSUIT, [Character.MONOMI])
+    NAGISA_SWIMSUIT = ("With Swimsuits - Nagisa", CharacterEventType.SWIMSUIT, [Character.NAGISA_SHINGETSU])
+    NAGITO_SWIMSUIT = ("With Swimsuits - Nagito", CharacterEventType.SWIMSUIT, [Character.NAGITO_KOMAEDA])
+    NEKOMARU_SWIMSUIT = ("With Swimsuits - Nekomaru", CharacterEventType.SWIMSUIT, [Character.NEKOMARU_NIDAI])
+    PEKO_SWIMSUIT = ("With Swimsuits - Peko", CharacterEventType.SWIMSUIT, [Character.PEKO_PEKOYAMA])
+    RANTARO_SWIMSUIT = ("With Swimsuits - Rantaro", CharacterEventType.SWIMSUIT, [Character.RANTARO_AMAMI])
+    RYOMA_SWIMSUIT = ("With Swimsuits - Ryoma", CharacterEventType.SWIMSUIT, [Character.RYOMA_HOSHI])
+    SAKURA_SWIMSUIT = ("With Swimsuits - Sakura", CharacterEventType.SWIMSUIT, [Character.SAKURA_OGAMI])
+    SAYAKA_SWIMSUIT = ("With Swimsuits - Sayaka", CharacterEventType.SWIMSUIT, [Character.SAYAKA_MAIZONO])
+    SHIROKUMA_SWIMSUIT = ("With Swimsuits - Shirokuma", CharacterEventType.SWIMSUIT, [Character.SHIROKUMA])
+    SHUICHI_SWIMSUIT = ("With Swimsuits - Shuichi", CharacterEventType.SWIMSUIT, [Character.SHUICHI_SAIHARA])
+    SONIA_SWIMSUIT = ("With Swimsuits - Sonia", CharacterEventType.SWIMSUIT, [Character.SONIA_NEVERMIND])
+    TENKO_SWIMSUIT = ("With Swimsuits - Tenko", CharacterEventType.SWIMSUIT, [Character.TENKO_CHABASHIRA])
+    TERUTERU_SWIMSUIT = ("With Swimsuits - Teruteru", CharacterEventType.SWIMSUIT, [Character.TERUTERU_HANAMURA])
+    TOKO_SWIMSUIT = ("With Swimsuits - Toko", CharacterEventType.SWIMSUIT, [Character.TOKO_FUKAWA])
+    TSUMUGI_SWIMSUIT = ("With Swimsuits - Tsumugi", CharacterEventType.SWIMSUIT, [Character.TSUMUGI_SHIROGANE])
+    USAMI_SWIMSUIT = ("With Swimsuits - Usami", CharacterEventType.SWIMSUIT, [Character.USAMI])
+    YASUHIRO_SWIMSUIT = ("With Swimsuits - Yasuhiro", CharacterEventType.SWIMSUIT, [Character.YASUHIRO_HAGAKURE])
 
 
 
@@ -510,611 +1111,6 @@ class CharacterEvent(enum.Enum):
 
 
 
-friendsanity = [
-    "Akane & Chiaki & Peko",
-    "Akane & Jataro",
-    "Akane & Shirokuma",
-    "Akane & Sonia",
-    "Angie & Celestia",
-    "Angie & Hifumi & Gundham",
-    "Angie & Kaede",
-    "Angie & Leon",
-    "Angie & Monokuma",
-    "Angie & Monomi & Jataro",
-    "Angie & Nagito",
-    "Angie & Sonia",
-    "Aoi & Akane",
-    "Aoi & Chiaki",
-    "Aoi & Mukuro",
-    "Aoi & Nagisa",
-    "Byakuya & Hajime",
-    "Byakuya & Hiroko",
-    "Byakuya & Mukuro",
-    "Byakuya & Kyoko",
-    "Byakuya & Sonia",
-    "Byakuya & Toko & Peko",
-    "The Ultimate Imposter & Teruteru",
-    "Campfire - Akane",
-    "Campfire - Angie",
-    "Campfire - Aoi",
-    "Campfire - Byakuya",
-    "Campfire - The Ultimate Imposter",
-    "Campfire - Celestia",
-    "Campfire - Chiaki",
-    "Campfire - Chihiro",
-    "Campfire - Fuyuhiko",
-    "Campfire - Gonta",
-    "Campfire - Gundham",
-    "Campfire - Hajime",
-    "Campfire - Hifumi",
-    "Campfire - Himiko",
-    "Campfire - Hiroko",
-    "Campfire - Hiyoko",
-    "Campfire - Ibuki",
-    "Campfire - Izuru",
-    "Campfire - Jack",
-    "Campfire - Jataro",
-    "Campfire - Junko",
-    "Campfire - Mukuro",
-    "Campfire - K1-B0",
-    "Campfire - Kaede",
-    "Campfire - Kaito",
-    "Campfire - Kazuichi",
-    "Campfire - Kirumi",
-    "Campfire - Kiyotaka",
-    "Campfire - Kokichi",
-    "Campfire - Komaru",
-    "Campfire - Korekiyo",
-    "Campfire - Kotoko",
-    "Campfire - Kurokuma",
-    "Campfire - Kyoko",
-    "Campfire - Leon",
-    "Campfire - Mahiru",
-    "Campfire - Maki",
-    "Campfire - Makoto",
-    "Campfire - Masaru",
-    "Campfire - Mikan",
-    "Campfire - Miu",
-    "Campfire - Monaca",
-    "Campfire - Mondo",
-    "Campfire - Monokuma",
-    "Campfire - Monomi",
-    "Campfire - Nagisa",
-    "Campfire - Nagito",
-    "Campfire - Nekomaru",
-    "Campfire - Peko",
-    "Campfire - Rantaro",
-    "Campfire - Ryoma",
-    "Campfire - Sakura",
-    "Campfire - Sakyaka",
-    "Campfire - Shirokuma",
-    "Campfire - Shuichi",
-    "Campfire - Sonia",
-    "Campfire - Tenko",
-    "Campfire - Teruteru",
-    "Campfire - Toko",
-    "Campfire - Tsumugi",
-    "Campfire - Usami",
-    "Campfire - Yasuhiro",
-    "Celestia & Chiaki",
-    "Celestia & Fuyuhiko",
-    "Celestia & Komaru & Monaca",
-    "Celestia & Masaru",
-    "Celestia & Sonia",
-    "Chiaki & Ibuki",
-    "Chihiro & Fuyuhiko",
-    "Chihiro & Jataro",
-    "Chihiro & Nekomaru",
-    "Chihiro & Sakura",
-    "Chihiro & Sonia & Shirokuma",
-    "Fuyuhiko & Kotoko",
-    "Fuyuhiko & Mikan & Ibuki",
-    "Fuyuhiko & Peko",
-    "Genocide Jack & The Ultimate Imposter",
-    "Genocide Jack & Celestia & Kotoko",
-    "Genocide Jack & Hiyoko",
-    "Genocide Jack & Komaru",
-    "Genocide Jack & Sonia",
-    "Genocide Jack & Teruteru & Monomi",
-    "Gonta & Aoi & Gundham",
-    "Gonta & Hajime",
-    "Gonta & Mukuro & Monaca",
-    "Gonta & K1-B0 & Kurokuma",
-    "Gonta & Kiyotaka",
-    "Gonta & Kokichi",
-    "Gonta & Shirokuma",
-    "Gonta & Sonia",
-    "Gonta & Toko",
-    "Gundham & Kazuichi & Sonia",
-    "Gundham & Peko",
-    "Hajime & Gundham",
-    "Hajime & Hiyoko",
-    "Hajime & Mahiru & Mikan",
-    "Hifumi & Hiyoko & Kotoko",
-    "Hifumi & Nagisa",
-    "Hifumi & Peko",
-    "Hifumi & Teruteru",
-    "Hifumi & Toko",
-    "Himiko & Akane & Kotoko",
-    "Himiko & Celestia & Teruteru",
-    "Himiko & Hajime",
-    "Himiko & Hiyoko & Mahiru",
-    "Himiko & Ibuki",
-    "Himiko & Masaru",
-    "Himiko & Sakura & Nekomaru",
-    "Himiko & Tenko",
-    "Himiko & Yasuhiro",
-    "Hiyoko & Monaca",
-    "Hiyoko & Shirokuma & Hiroko",
-    "Ibuki & Kurokuma",
-    "Ibuki & Monomi",
-    "Izuru & Byakuya",
-    "Izuru & Gonta",
-    "Izuru & Gundham",
-    "Izuru & Himiko",
-    "Izuru & Hiyoko",
-    "Izuru & Kirumi & Chiaki",
-    "Izuru & Leon & Chihiro",
-    "Izuru & Mahiru & Mikan",
-    "Izuru & Monokuma",
-    "Izuru & Ryoma & Nagito",
-    "Izuru & Sayaka",
-    "Jataro & Kotoko",
-    "Jataro & Kurokuma",
-    "Junko & Aoi",
-    "Junko & Byakuya",
-    "Junko & Gonta & Monaca",
-    "Junko & Mahiru",
-    "Junko & Makoto",
-    "Junko & Mondo",
-    "Junko & Sakura & Ibuki",
-    "Junko & Tenko & Akane",
-    "Junko & Toko & Mikan",
-    "Junko & Yasuhiro",
-    "Mukuro & Mahiru",
-    "K1-B0 & Angie",
-    "K1-B0 & The Ultimate Imposter",
-    "K1-B0 & Celestia",
-    "K1-B0 & Chiaki",
-    "K1-B0 & Chihiro & Kazuichi",
-    "K1-B0 & Leon",
-    "K1-B0 & Masaru & Jataro",
-    "K1-B0 & Teruteru",
-    "Kaede & Fuyuhiko",
-    "Kaede & Komaru",
-    "Kaede & Makoto & Masaru",
-    "Kaede & Sayaka & Ibuki",
-    "Kaito & Akane",
-    "Kaito & Aoi",
-    "Kaito & Byakuya & Ibuki",
-    "Kaito & Gundham",
-    "Kaito & Jataro",
-    "Kaito & Kaede",
-    "Kaito & Kiyotaka & Masaru",
-    "Kaito & Ryoma",
-    "Kaito & Tenko & Leon",
-    "Kazuichi & Fuyuhiko & Nagisa",
-    "Kazuichi & Jataro",
-    "Kazuichi & Mahiru",
-    "Kirumi & Chihiro",
-    "Kirumi & Hajime & Chiaki",
-    "Kirumi & Komaru",
-    "Kirumi & Leon & Kyoko",
-    "Kirumi & Mahiru",
-    "Kirumi & Sakura",
-    "Kirumi & Sonia",
-    "Kirumi & Teruteru & Sonia",
-    "Kirumi & Tsumugi",
-    "Kiyotaka & Akane",
-    "Kiyotaka & Celestia",
-    "Kiyotaka & Mondo & Sayaka",
-    "Kiyotaka & Nagisa",
-    "Kiyotaka & Nekomaru",
-    "Kokichi & Byakuya & The Ultimate Imposter",
-    "Kokichi & Genocide Jack",
-    "Kokichi & Hiyoko",
-    "Kokichi & Kazuichi",
-    "Kokichi & Mahiru",
-    "Kokichi & Makoto & Hiroko",
-    "Kokichi & Monaca",
-    "Kokichi & Monokuma & Chiaki",
-    "Komaru & Kotoko & Monaca",
-    "Korekiyo & Angie & Toko",
-    "Korekiyo & Hifumi",
-    "Korekiyo & Hifumi & Sonia",
-    "Korekiyo & Mikan",
-    "Korekiyo & Nagito",
-    "Korekiyo & Sayaka",
-    "Korekiyo & Shirokuma",
-    "Korekiyo & Tsumugi",
-    "Kyoko & Fuyuhiko & Kurokuma",
-    "Kyoko & Gundham",
-    "Kyoko & Mahiru",
-    "Kyoko & Monaca",
-    "Leon & Chiaki",
-    "Leon & Hajime & Chihiro",
-    "Leon & Hifumi",
-    "Leon & Nagito",
-    "Leon & Sakura",
-    "Mahiru & Nagisa",
-    "Maki & The Ultimate Imposter",
-    "Maki & Chihiro & Chiaki",
-    "Maki & Kaede",
-    "Maki & Komaru",
-    "Maki & Makoto",
-    "Maki & Monomi",
-    "Maki & Nekomaru & Peko",
-    "Maki & Sakura & Nagisa",
-    "Maki & Sayaka",
-    "Maki & Yasuhiro & Hiyoko",
-    "Makoto & Byakuya",
-    "Makoto & Chiaki",
-    "Makoto & Gundham",
-    "Makoto & Mukuro",
-    "Makoto & Sayaka & Komaru",
-    "Masaru & Jataro & Nagisa",
-    "Masaru & Kotoko",
-    "Mikan & Shirokuma",
-    "Miu & Byakuya & Genocide Jack",
-    "Miu & Jataro",
-    "Miu & Kaede",
-    "Miu & Kazuichi & Monomi",
-    "Miu & Kurokuma",
-    "Miu & Mikan",
-    "Miu & Mondo & Hiroko",
-    "Miu & Monomi",
-    "Miu & Yasuhiro",
-    "Monaca & Hiroko",
-    "Mondo & Fuyuhiko",
-    "Mondo & Mukuro",
-    "Mondo & Kazuichi",
-    "Mondo & Mikan",
-    "Mondo & Nagisa",
-    "Mondo & Nekomaru & Kurokuma",
-    "Monokuma & Chihiro",
-    "Monokuma & Genocide Jack",
-    "Monokuma & Hajime",
-    "Monokuma & Hiyoko",
-    "Monokuma & Komaru & Hiroko",
-    "Monokuma & Monomi",
-    "Monokuma & Shirokuma & Kurokuma",
-    "Monomi & Kurokuma",
-    "My Future... - Akane",
-    "My Future... - Angie",
-    "My Future... - Aoi",
-    "My Future... - Byakuya",
-    "My Future... - The Ultimate Imposter",
-    "My Future... - Celestia",
-    "My Future... - Chiaki",
-    "My Future... - Chihiro",
-    "My Future... - Fuyuhiko",
-    "My Future... - Gonta",
-    "My Future... - Gundham",
-    "My Future... - Hajime",
-    "My Future... - Hifumi",
-    "My Future... - Himiko",
-    "My Future... - Hiroko",
-    "My Future... - Hiyoko",
-    "My Future... - Ibuki",
-    "My Future... - Izuru",
-    "My Future... - Jack",
-    "My Future... - Jataro",
-    "My Future... - Junko",
-    "My Future... - K1-B0",
-    "My Future... - Kaede",
-    "My Future... - Kaito",
-    "My Future... - Kazuichi",
-    "My Future... - Kirumi",
-    "My Future... - Kiyoko",
-    "My Future... - Kiyotaka",
-    "My Future... - Kokichi",
-    "My Future... - Komaru",
-    "My Future... - Korekiyo",
-    "My Future... - Kotoko",
-    "My Future... - Kurokuma",
-    "My Future... - Leon",
-    "My Future... - Mahiru",
-    "My Future... - Maki",
-    "My Future... - Makoto",
-    "My Future... - Masaru",
-    "My Future... - Mikan",
-    "My Future... - Miu",
-    "My Future... - Monaca",
-    "My Future... - Mondo",
-    "My Future... - Monokuma",
-    "My Future... - Monomi",
-    "My Future... - Nagisa",
-    "My Future... - Nagito",
-    "My Future... - Nekomaru",
-    "My Future... - Peko",
-    "My Future... - Rantaro",
-    "My Future... - Ryoma",
-    "My Future... - Sakura",
-    "My Future... - Sayaka",
-    "My Future... - Shirokuma",
-    "My Future... - Shuichi",
-    "My Future... - Sonia",
-    "My Future... - Tenko",
-    "My Future... - Teruteru",
-    "My Future... - Toko",
-    "My Future... - Tsumugi",
-    "My Future... - Usami",
-    "My Future... - Yasuhiro",
-    "My Future...- Mukuro",
-    "Nagisa & Monaca",
-    "Nagisa & Shirokuma",
-    "Nagito & Kazuichi",
-    "Nagito & Mikan",
-    "Nagito & Monaca",
-    "Nekomaru & Masaru",
-    "Peko & Masaru",
-    "Potential of Talent - Akane",
-    "Potential of Talent - Angie",
-    "Potential of Talent - Aoi",
-    "Potential of Talent - Byakuya",
-    "Potential of Talent - The Ultimate Imposter",
-    "Potential of Talent - Celestia",
-    "Potential of Talent - Chiaki",
-    "Potential of Talent - Chihiro",
-    "Potential of Talent - Fuyuhiko",
-    "Potential of Talent - Gonta",
-    "Potential of Talent - Gundham",
-    "Potential of Talent - Hajime",
-    "Potential of Talent - Hifumi",
-    "Potential of Talent - Himiko",
-    "Potential of Talent - Hiroko",
-    "Potential of Talent - Hiyoko",
-    "Potential of Talent - Ibuki",
-    "Potential of Talent - Izuru",
-    "Potential of Talent - Jack",
-    "Potential of Talent - Jataro",
-    "Potential of Talent - Junko",
-    "Potential of Talent - Mukuro",
-    "Potential of Talent - K1-B0",
-    "Potential of Talent - Kaede",
-    "Potential of Talent - Kaito",
-    "Potential of Talent - Kazuichi",
-    "Potential of Talent - Kirumi",
-    "Potential of Talent - Kiyotaka",
-    "Potential of Talent - Kokichi",
-    "Potential of Talent - Komaru",
-    "Potential of Talent - Korekiyo",
-    "Potential of Talent - Kotoko",
-    "Potential of Talent - Kurokuma",
-    "Potential of Talent - Kyoko",
-    "Potential of Talent - Leon",
-    "Potential of Talent - Mahiru",
-    "Potential of Talent - Maki",
-    "Potential of Talent - Makoto",
-    "Potential of Talent - Masaru",
-    "Potential of Talent - Mikan",
-    "Potential of Talent - Miu",
-    "Potential of Talent - Monaca",
-    "Potential of Talent - Mondo",
-    "Potential of Talent - Monokuma",
-    "Potential of Talent - Monomi",
-    "Potential of Talent - Nagisa",
-    "Potential of Talent - Nagito",
-    "Potential of Talent - Nekomaru",
-    "Potential of Talent - Peko",
-    "Potential of Talent - Rantaro",
-    "Potential of Talent - Ryoma",
-    "Potential of Talent - Sakura",
-    "Potential of Talent - Sayaka",
-    "Potential of Talent - Shirokuma",
-    "Potential of Talent - Shuichi",
-    "Potential of Talent - Sonia",
-    "Potential of Talent - Tenko",
-    "Potential of Talent - Teruteru",
-    "Potential of Talent - Toko",
-    "Potential of Talent - Tsumugi",
-    "Potential of Talent - Usami",
-    "Potential of Talent - Yasuhiro",
-    "Rantaro & Gonta",
-    "Rantaro & Hiroko",
-    "Rantaro & Ibuki",
-    "Rantaro & Kaede",
-    "Rantaro & Kiyotaka & The Ultimate Imposter",
-    "Rantaro & Korekiyo & Fuyuhiko",
-    "Rantaro & Leon",
-    "Rantaro & Mahiru",
-    "Rantaro & Peko & Shirokuma",
-    "Rantaro & Teruteru",
-    "Rantaro & Yasuhiro & Nagito",
-    "Ryoma & The Ultimate Imposter",
-    "Ryoma & Hajime & Nagito",
-    "Ryoma & Himiko",
-    "Ryoma & Kurokuma",
-    "Ryoma & Kyoko",
-    "Ryoma & Miu & Monokuma",
-    "Ryoma & Mondo",
-    "Ryoma & Nekomaru & Mikan",
-    "Ryoma & Peko",
-    "Ryoma & Yasuhiro & Monaca",
-    "Sakura & Akane",
-    "Sakura & Celestia",
-    "Sakura & Gundham",
-    "Sakura & Mukuro & Ibuki",
-    "Sakura & Nekomaru",
-    "Sayaka & Hajime",
-    "Sayaka & Kazuichi",
-    "Sayaka & Kotoko",
-    "Sayaka & Kyoko & Aoi",
-    "Sayaka & Peko",
-    "Shirokuma & Kurokuma",
-    "Shuichi & The Ultimate Imposter",
-    "Shuichi & Kaede & Toko",
-    "Shuichi & Kaito & Maki",
-    "Shuichi & Kirumi",
-    "Shuichi & Kiyotaka",
-    "Shuichi & Kokichi & K1-B0",
-    "Shuichi & Komaru",
-    "Shuichi & Korekiyo",
-    "Shuichi & Kyoko & Makoto",
-    "Shuichi & Nagito & Mahiru",
-    "Summer Festival - Akane",
-    "Summer Festival - Angie",
-    "Summer Festival - Aoi",
-    "Summer Festival - Byakuya",
-    "Summer Festival - The Ultimate Imposter",
-    "Summer Festival - Celestia",
-    "Summer Festival - Chiaki",
-    "Summer Festival - Chihiro",
-    "Summer Festival - Fuyuhiko",
-    "Summer Festival - Gonta",
-    "Summer Festival - Gundham",
-    "Summer Festival - Hajime",
-    "Summer Festival - Hifumi",
-    "Summer Festival - Himiko",
-    "Summer Festival - Hiroko",
-    "Summer Festival - Hiyoko",
-    "Summer Festival - Ibuki",
-    "Summer Festival - Izuru",
-    "Summer Festival - Jack",
-    "Summer Festival - Jataro",
-    "Summer Festival - Junko",
-    "Summer Festival - Mukuro",
-    "Summer Festival - K1-B0",
-    "Summer Festival - Kaede",
-    "Summer Festival - Kaito",
-    "Summer Festival - Kazuichi",
-    "Summer Festival - Kirumi",
-    "Summer Festival - Kiyotaka",
-    "Summer Festival - Kokichi",
-    "Summer Festival - Komaru",
-    "Summer Festival - Korekiyo",
-    "Summer Festival - Kotoko",
-    "Summer Festival - Kurokuma",
-    "Summer Festival - Kyoko",
-    "Summer Festival - Leon",
-    "Summer Festival - Mahiru",
-    "Summer Festival - Maki",
-    "Summer Festival - Makoto",
-    "Summer Festival - Masaru",
-    "Summer Festival - Mikan",
-    "Summer Festival - Miu",
-    "Summer Festival - Monaca",
-    "Summer Festival - Mondo",
-    "Summer Festival - Monokuma",
-    "Summer Festival - Monomi",
-    "Summer Festival - Nagisa",
-    "Summer Festival - Nagito",
-    "Summer Festival - Nekomaru",
-    "Summer Festival - Peko",
-    "Summer Festival - Rantaro",
-    "Summer Festival - Ryoma",
-    "Summer Festival - Sakura",
-    "Summer Festival - Sayaka",
-    "Summer Festival - Shirokuma",
-    "Summer Festival - Shuichi",
-    "Summer Festival - Sonia",
-    "Summer Festival - Tenko",
-    "Summer Festival - Teruteru",
-    "Summer Festival - Toko",
-    "Summer Festival - Tsumugi",
-    "Summer Festival - Usami",
-    "Summer Festival - Yasuhiro",
-    "Tenko & Aoi",
-    "Tenko & Hiroko",
-    "Tenko & Ibuki",
-    "Tenko & Mukuro & Akane",
-    "Tenko & Makoto & The Ultimate Imposter",
-    "Tenko & Masaru",
-    "Tenko & Mondo & Chihiro",
-    "Tenko & Nekomaru",
-    "Teruteru & Hiroko",
-    "Teruteru & Kotoko",
-    "Teruteru & Nekomaru",
-    "Toko & Hiyoko",
-    "Toko & Mukuro & Mikan",
-    "Toko & Komaru",
-    "Toko & Monaca",
-    "Toko & Nagito",
-    "Tsumugi & Aoi & Akane",
-    "Tsumugi & The Ultimate Imposter",
-    "Tsumugi & Genocide Jack & Gundham",
-    "Tsumugi & Hifumi & Mahiru",
-    "Tsumugi & Kiyotaka & Yasuhiro",
-    "Tsumugi & Kotoko",
-    "Tsumugi & Kyoko",
-    "Tsumugi & Makoto",
-    "Tsumugi & Monomi",
-    "Usami & Angie & Jataro",
-    "Usami & Genocide Jack & Teruteru",
-    "Usami & Ibuki",
-    "Usami & Kurokuma",
-    "Usami & Maki",
-    "Usami & Miu",
-    "Usami & Miu & Kazuichi",
-    "Usami & Monokuma",
-    "Usami & Tsumugi",
-    "With Swimsuits - Akane",
-    "With Swimsuits - Angie",
-    "With Swimsuits - Aoi",
-    "With Swimsuits - Byakuya",
-    "With Swimsuits - The Ultimate Imposter",
-    "With Swimsuits - Celestia",
-    "With Swimsuits - Chiaki",
-    "With Swimsuits - Chihiro",
-    "With Swimsuits - Fuyuhiko",
-    "With Swimsuits - Gonta",
-    "With Swimsuits - Gundham",
-    "With Swimsuits - Hajime",
-    "With Swimsuits - Hifumi",
-    "With Swimsuits - Himiko",
-    "With Swimsuits - Hiroko",
-    "With Swimsuits - Hiyoko",
-    "With Swimsuits - Ibuki",
-    "With Swimsuits - Izuru",
-    "With Swimsuits - Jack",
-    "With Swimsuits - Jataro",
-    "With Swimsuits - Junko",
-    "With Swimsuits - Mukuro",
-    "With Swimsuits - K1-B0",
-    "With Swimsuits - Kaede",
-    "With Swimsuits - Kaito",
-    "With Swimsuits - Kazuichi",
-    "With Swimsuits - Kirumi",
-    "With Swimsuits - Kiyotaka",
-    "With Swimsuits - Kokichi",
-    "With Swimsuits - Komaru",
-    "With Swimsuits - Korekiyo",
-    "With Swimsuits - Kotoko",
-    "With Swimsuits - Kurokuma",
-    "With Swimsuits - Kyoko",
-    "With Swimsuits - Leon",
-    "With Swimsuits - Mahiru",
-    "With Swimsuits - Maki",
-    "With Swimsuits - Makoto",
-    "With Swimsuits - Masaru",
-    "With Swimsuits - Mikan",
-    "With Swimsuits - Miu",
-    "With Swimsuits - Monaca",
-    "With Swimsuits - Mondo",
-    "With Swimsuits - Monokuma",
-    "With Swimsuits - Monomi",
-    "With Swimsuits - Nagisa",
-    "With Swimsuits - Nagito",
-    "With Swimsuits - Nekomaru",
-    "With Swimsuits - Peko",
-    "With Swimsuits - Rantaro",
-    "With Swimsuits - Ryoma",
-    "With Swimsuits - Sakura",
-    "With Swimsuits - Sayaka",
-    "With Swimsuits - Shirokuma",
-    "With Swimsuits - Shuichi",
-    "With Swimsuits - Sonia",
-    "With Swimsuits - Tenko",
-    "With Swimsuits - Teruteru",
-    "With Swimsuits - Toko",
-    "With Swimsuits - Tsumugi",
-    "With Swimsuits - Usami",
-    "With Swimsuits - Yasuhiro",
-    "Yasuhiro & Aoi",
-    "Yasuhiro & Gundham",
-    "Yasuhiro & Hiroko",
-    "Yasuhiro & Mukuro",
-    "Yasuhiro & Mikan",
-]
+
 
 
