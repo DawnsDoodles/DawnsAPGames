@@ -23,7 +23,7 @@ location_dictionary: dict[str, int] = {
 
     **{f"Craft {crafted_item}": i+2501 for i, crafted_item in enumerate(data.crafted_items)},
     **{f"Clear a Development Plan with {character}": i+3001 for i, character in enumerate(data.characters)},
-    **{f"Defeat {enemy}": 1+3501 for i, enemy in enumerate(data.enemy_list)},
+    **{f"Defeat {enemy}": i+3501 for i, enemy in enumerate(data.EnemyInformation)},
     **{f"[Friendsanity] - {friendsanity}": 1+16501 for i, friendsanity in enumerate(data.friendsanity)},
 
     ## Usami Flowers, jfc
