@@ -7,7 +7,7 @@ from rule_builder.rules import *
 
 from BaseClasses import CollectionState, Region
 from .items import item_table
-from .data import characters, hypecards
+from .data import Character, HypeCardType
 from worlds.generic.Rules import add_rule, set_rule
 from .options import *
 from .AtLeast import AtLeast

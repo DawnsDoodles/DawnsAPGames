@@ -21,10 +21,10 @@ location_dictionary: dict[str, int] = {
     **{f"Battle Tower Floor {i} Mission B": i+1500 for i in range (1,201)},
     **{f"Battle Tower Floor {i} Mission C": i+2000 for i in range (1,201)},
 
-    **{f"Craft {crafted_item}": i+2501 for i, crafted_item in enumerate(data.crafted_items)},
-    **{f"Clear a Development Plan with {character}": i+3001 for i, character in enumerate(data.characters)},
+    **{f"Craft {crafted_item}": i+2501 for i, crafted_item in enumerate(data.CraftedItem)},
+    **{f"Clear a Development Plan with {character}": i+3001 for i, character in enumerate(data.Character)},
     **{f"Defeat {enemy}": i+3501 for i, enemy in enumerate(data.EnemyInformation)},
-    **{f"[Friendsanity] - {friendsanity}": 1+16501 for i, friendsanity in enumerate(data.friendsanity)},
+    **{f"[Friendsanity] - {friendsanity}": 1+16501 for i, friendsanity in enumerate(data.CharacterEvent)},
 
     ## Usami Flowers, jfc
     **{f"Acquire {x} character cards": i+4001 for i, x in enumerate([*range(10, 101, 10), *range(120, 241, 20)])},
@@ -50,7 +50,7 @@ location_dictionary: dict[str, int] = {
     **{f"Create {x} types of equipment in Battle Mode": i+14000 for i, x in enumerate([10, 20, 30, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 92])},
     **{f"Deal {x} damage in Battle Mode with 1 Hit": i+14501 for i, x in enumerate([*range(5000, 20001, 5000)])},
     **{f"Deal {x} damage in Arena of Despair": i+15000 for i, x in enumerate([50000, 100000, 200000, 300000, 400000, 500000])},
-    **{f"View {character}'s Events 10 Times": i+15500 for i, character in enumerate(data.characters)},
+    **{f"View {character}'s Events 10 Times": i+15500 for i, character in enumerate(data.Character)},
     **{f"Clear a development plan without using a single card": 16001},
     **{f"Obtain 20 equipment in a single Development Plan": 16002},
     **{f"Clear a Development Plan without obtaining any equipment": 16003},
