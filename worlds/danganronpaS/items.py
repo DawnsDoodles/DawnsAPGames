@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Dict, List
 
 from BaseClasses import Item, ItemClassification
 
-from .data import Present, Character, MonoKub, HypeCardType, CraftingMaterialQuality, CraftedItem, DevModeDungeon
+from .data import Present, Character, CharacterRarity, MonoKub, HypeCardType, CraftingMaterialQuality, crafting_materials, CraftedItem, DevModeDungeon
 from .options import CharacterGen
 
 if TYPE_CHECKING:
@@ -25,30 +25,26 @@ class FillerItem(enum.StrEnum):
 
 ## The list of items
 item_table: dict[str, ItemData] = {
-    **{item: ItemData(classification = ItemClassification.filler) for item in FillerItem},
+    **{item.value: ItemData(classification = ItemClassification.filler) for item in FillerItem},
 
-    **{item: ItemData(classification = ItemClassification.useful) for item in Present},
+    **{item.value: ItemData(classification = ItemClassification.useful) for item in Present},
 
-    **{item: ItemData(classification = ItemClassification.progression) for item in Character},
-    **{f"Progressive {character} Rarity": ItemData(classification = ItemClassification.progression, count = 4) for character in Character},
-    **{f"{character} (N)": ItemData(classification = ItemClassification.progression) for character in Character},
-    **{f"{character} (R)": ItemData(classification = ItemClassification.progression) for character in Character},
-    **{f"{character} (S)": ItemData(classification = ItemClassification.progression) for character in Character},
-    **{f"{character} (U)": ItemData(classification = ItemClassification.progression) for character in Character},
+    **{character.char_name: ItemData(classification = ItemClassification.progression) for character in Character},
+    **{f"Progressive {character.char_name} Rarity": ItemData(classification = ItemClassification.progression, count = 4) for character in Character},
+    **{f"{character.char_name} (N)": ItemData(classification = ItemClassification.progression) for character in Character},
+    **{f"{character.char_name} (R)": ItemData(classification = ItemClassification.progression) for character in Character},
+    **{f"{character.char_name} (S)": ItemData(classification = ItemClassification.progression) for character in Character},
+    **{f"{character.char_name} (U)": ItemData(classification = ItemClassification.progression) for character in Character},
 
-    **{f"{character} - {hypecard}": ItemData(classification = ItemClassification.progression_skip_balancing) for character in Character for hypecard in HypeCardType},
-    **{f"{character}'s Hope Fragment": ItemData(classification = ItemClassification.progression) for character in Character},
-    **{f"{monokub}'s Hope Fragment": ItemData(classification = ItemClassification.progression) for monokub in MonoKub},
+    **{f"{character.char_name} - {hypecard}": ItemData(classification = ItemClassification.progression_skip_balancing) for character in Character for hypecard in HypeCardType},
+    **{f"{character.char_name}'s Hope Fragment": ItemData(classification = ItemClassification.progression_skip_balancing) for character in Character},
+    **{f"{monokub.value}'s Hope Fragment": ItemData(classification = ItemClassification.progression) for monokub in MonoKub},
 
     "Progressive Scroll": ItemData(classification = ItemClassification.progression, count = 5),
-    **{f"{item} Unlock": ItemData(classification = ItemClassification.progression) for item in DevModeDungeon},
+    **{f"{dungeon.value} Unlock": ItemData(classification = ItemClassification.progression) for dungeon in DevModeDungeon},
 
-    **{item: ItemData(classification = ItemClassification.progression) for item in CraftedItem},
-    **{f"{item} Monster Eye": ItemData(classification = ItemClassification.progression) for item in CraftingMaterialQuality},
-    **{f"{item} Monster Fang": ItemData(classification = ItemClassification.progression) for item in CraftingMaterialQuality},
-    **{f"{item} Monster Fur": ItemData(classification = ItemClassification.progression) for item in CraftingMaterialQuality},
-    **{f"{item} Monster Meat": ItemData(classification = ItemClassification.progression) for item in CraftingMaterialQuality},
-    **{f"{item} Monster Skin": ItemData(classification = ItemClassification.progression) for item in CraftingMaterialQuality},
+    **{crafted_item.item_name: ItemData(classification = ItemClassification.progression) for crafted_item in CraftedItem},
+    **{f"{material.material_name}": ItemData(classification=ItemClassification.progression) for material_type, quality_dict in crafting_materials.items() for quality, material in quality_dict.items()},
 }
 
 raw_items: List[str] = [item for item, classification in item_table.items()]
@@ -61,7 +57,9 @@ class DanganronpaSItem(Item):
     game = "DanganronpaS"
 
 def get_random_filler_item_name(world: DanganronpaSWorld) -> str:
-    return world.random.choice([*presents, *filler])
+    presents_and_filler: list[str] = [present.value for present in Present]
+    presents_and_filler += [filler.value for filler in FillerItem]
+    return world.random.choice(presents_and_filler)
 
 def create_item_with_correct_classification(world: DanganronpaSWorld, name: str) -> DanganronpaSItem:
     return DanganronpaSItem(name, item_table[name].classification, world.item_name_to_id[name], world.player)
@@ -75,9 +73,13 @@ def create_all_items(world: DanganronpaSWorld) -> None:
         world.push_precollected(world.create_item(starting_item))
 
     itempool: list[Item] = []
+    filler_item_names: list[str] = [filler.value for filler in FillerItem]
     for name, data in item_table.items():
-        if name not in filler and name not in world.precollected_inventory:
-            for _ in range(data.count):
+        num_to_create: int = data.count
+        if name in world.precollected_inventory:
+            num_to_create -= 1
+        if name not in filler_item_names:
+            for _ in range(num_to_create):
                 itempool.append(world.create_item(name))
 
     print(f"num_items_placed: {len(itempool)}")
@@ -89,13 +91,13 @@ def create_all_items(world: DanganronpaSWorld) -> None:
 def get_character_item_list(world: DanganronpaSWorld) -> None:
     if world.options.character_gen == CharacterGen.option_scattered:
         for character in Character:
-            world.character_item_list.append(f"{character} (N)")
-            world.character_item_list.append(f"{character} (R)")
-            world.character_item_list.append(f"{character} (S)")
-            world.character_item_list.append(f"{character} (U)")
+            world.character_item_dict[character] = \
+            [f"{character.char_name} ({rarity.value})" for rarity in CharacterRarity]
+
     elif world.options.character_gen == CharacterGen.option_progressive:
         for character in Character:
-            world.character_item_list.append(f"Progressive {character} Rarity")
+            world.character_item_dict[character] = [f"Progressive {character.char_name} Rarity"]
+
     else:
         for character in Character:
-            world.character_item_list.append(f"{character}")
+            world.character_item_dict[character] = [f"{character.char_name}"]

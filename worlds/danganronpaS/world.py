@@ -19,7 +19,7 @@ class DanganronpaSWorld(World):
     options_dataclass = options.DRASOptions
     options: options.DRASOptions
 
-    location_name_to_id = {value: locations.location_dictionary.index(value) + 1 for value in locations.location_dictionary}
+    location_name_to_id = {loc_name: loc_id for loc_name, loc_id in locations.location_dictionary.items()}
     item_name_to_id = {value: index + 1 for index, value in enumerate(items.raw_items)}
 
     #constructor for World class
@@ -27,9 +27,8 @@ class DanganronpaSWorld(World):
         # put instance unique things here (to prevent global state bleed)
         # make sure that any editable things that the world reads is initialized here
         self.num_starting_characters: int = 5
-        self.starting_characters: list[str] = []
-        self.starting_rarities: list[str] = []
-        self.character_item_list: list[str] = []
+        self.starting_characters: list[data.Character] = []
+        self.character_item_dict: dict[data.Character, list[str]] = {}
 
         self.is_ut_gen: bool = False
         """Is this a UT gen?"""
@@ -48,8 +47,10 @@ class DanganronpaSWorld(World):
         # we are now in a UT gen, set any options and other randomization to slot data
         self.is_ut_gen = True
 
-        self.starting_characters = slot_data["starting_characters"]
-        self.starting_rarities = slot_data["starting_rarities"]
+        self.starting_characters = []
+        for character in data.Character:
+            if character.char_name in slot_data["starting_characters"]:
+                self.starting_characters.append(character)
 
         return slot_data
 
@@ -68,19 +69,24 @@ class DanganronpaSWorld(World):
         items.get_character_item_list(self)
 
         if not self.is_ut_gen:
-            self.starting_characters = self.random.sample(data.characters, self.num_starting_characters)
-            for _ in range(self.num_starting_characters):
-                self.starting_rarities.append(self.random.choice(data.rarities))
-
-        #starting inventory
-        for index, character in enumerate(self.starting_characters):
-            self.precollected_inventory.append(f"{character} {self.starting_rarities[index]}")
-        pass
+            #starting characters
+            self.starting_characters = self.random.sample(list(self.character_item_dict.keys()), self.num_starting_characters)
+            match self.options.character_gen.value:
+                case options.CharacterGen.option_all_at_once:
+                    for x in range(self.num_starting_characters):
+                        self.precollected_inventory.append(self.character_item_dict[self.starting_characters[x]][0])
+                case options.CharacterGen.option_progressive:
+                    for x in range(self.num_starting_characters):
+                        self.precollected_inventory.append(self.character_item_dict[self.starting_characters[x]][0])
+                case options.CharacterGen.option_scattered:
+                    for x in range(self.num_starting_characters):
+                        #will pull specifically Normal Rarity
+                        self.precollected_inventory.append(self.character_item_dict[self.starting_characters[x]][0])
 
     #second is regions (and locations)
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
-        locations.create_all_locations(self)
+        locations.create_locations(self)
 
     #after regions is items (locations are done, though events can be later)
     def create_items(self) -> None:
@@ -117,8 +123,7 @@ class DanganronpaSWorld(World):
         # If you need access to the player's chosen options on the client side, there is a helper for that.
         return \
         {
-            "starting_characters": self.starting_characters,
-            "starting_rarities": self.starting_rarities,
+            "starting_characters": [char.char_name for char in self.starting_characters],
             "goal": self.options.goal.value,
             "fragments": self.options.fragments.value,
         }

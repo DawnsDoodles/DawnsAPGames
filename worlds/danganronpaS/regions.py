@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Entrance, Region
-from .rules import has_characters, can_get_grimoire_scroll, can_access_specific_island
+from .data import DevModeDungeon, DevModeLocation, MonoKub
 
 if TYPE_CHECKING:
     from .world import DanganronpaSWorld
@@ -14,7 +14,7 @@ def create_and_connect_regions(world: DanganronpaSWorld) -> None:
     create_all_regions(world)
     connect_regions(world)
 
-def create_region_helper(name:str, world: DanganronpaSWorld) -> None:
+def create_region_helper(name: str, world: DanganronpaSWorld) -> None:
     region = Region(name, world.player, world.multiworld)
     world.multiworld.regions.append(region)
 
@@ -42,41 +42,40 @@ def create_all_regions(world: DanganronpaSWorld) -> None:
 
     create_region_helper("Battle Tower Lower Floors", world)
     create_region_helper("Battle Tower Upper Floors", world)
-    create_region_helper("Battle Tower Ultra Lower Floors", world)
-    create_region_helper("Battle Tower Ultra Upper Floors", world)
+    create_region_helper("Battle Tower Lower Ultimate Floors", world)
+    create_region_helper("Battle Tower Upper Ultimate Floors", world)
     create_region_helper("Arena of Despair", world)
 
-    create_region_helper("First Island", world)
-    create_region_helper("Second Island", world)
-    create_region_helper("Third Island", world)
-    create_region_helper("Fourth Island", world)
-    create_region_helper("Fifth Island", world)
 
-    create_region_helper("Cottage", world)
-    create_region_helper("Beach House", world)
-    create_region_helper("Hospital", world)
-    create_region_helper("Fun House", world)
-    create_region_helper("Factory", world)
-    create_region_helper("Hopes Peak", world)
+    create_region_helper(DevModeLocation.FIRST_ISLAND, world)
+    create_region_helper(DevModeLocation.SECOND_ISLAND, world)
+    create_region_helper(DevModeLocation.THIRD_ISLAND, world)
+    create_region_helper(DevModeLocation.FOURTH_ISLAND, world)
+    create_region_helper(DevModeLocation.FIFTH_ISLAND, world)
 
-    create_region_helper("Monokids Hope", world)
-    create_region_helper("Monosukes Hope", world)
-    create_region_helper("Monodams Hope", world)
-    create_region_helper("Monophanies Hope", world)
-    create_region_helper("Monotaros Hope", world)
+    create_region_helper(DevModeLocation.COTTAGE, world)
+    create_region_helper(DevModeLocation.BEACH_HOUSE, world)
+    create_region_helper(DevModeLocation.HOSPITAL, world)
+    create_region_helper(DevModeLocation.FUN_HOUSE, world)
+    create_region_helper(DevModeLocation.FACTORY, world)
+    create_region_helper(DevModeLocation.SECRET, world)
+
+    for monokub in MonoKub:
+        create_region_helper(f"{monokub}s Hope", world)
+
     create_region_helper("Graduation", world)
 
 
 
 ## Connector Helper
-def connector_help(world: DanganronpaSWorld, parent:Region, target:Region, rule = None) -> None:
+def connector_help(world: DanganronpaSWorld, parent: Region, target: Region, rule = None) -> None:
     entrance = Entrance(world.player, f"{parent.name} => {target.name}", parent=parent)
     parent.exits.append(entrance)
     entrance.connect(target)
 
-    entrance = Entrance(world.player, f"{target.name} => {parent.name}",parent=target)
-    target.exits.append(entrance)
-    entrance.connect(parent)
+    # entrance = Entrance(world.player, f"{target.name} => {parent.name}",parent=target)
+    # target.exits.append(entrance)
+    # entrance.connect(parent)
 
 
 
@@ -100,30 +99,30 @@ def connect_regions(world: DanganronpaSWorld) -> None:
     Gacha14 = world.get_region("Gacha14")
     Gacha15 = world.get_region("Gacha15")
 
-    Battle_Tower_Lower_Floor = world.get_region("Battle Tower Lower Floor")
-    Battle_Tower_Upper_Floor = world.get_region("Battle Tower Upper Floor")
-    Battle_Tower_Lower_Ultimate_Floor = world.get_region("Battle Tower Lower Ultimate Floor")
-    Battle_Tower_Upper_Ultimate_Floor = world.get_region("Battle Tower Upper Ultimate Floor")
+    Battle_Tower_Lower_Floor = world.get_region("Battle Tower Lower Floors")
+    Battle_Tower_Upper_Floor = world.get_region("Battle Tower Upper Floors")
+    Battle_Tower_Lower_Ultimate_Floor = world.get_region("Battle Tower Lower Ultimate Floors")
+    Battle_Tower_Upper_Ultimate_Floor = world.get_region("Battle Tower Upper Ultimate Floors")
     Arena_of_Despair = world.get_region("Arena of Despair")
 
-    The_First_Island = world.get_region("The First Island")
-    The_Second_Island = world.get_region("The Second Island")
-    The_Third_Island = world.get_region("The Third Island")
-    The_Fourth_Island = world.get_region("The Fourth Island")
-    The_Fifth_Island = world.get_region("The Fifth Island")
+    The_First_Island = world.get_region(DevModeLocation.FIRST_ISLAND)
+    The_Second_Island = world.get_region(DevModeLocation.SECOND_ISLAND)
+    The_Third_Island = world.get_region(DevModeLocation.THIRD_ISLAND)
+    The_Fourth_Island = world.get_region(DevModeLocation.FOURTH_ISLAND)
+    The_Fifth_Island = world.get_region(DevModeLocation.FIFTH_ISLAND)
 
-    Cottage = world.get_region("Cottage")
-    Beach_House = world.get_region("Beach House")
-    Hospital = world.get_region("Hospital")
-    Fun_House = world.get_region("Fun House")
-    Factory = world.get_region("Factory")
-    Hopes_Peak = world.get_region("Hopes Peak")
+    Cottage = world.get_region(DevModeLocation.COTTAGE)
+    Beach_House = world.get_region(DevModeLocation.BEACH_HOUSE)
+    Hospital = world.get_region(DevModeLocation.HOSPITAL)
+    Fun_House = world.get_region(DevModeLocation.FUN_HOUSE)
+    Factory = world.get_region(DevModeLocation.FACTORY)
+    Hopes_Peak = world.get_region(DevModeLocation.SECRET)
 
-    Monokids_Hope = world.get_region("Monokids Hope")
-    Monosukes_Hope = world.get_region("Monossukes Hope")
-    Monodams_Hope = world.get_region("Monodams Hope")
-    Monophanies_Hope = world.get_region("Monophanies Hope")
-    Monotaros_Hope = world.get_region("Monotaros Hope")
+    Monokids_Hope = world.get_region(f"{MonoKub.MONOKID}s Hope")
+    Monosukes_Hope = world.get_region(f"{MonoKub.MONOSUKE}s Hope")
+    Monodams_Hope = world.get_region(f"{MonoKub.MONODAM}s Hope")
+    Monophanies_Hope = world.get_region(f"{MonoKub.MONOPHANIE}s Hope")
+    Monotaros_Hope = world.get_region(f"{MonoKub.MONOTARO}s Hope")
     Graduation = world.get_region("Graduation")
 
 

@@ -115,13 +115,13 @@ class Character(enum.Enum):
 
 
 class CharacterRarity(enum.StrEnum):
-    NORMAL = "Normal"
+    NORMAL = "N"
     N = NORMAL
-    RARE = "Rare"
+    RARE = "R"
     R = RARE
-    SUPER_RARE = "Super Rare"
+    SUPER_RARE = "S"
     S = SUPER_RARE
-    ULTRA_RARE = "Ultra Rare"
+    ULTRA_RARE = "U"
     U = ULTRA_RARE
 
 
@@ -272,6 +272,7 @@ class CraftedItem(enum.Enum):
     ULTIMATE_CHILD_CAREGIVER_PROOF = _CraftedItemData(item_name="Ultimate Child Caregiver Proof", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.GOLD]], influence=0, focus=30, strength=0, stamina=0, intellect=0, endurance=30, agility=15, luck=0)
     ULTIMATE_CLAIRVOYANT_PROOF = _CraftedItemData(item_name="Ultimate Clairvoyant Proof", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.COPPER]], influence=0, focus=25, strength=0, stamina=0, intellect=25, endurance=25, agility=0, luck=0)
     ULTIMATE_DESPAIR_PROOF = _CraftedItemData(item_name="Ultimate Despair Proof", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_MEAT][CraftingMaterialQuality.PLATINUM], crafting_materials[CraftingMaterialType.MONSTER_SKIN][CraftingMaterialQuality.PLATINUM], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.PLATINUM]], influence=75, focus=75, strength=0, stamina=0, intellect=0, endurance=0, agility=0, luck=0)
+    ULTIMATE_DETECTIVE_PROOF = _CraftedItemData(item_name="Ultimate Detective Proof", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.COPPER], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER]], influence=20, focus=0, strength=0, stamina=0, intellect=55, endurance=0, agility=0, luck=0)
     ULTIMATE_GYMNAST_PROOF = _CraftedItemData(item_name="Ultimate Gymnast Proof", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER]], influence=0, focus=25, strength=25, stamina=25, intellect=0, endurance=0, agility=0, luck=0)
     ULTIMATE_HAT = _CraftedItemData(item_name="Ultimate Hat", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.BIG], crafting_materials[CraftingMaterialType.MONSTER_FUR][CraftingMaterialQuality.STURDY]], influence=60, focus=0, strength=60, stamina=60, intellect=60, endurance=60, agility=60, luck=60)
     ULTIMATE_HOPE_PROOF = _CraftedItemData(item_name="Ultimate Hope Proof", prereq_item_name="", material_list=[crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.SILVER], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.PLATINUM], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.GOLD], crafting_materials[CraftingMaterialType.MONSTER_FANG][CraftingMaterialQuality.COPPER]], influence=30, focus=30, strength=15, stamina=15, intellect=15, endurance=15, agility=15, luck=15)

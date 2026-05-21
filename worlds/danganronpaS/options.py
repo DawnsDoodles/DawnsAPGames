@@ -7,12 +7,12 @@ class Goal(Choice):
     """
     What is required to beat the game
     School Secret: Beat the Jabberwock Boss in Hope's Peak Academy
-    Arena of Despair: Complete the Arena of Despair by beating the Jabberwock Boss there.
+    Graduation: Finish the story
     Hope Fragments: Collect a certain amount of hope fragments.
     """
     display_name = "Goal"
     option_school_secret = 0
-    ##option_arena_of_despair = 1
+    option_graduation = 1
     option_hope_fragments = 2
     default = 0
 
@@ -33,7 +33,7 @@ class CharacterGen(Choice):
     display_name = "Character Generation"
     option_all_at_once = 0
     option_progressive = 1
-    ##option_scattered = 2
+    option_scattered = 2
     default = 0
 
 class UsamiFlowers(Toggle):
