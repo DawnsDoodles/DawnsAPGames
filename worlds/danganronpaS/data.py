@@ -3,6 +3,8 @@ import enum
 from dataclasses import dataclass, field
 from typing import NamedTuple, Self
 
+from rule_builder.rules import CanReachRegion, True_, False_, Rule, Has, HasFromListUnique
+
 
 class DanganronpaGame(enum.StrEnum):
     TRIGGER_HAPPY_HAVOC = "Trigger Happy Havoc"
@@ -131,6 +133,7 @@ class MonoKub(enum.StrEnum):
     MONODAM = "Monodam"
     MONOPHANIE = "Monophanie"
     MONOTARO = "Monotaro"
+
 
 
 class HypeCardType(enum.StrEnum):
@@ -500,7 +503,7 @@ class EnemyInformation(enum.Enum):
     MONOBEAST_HUMAN = _EnemyInfo(enemy_name="Monobeast (Human)", dev_location=DevModeLocation.CENTRAL_ISLAND, tower_floor=100, influence=8000, strength=300, stamina=555, intelligence=666, endurance=655, agility=333, luck=333)
     MONOBEAST_HUMAN_AWAKENED = _EnemyInfo(enemy_name="Monobeast (Human Awakened)", dev_location=DevModeLocation.NO_LOCATION, tower_floor=200, influence=40000, strength=833, stamina=3500, intelligence=833, endurance=3500, agility=700, luck=666)
     ALMIGHTY_JABBERWOCK = _EnemyInfo(enemy_name="Almighty Jabberwock", dev_location=DevModeLocation.SECRET, tower_floor=200, influence=50000, strength=2300, stamina=5200, intelligence=9999, endurance=5200, agility=955, luck=666)
-    ALMIGHTY_JABBERWOCK_AWAKENED = _EnemyInfo(enemy_name="Almighty Jabberwock Awakened", dev_location=DevModeLocation.NO_LOCATION, tower_floor=201, influence=500000000, strength=720, stamina=780, intelligence=9999, endurance=780, agility=1300, luck=1500)
+    ALMIGHTY_JABBERWOCK_AWAKENED = _EnemyInfo(enemy_name="Almighty Jabberwock Awakened", dev_location=DevModeLocation.NO_LOCATION, tower_floor=-1, influence=500000000, strength=720, stamina=780, intelligence=9999, endurance=780, agility=1300, luck=1500)
     MONOKID = _EnemyInfo(enemy_name="Monokid", dev_location=DevModeLocation.EVENT, tower_floor=-1, influence=2500, strength=70, stamina=60, intelligence=50, endurance=60, agility=150, luck=80)
     MONOSUKE = _EnemyInfo(enemy_name="Monosuke", dev_location=DevModeLocation.EVENT, tower_floor=-1, influence=4000, strength=90, stamina=150, intelligence=90, endurance=180, agility=120, luck=190)
     MONODAM = _EnemyInfo(enemy_name="Monodam", dev_location=DevModeLocation.EVENT, tower_floor=-1, influence=6000, strength=120, stamina=180, intelligence=120, endurance=200, agility=200, luck=180)
@@ -529,6 +532,76 @@ class EnemyInformation(enum.Enum):
         self.endurance: int = info.endurance
         self.agility: int = info.agility
         self.luck: int = info.luck
+
+
+    def _get_dev_location_rule(self) -> Rule["DanganronpaSWorld"]:
+        if self.dev_location is DevModeLocation.NO_LOCATION:
+            return False_["DanganronpaSWorld"]()
+
+        if self.dev_location is DevModeLocation.FIRST_ISLAND:
+            return CanReachRegion("First Island")
+        if self.dev_location is DevModeLocation.SECOND_ISLAND:
+            return CanReachRegion("Second Island")
+        if self.dev_location is DevModeLocation.THIRD_ISLAND:
+            return CanReachRegion("Third Island")
+        if self.dev_location is DevModeLocation.FOURTH_ISLAND:
+            return CanReachRegion("Fourth Island")
+        if self.dev_location is DevModeLocation.FIFTH_ISLAND:
+            return CanReachRegion("Fifth Island")
+
+        if self.dev_location is DevModeLocation.CENTRAL_ISLAND:
+            #handle cases here
+            if self is EnemyInformation.MONOBEAST_TIGER:
+                return Has("Progressive Scroll", count=1)
+            if self is EnemyInformation.MONOBEAST_SNAKE:
+                return Has("Progressive Scroll", count=2)
+            if self is EnemyInformation.MONOBEAST_BIRD:
+                return Has("Progressive Scroll", count=3)
+            if self is EnemyInformation.MONOBEAST_HORSE:
+                return Has("Progressive Scroll", count=4)
+            if self is EnemyInformation.MONOBEAST_HUMAN:
+                return Has("Progressive Scroll", count=5)
+            pass
+
+        if self.dev_location is DevModeLocation.COTTAGE:
+            return CanReachRegion("Cottage")
+        if self.dev_location is DevModeLocation.BEACH_HOUSE:
+            return CanReachRegion("Beach House")
+        if self.dev_location is DevModeLocation.HOSPITAL:
+            return CanReachRegion("Hospital")
+        if self.dev_location is DevModeLocation.FUN_HOUSE:
+            return CanReachRegion("Fun House")
+        if self.dev_location is DevModeLocation.FACTORY:
+            return CanReachRegion("Factory")
+
+        if self.dev_location is DevModeLocation.SECRET:
+            return Has("Progressive Scroll", count=5)
+
+        if self.dev_location is DevModeLocation.EVENT:
+            if self is EnemyInformation.MONOKID:
+                return CanReachRegion(f"{MonoKub.MONOKID}s Hope")
+            if self is EnemyInformation.MONOSUKE:
+                return CanReachRegion(f"{MonoKub.MONOSUKE}s Hope")
+            if self is EnemyInformation.MONODAM:
+                return CanReachRegion(f"{MonoKub.MONODAM}s Hope")
+            if self is EnemyInformation.MONOKID:
+                return CanReachRegion(f"{MonoKub.MONOKID}s Hope")
+            if self is EnemyInformation.MONOTARO:
+                return CanReachRegion(f"{MonoKub.MONOTARO}s Hope")
+            else:
+                return CanReachRegion("Graduation")
+
+        return False_["DanganronpaSWorld"]()
+
+
+    def get_location_rule(self) -> Rule["DanganronpaSWorld"]:
+        #THIS CAN BE DONE BTW
+        if self is EnemyInformation.ALMIGHTY_JABBERWOCK_AWAKENED:
+            return Has("Progressive Scroll", count=5) & CanReachRegion("Graduation")
+
+        from .rules import CanReachTowerFloor
+
+        return CanReachTowerFloor(tower_floor=self.tower_floor) | self._get_dev_location_rule()
 
 
 class CharacterEventType(enum.StrEnum):

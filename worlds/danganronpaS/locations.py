@@ -38,7 +38,7 @@ location_dictionary: dict[str, int] = {
     **{f"Defeat {x} Monobeast in 1 Dev Mode game": i+7501 for i, x in enumerate([*range(1, 6, 1)])},
     **{f"Clear a Development Plan after winning {x} battles": i+8001 for i, x in enumerate([*range(5, 30, 15)])},
     **{f"Clear a Development Plan after shopping {x} times": i+8501 for i, x in enumerate([3,7,10])},
-    **{f"Clear a Dev Plan acquiring {x} Jabbercoins": i+9001 for i, x in enumerate([*range(5000, 30001, 15000)])},
+    **{f"Clear a Dev Plan acquiring {x} Jabbercoins": i+9001 for i, x in enumerate([5000, 15000, 30000])},
     **{f"Clear a Dev Plan stopping on {x} Growth Squares": i+9501 for i, x in enumerate([*range(10, 31, 10)])},
     **{f"Clear a Dev Plan stopping on {x} Talent Squares": i+10001 for i, x in enumerate([*range(10, 31, 10)])},
     **{f"Clear a Dev Plan stopping on {x} Event Squares": i+10501 for i, x in enumerate([*range(10, 31, 10)])},

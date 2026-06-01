@@ -8,13 +8,14 @@ from rule_builder.rules import *
 
 from BaseClasses import CollectionState, Entrance, Location, Region
 from .items import item_table
-from .constants import *
 from .data import *
+from .constants import *
 from .options import *
 from .AtLeast import AtLeast
 
 if TYPE_CHECKING:
     from .world import DanganronpaSWorld
+
 
 
 ## Master Code B)
@@ -106,8 +107,38 @@ class HasCharacterCards(Rule["DanganronpaSWorld"], game = DANGANRONPA_S):
             return {item_name: {id(self)} for item_name in self.character_item_list}
 
 
+@dataclass(kw_only=True)
+class CanReachTowerFloor(Rule["DanganronpaSWorld"], game = DANGANRONPA_S):
+    tower_floor: int
 
+    @override
+    def _instantiate(self, world: DanganronpaSWorld) -> Rule.Resolved:
+        if self.tower_floor < 1:
+            return False_["DanganronpaSWorld"]().resolve(world=world)
 
+        monokub_fragment_list = [f"{monokub.value}'s Hope Fragment" for monokub in MonoKub]
+        if self.tower_floor < 20:
+            return True_["DanganronpaSWorld"]().resolve(world=world)
+        if self.tower_floor < 40:
+            return Has("Progressive Scroll", count=1).resolve(world=world)
+        elif self.tower_floor < 60:
+            return (Has("Progressive Scroll", count=1) & HasFromListUnique(*monokub_fragment_list, count=1)).resolve(world=world)
+        elif self.tower_floor < 80:
+            return (Has("Progressive Scroll", count=2) & HasFromListUnique(*monokub_fragment_list, count=1)).resolve(world=world)
+        elif self.tower_floor < 100:
+            return (Has("Progressive Scroll", count=2) & HasFromListUnique(*monokub_fragment_list, count=2)).resolve(world=world)
+        elif self.tower_floor < 120:
+            return (Has("Progressive Scroll", count=3) & HasFromListUnique(*monokub_fragment_list, count=2)).resolve(world=world)
+        elif self.tower_floor < 140:
+            return (Has("Progressive Scroll", count=3) & HasFromListUnique(*monokub_fragment_list, count=3)).resolve(world=world)
+        elif self.tower_floor < 160:
+            return (Has("Progressive Scroll", count=4) & HasFromListUnique(*monokub_fragment_list, count=3)).resolve(world=world)
+        elif self.tower_floor < 180:
+            return (Has("Progressive Scroll", count=4) & HasFromListUnique(*monokub_fragment_list, count=4)).resolve(world=world)
+        elif self.tower_floor < 200:
+            return (Has("Progressive Scroll", count=5) & HasFromListUnique(*monokub_fragment_list, count=4)).resolve(world=world)
+        else:
+            return (Has("Progressive Scroll", count=5) & HasFromListUnique(*monokub_fragment_list, count=5)).resolve(world=world)
 
 
 ## Individual Entrance Rules
@@ -230,7 +261,7 @@ def get_entrance(world: DanganronpaSWorld, region1: Region, region2: Region) -> 
     return entrance1
 
 ##Creating Location Rules
-def create_location_rules(world: DanganronpaSWorld):
+def create_location_rules(world: DanganronpaSWorld) -> None:
 
     ##EXAMPLE
     ##location = world.multiworld.get_location("name")
@@ -244,7 +275,7 @@ def create_location_rules(world: DanganronpaSWorld):
         crafting_mats: list[str] = [material.material_name for material in crafted_item.material_list]
         rule: Rule["DanganronpaSWorld"] = HasAll(*crafting_mats)
         if crafted_item.prereq_item_name != "":
-            rule &= CanReachLocation(f"Craft {crafted_item.prereq_item_name}")
+            rule &= Has(f"{crafted_item.prereq_item_name}")
         crafted_item_rules.append(rule)
         world.set_rule(location, rule)
 
@@ -357,4 +388,90 @@ def create_location_rules(world: DanganronpaSWorld):
         world.set_rule(location, Has("Progressive Scroll", count=x))
         location = world.multiworld.get_location(f"Defeat {x} Monobeast in 1 Dev Mode game", world.player)
         world.set_rule(location, Has("Progressive Scroll", count=x))
+
+
+    collect_jabbercoin_indices = [5000, 15000, 30000]
+    monokub_fragment_list = [f"{monokub.value}'s Hope Fragment" for monokub in MonoKub]
+    for x in collect_jabbercoin_indices:
+        location = world.multiworld.get_location(f"Clear a Dev Plan acquiring {x} Jabbercoins", world.player)
+        if x == 5000:
+            continue
+        if x == 15000:
+            world.set_rule(location, Has("Progressive Scroll", count=2) & HasFromListUnique(*monokub_fragment_list, count=2))
+        elif x == 30000:
+            world.set_rule(location, Has("Progressive Scroll", count=4) & HasFromListUnique(*monokub_fragment_list, count=4))
+
+
+    for character in world.character_item_dict.keys():
+        location = world.multiworld.get_location(f"View {character.char_name}'s Events 10 Times", world.player)
+        world.set_rule(location, HasCharacter(character))
+        location = world.multiworld.get_location(f"Clear a Development Plan with {character.char_name}", world.player)
+        world.set_rule(location, HasCharacter(character))
+
+    location = world.multiworld.get_location("Obtain 20 equipment in a single Development Plan", world.player)
+    world.set_rule(location, Has("Progressive Scroll", count=5))
+
+
+    for enemy in EnemyInformation:
+        location: Location = world.multiworld.get_location(f"Defeat {enemy.enemy_name}", world.player)
+        # print(f"Creating Rule for: Defeat {enemy.enemy_name}")
+        world.set_rule(location, enemy.get_location_rule())
+
+
+    for x in range(1, 201):
+        location = world.multiworld.get_location(f"Battle Tower Floor {x} Mission A", world.player)
+        world.set_rule(location, CanReachTowerFloor(tower_floor=x))
+        location = world.multiworld.get_location(f"Battle Tower Floor {x} Mission B", world.player)
+        world.set_rule(location, CanReachTowerFloor(tower_floor=x))
+        location = world.multiworld.get_location(f"Battle Tower Floor {x} Mission C", world.player)
+        world.set_rule(location, CanReachTowerFloor(tower_floor=x))
+
+
+    battle_mode_mission_indices = [*range(30, 631, 30)]
+    for x in battle_mode_mission_indices:
+        location = world.multiworld.get_location(f"Clear {x} Battle Mode Missions", world.player)
+        world.set_rule(location, CanReachTowerFloor(tower_floor = math.ceil(x / 3)))
+
+
+    clear_lower_tower_indices = [*range(25, 226, 25)]
+    for x in clear_lower_tower_indices:
+        location = world.multiworld.get_location(f"Clear Lower Despair Tower {x} Times", world.player)
+    world.set_rule(location, CanReachTowerFloor(tower_floor = 50))
+
+    clear_lower_tower_indices = [*range(25, 226, 25)]
+    for x in clear_lower_tower_indices:
+        location = world.multiworld.get_location(f"Clear Upper Despair Tower {x} Times", world.player)
+    world.set_rule(location, CanReachTowerFloor(tower_floor=100))
+
+    clear_lower_tower_indices = [*range(25, 226, 25)]
+    for x in clear_lower_tower_indices:
+        location = world.multiworld.get_location(f"Clear Lower Ultra Despair Tower {x} Times", world.player)
+    world.set_rule(location, CanReachTowerFloor(tower_floor=150))
+
+    clear_lower_tower_indices = [*range(25, 226, 25)]
+    for x in clear_lower_tower_indices:
+        location = world.multiworld.get_location(f"Clear Upper Ultra Despair Tower {x} Times", world.player)
+    world.set_rule(location, CanReachTowerFloor(tower_floor=200))
+
+    one_hit_damage_indices = [*range(5000, 20001, 5000)]
+    for x in one_hit_damage_indices:
+        location = world.multiworld.get_location(f"Deal {x} damage in Battle Mode with 1 Hit", world.player)
+        if x == 5000:
+            world.set_rule(location, CanReachTowerFloor(tower_floor=50))
+        elif x == 10000:
+            world.set_rule(location, CanReachTowerFloor(tower_floor=100))
+        elif x == 15000:
+            world.set_rule(location, CanReachTowerFloor(tower_floor=150))
+        else:
+            world.set_rule(location, CanReachTowerFloor(tower_floor=200))
+
+
+    arena_damage_indices = [50000, 100000, 200000, 300000, 400000, 500000]
+    for x in arena_damage_indices:
+        location = world.multiworld.get_location(f"Deal {x} damage in Arena of Despair", world.player)
+    world.set_rule(location, CanReachTowerFloor(tower_floor=100) & HasAll("Hat V3", "Uniform V3", "Shoes V3", "Talisman V3") & HasAny("Katana V3", "Hacking Gun V3", "Staff V3", "Shield V3"))
+
+
+
+
 
